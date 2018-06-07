@@ -1,0 +1,991 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsCompany" targetNamespace="http://tempuri.org/dsCompany.xsd" xmlns:mstns="http://tempuri.org/dsCompany.xsd" xmlns="http://tempuri.org/dsCompany.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="MLBStyleGuideConnectionString1" ConnectionStringObject="" IsAppSettingsProperty="True" Modifier="Assembly" Name="MLBStyleGuideConnectionString1 (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.MLBStyleGuideConnectionString1.ConnectionString" Provider="System.Data.SqlClient">
+          </Connection>
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="siteletsTableAdapter" GeneratorDataComponentClassName="siteletsTableAdapter" Name="sitelets" UserDataComponentName="siteletsTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="MLBStyleGuideConnectionString1 (Web.config)" DbObjectName="MLBStyleGuide.dbo.sitelets" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="False" GeneratorGetMethodName="GetAllSitelets" GetMethodModifier="Public" GetMethodName="GetAllSitelets" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="False" UserGetMethodName="GetAllSitelets" UserSourceName="GetAllSitelets">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="True">
+                    <CommandText>SELECT     id, description, image, displayorder
+FROM         dbo.sitelets
+ORDER BY displayorder</CommandText>
+                    <Parameters>
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="id" DataSetColumn="id" />
+              <Mapping SourceColumn="description" DataSetColumn="description" />
+              <Mapping SourceColumn="image" DataSetColumn="image" />
+              <Mapping SourceColumn="displayorder" DataSetColumn="displayorder" />
+            </Mappings>
+            <Sources>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="requestorsTableAdapter" GeneratorDataComponentClassName="requestorsTableAdapter" Name="requestors" UserDataComponentName="requestorsTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="MLBStyleGuideConnectionString1 (Web.config)" DbObjectName="MLBStyleGuide.dbo.requestors" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="False" GeneratorGetMethodName="GetAllRequestors" GetMethodModifier="Public" GetMethodName="GetAllRequestors" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="False" UserGetMethodName="GetAllRequestors" UserSourceName="GetAllRequestors">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="True">
+                    <CommandText>SELECT     id, lastname  + ', ' + firstname + moreinfo AS name, email, phone, displayorder
+FROM         dbo.requestors
+ORDER BY displayorder, lastname</CommandText>
+                    <Parameters>
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="id" DataSetColumn="id" />
+              <Mapping SourceColumn="name" DataSetColumn="name" />
+              <Mapping SourceColumn="email" DataSetColumn="email" />
+              <Mapping SourceColumn="phone" DataSetColumn="phone" />
+              <Mapping SourceColumn="displayorder" DataSetColumn="displayorder" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="MLBStyleGuideConnectionString1 (Web.config)" DbObjectName="MLBStyleGuide.dbo.requestors" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="True" GeneratorGetMethodName="GetRequestorByID" GetMethodModifier="Public" GetMethodName="GetRequestorByID" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="True" UserGetMethodName="GetRequestorByID" UserSourceName="FillBy">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="True">
+                    <CommandText>SELECT     id, lastname  + ', ' + firstname + moreinfo AS name, email, phone, displayorder
+FROM         dbo.requestors
+WHERE id = @id</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="False" AutogeneratedName="id" ColumnName="id" DataSourceName="MLBStyleGuide.dbo.requestors" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@id" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="id" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="legacyusers2siteletsTableAdapter" GeneratorDataComponentClassName="legacyusers2siteletsTableAdapter" Name="legacyusers2sitelets" UserDataComponentName="legacyusers2siteletsTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="MLBStyleGuideConnectionString1 (Web.config)" DbObjectName="MLBStyleGuide.dbo.legacyusers2sitelets" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="False" GeneratorGetMethodName="GetAllc2s" GetMethodModifier="Public" GetMethodName="GetAllc2s" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="False" UserGetMethodName="GetAllc2s" UserSourceName="GetAllc2s">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="False">
+                    <CommandText>DELETE FROM [dbo].[legacyusers2sitelets] WHERE (([id] = @Original_id))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_id" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="id" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="False">
+                    <CommandText>INSERT INTO [dbo].[legacyusers2sitelets] ([cid], [sid]) VALUES (@cid, @sid)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@cid" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="cid" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@sid" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="sid" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="True">
+                    <CommandText>SELECT     id, cid, sid
+FROM         dbo.legacyusers2sitelets</CommandText>
+                    <Parameters>
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="False">
+                    <CommandText>UPDATE [dbo].[legacyusers2sitelets] SET [cid] = @cid, [sid] = @sid WHERE (([id] = @Original_id))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@cid" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="cid" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@sid" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="sid" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_id" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="id" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="id" DataSetColumn="id" />
+              <Mapping SourceColumn="cid" DataSetColumn="cid" />
+              <Mapping SourceColumn="sid" DataSetColumn="sid" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="MLBStyleGuideConnectionString1 (Web.config)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="True" GeneratorGetMethodName="GetDataBy" GeneratorSourceName="DeleteQuery" Modifier="Public" Name="DeleteQuery" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="True" UserGetMethodName="GetDataBy" UserSourceName="DeleteQuery">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="True">
+                    <CommandText>DELETE FROM [dbo].[legacyusers2sitelets] WHERE (([cid] = @cid))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="False" AutogeneratedName="cid" ColumnName="cid" DataSourceName="MLBStyleGuide.dbo.legacyusers2sitelets" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@cid" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="cid" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+              </DbSource>
+              <DbSource ConnectionRef="MLBStyleGuideConnectionString1 (Web.config)" DbObjectName="MLBStyleGuide.dbo.legacyusers2sitelets" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="True" GeneratorGetMethodName="Getc2sByCID" GeneratorSourceName="FillBy" GetMethodModifier="Public" GetMethodName="Getc2sByCID" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="True" UserGetMethodName="Getc2sByCID" UserSourceName="Getc2sByCID1">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="True">
+                    <CommandText>SELECT     id, cid, sid
+FROM         dbo.legacyusers2sitelets
+WHERE cid = @cid</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="False" AutogeneratedName="cid" ColumnName="cid" DataSourceName="MLBStyleGuide.dbo.legacyusers2sitelets" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@cid" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="cid" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="dtRequestorLastNameTableAdapter" GeneratorDataComponentClassName="dtRequestorLastNameTableAdapter" Name="dtRequestorLastName" UserDataComponentName="dtRequestorLastNameTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="MLBStyleGuideConnectionString1 (Web.config)" DbObjectName="MLBStyleGuide.dbo.requestors" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="False" GeneratorGetMethodName="GetRequestorLastNameByID" GetMethodModifier="Public" GetMethodName="GetRequestorLastNameByID" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="False" UserGetMethodName="GetRequestorLastNameByID" UserSourceName="GetRequestorLastNameByID">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="True">
+                    <CommandText>SELECT     id, lastname
+FROM         dbo.requestors
+WHERE     (id = @id)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="False" AutogeneratedName="id" ColumnName="id" DataSourceName="MLBStyleGuide.dbo.requestors" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@id" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="id" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="id" DataSetColumn="id" />
+              <Mapping SourceColumn="lastname" DataSetColumn="lastname" />
+            </Mappings>
+            <Sources>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="dtSiteletsTableAdapter" GeneratorDataComponentClassName="dtSiteletsTableAdapter" Name="dtSitelets" UserDataComponentName="dtSiteletsTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="MLBStyleGuideConnectionString1 (Web.config)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="False" GeneratorGetMethodName="GetSiteletNamesByCID" GetMethodModifier="Public" GetMethodName="GetSiteletNamesByCID" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="False" UserGetMethodName="GetSiteletNamesByCID" UserSourceName="GetSiteletNamesByCID">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="True">
+                    <CommandText>SELECT     legacyusers2sitelets.cid, sitelets.description
+FROM         legacyusers2sitelets INNER JOIN
+                      sitelets ON legacyusers2sitelets.sid = sitelets.id
+WHERE  legacyusers2sitelets.cid = @cid
+ORDER BY sitelets.displayorder</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="False" AutogeneratedName="cid" ColumnName="cid" DataSourceName="MLBStyleGuide.dbo.legacyusers2sitelets" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@cid" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="cid" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="cid" DataSetColumn="cid" />
+              <Mapping SourceColumn="description" DataSetColumn="description" />
+            </Mappings>
+            <Sources>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="legacyusers4MgrTableAdapter" GeneratorDataComponentClassName="legacyusers4MgrTableAdapter" Name="legacyusers4Mgr" UserDataComponentName="legacyusers4MgrTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="MLBStyleGuideConnectionString1 (Web.config)" DbObjectName="MLBStyleGuide.dbo.legacyusers" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="False" GeneratorGetMethodName="GetAllCompanies" GetMethodModifier="Public" GetMethodName="GetAllCompanies" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="False" UserGetMethodName="GetAllCompanies" UserSourceName="GetAllCompanies">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="True">
+                    <CommandText>SELECT     dbo.legacyusers.ID, dbo.legacyusers.UserName, dbo.legacyusers.Company, dbo.legacyusers.AllowedYear, dbo.legacyusers.ToDate, 
+                      dbo.legacyusers.FromDate, dbo.legacyusers.UserCategory, dbo.legacyusers.UserLevel, 
+                      dbo.requestors.lastname + ', ' + dbo.requestors.firstname AS RequestorName
+FROM         dbo.legacyusers LEFT OUTER JOIN
+                      dbo.requestors ON dbo.legacyusers.RequestorID = dbo.requestors.id
+ORDER BY dbo.legacyusers.Company</CommandText>
+                    <Parameters>
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn="UserName" DataSetColumn="UserName" />
+              <Mapping SourceColumn="Company" DataSetColumn="Company" />
+              <Mapping SourceColumn="AllowedYear" DataSetColumn="AllowedYear" />
+              <Mapping SourceColumn="ToDate" DataSetColumn="ToDate" />
+              <Mapping SourceColumn="FromDate" DataSetColumn="FromDate" />
+              <Mapping SourceColumn="UserCategory" DataSetColumn="UserCategory" />
+              <Mapping SourceColumn="UserLevel" DataSetColumn="UserLevel" />
+              <Mapping SourceColumn="RequestorName" DataSetColumn="RequestorName" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="MLBStyleGuideConnectionString1 (Web.config)" DbObjectName="MLBStyleGuide.dbo.legacyusers" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="True" GeneratorGetMethodName="GetCompaniesByKeyword" GetMethodModifier="Public" GetMethodName="GetCompaniesByKeyword" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="True" UserGetMethodName="GetCompaniesByKeyword" UserSourceName="GetCompaniesByKeyword1">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="True">
+                    <CommandText>SELECT dbo.legacyusers.AllowedYear, dbo.legacyusers.Company, dbo.legacyusers.FromDate, dbo.legacyusers.ID, dbo.legacyusers.ToDate, dbo.legacyusers.UserCategory, dbo.legacyusers.UserLevel, dbo.legacyusers.UserName, dbo.requestors.lastname + ', ' + dbo.requestors.firstname AS RequestorName FROM dbo.legacyusers LEFT OUTER JOIN dbo.requestors ON dbo.legacyusers.RequestorID = dbo.requestors.id 
+WHERE (dbo.legacyusers.UserName LIKE '%' + @keyword + '%') OR (dbo.legacyusers.Company LIKE '%' + @keyword + '%')
+ORDER BY dbo.legacyusers.Company</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="False" AutogeneratedName="keyword" ColumnName="UserName" DataSourceName="MLBStyleGuide.dbo.legacyusers" DataTypeServer="varchar(50)" DbType="AnsiString" Direction="Input" ParameterName="@keyword" Precision="0" ProviderType="VarChar" Scale="0" Size="50" SourceColumn="UserName" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="legacyusersTableAdapter" GeneratorDataComponentClassName="legacyusersTableAdapter" Name="legacyusers" UserDataComponentName="legacyusersTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="MLBStyleGuideConnectionString1 (Web.config)" DbObjectName="MLBStyleGuide.dbo.legacyusers" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="False" GeneratorGetMethodName="GetAllCompanies" GetMethodModifier="Public" GetMethodName="GetAllCompanies" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="True" UserGetMethodName="GetAllCompanies" UserSourceName="GetAllCompanies">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="False">
+                    <CommandText>DELETE FROM [dbo].[legacyusers] WHERE (([ID] = @Original_ID) AND ([UserName] = @Original_UserName) AND ([Password] = @Original_Password) AND ([Company] = @Original_Company) AND ([Mlb] = @Original_Mlb) AND ([Minor] = @Original_Minor) AND ([Coop] = @Original_Coop) AND ([Alls] = @Original_Alls) AND ([World] = @Original_World) AND ([Mascot] = @Original_Mascot) AND ((@IsNull_Email = 1 AND [Email] IS NULL) OR ([Email] = @Original_Email)) AND ([BulkReg] = @Original_BulkReg) AND ((@IsNull_Contract = 1 AND [Contract] IS NULL) OR ([Contract] = @Original_Contract)) AND ((@IsNull_Address1 = 1 AND [Address1] IS NULL) OR ([Address1] = @Original_Address1)) AND ((@IsNull_Address2 = 1 AND [Address2] IS NULL) OR ([Address2] = @Original_Address2)) AND ((@IsNull_City = 1 AND [City] IS NULL) OR ([City] = @Original_City)) AND ((@IsNull_State = 1 AND [State] IS NULL) OR ([State] = @Original_State)) AND ((@IsNull_Zip = 1 AND [Zip] IS NULL) OR ([Zip] = @Original_Zip)) AND ((@IsNull_Phone = 1 AND [Phone] IS NULL) OR ([Phone] = @Original_Phone)) AND ((@IsNull_Country = 1 AND [Country] IS NULL) OR ([Country] = @Original_Country)) AND ([Spring] = @Original_Spring) AND ([Trend] = @Original_Trend) AND ([Minorleaguestyleguide] = @Original_Minorleaguestyleguide) AND ([Super] = @Original_Super) AND ([Mlb2003] = @Original_Mlb2003) AND ((@IsNull_Creative = 1 AND [Creative] IS NULL) OR ([Creative] = @Original_Creative)) AND ((@IsNull_Alls2007 = 1 AND [Alls2007] IS NULL) OR ([Alls2007] = @Original_Alls2007)) AND ((@IsNull_UserLevel = 1 AND [UserLevel] IS NULL) OR ([UserLevel] = @Original_UserLevel)) AND ((@IsNull_UserCategory = 1 AND [UserCategory] IS NULL) OR ([UserCategory] = @Original_UserCategory)) AND ((@IsNull_RequestorID = 1 AND [RequestorID] IS NULL) OR ([RequestorID] = @Original_RequestorID)) AND ((@IsNull_FromDate = 1 AND [FromDate] IS NULL) OR ([FromDate] = @Original_FromDate)) AND ((@IsNull_ToDate = 1 AND [ToDate] IS NULL) OR ([ToDate] = @Original_ToDate)) AND ((@IsNull_AllowedYear = 1 AND [AllowedYear] IS NULL) OR ([AllowedYear] = @Original_AllowedYear)) AND ((@IsNull_RegistrationDate = 1 AND [RegistrationDate] IS NULL) OR ([RegistrationDate] = @Original_RegistrationDate)))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_ID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ID" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_UserName" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="UserName" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Password" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Password" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Company" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Company" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_Mlb" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Mlb" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_Minor" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Minor" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_Coop" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Coop" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_Alls" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Alls" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_World" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="World" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_Mascot" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Mascot" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Email" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Email" SourceColumnNullMapping="True" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_Email" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Email" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_BulkReg" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="BulkReg" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Contract" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Contract" SourceColumnNullMapping="True" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Contract" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Contract" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Address1" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Address1" SourceColumnNullMapping="True" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_Address1" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Address1" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Address2" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Address2" SourceColumnNullMapping="True" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_Address2" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Address2" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_City" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="City" SourceColumnNullMapping="True" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_City" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="City" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_State" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="State" SourceColumnNullMapping="True" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_State" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="State" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Zip" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Zip" SourceColumnNullMapping="True" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_Zip" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Zip" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Phone" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Phone" SourceColumnNullMapping="True" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_Phone" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Phone" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Country" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Country" SourceColumnNullMapping="True" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Country" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Country" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_Spring" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Spring" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_Trend" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Trend" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_Minorleaguestyleguide" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Minorleaguestyleguide" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_Super" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Super" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_Mlb2003" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Mlb2003" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Creative" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Creative" SourceColumnNullMapping="True" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_Creative" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Creative" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Alls2007" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Alls2007" SourceColumnNullMapping="True" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_Alls2007" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Alls2007" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_UserLevel" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="UserLevel" SourceColumnNullMapping="True" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_UserLevel" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="UserLevel" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_UserCategory" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="UserCategory" SourceColumnNullMapping="True" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_UserCategory" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="UserCategory" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_RequestorID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="RequestorID" SourceColumnNullMapping="True" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_RequestorID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="RequestorID" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_FromDate" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="FromDate" SourceColumnNullMapping="True" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_FromDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="FromDate" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_ToDate" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ToDate" SourceColumnNullMapping="True" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_ToDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="ToDate" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_AllowedYear" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="AllowedYear" SourceColumnNullMapping="True" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_AllowedYear" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="AllowedYear" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_RegistrationDate" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="RegistrationDate" SourceColumnNullMapping="True" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_RegistrationDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="RegistrationDate" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="False">
+                    <CommandText>INSERT INTO [dbo].[legacyusers] ([UserName], [Password], [Company], [Mlb], [Minor], [Coop], [Alls], [World], [Mascot], [Email], [BulkReg], [Contract], [Address1], [Address2], [City], [State], [Zip], [Phone], [Country], [Spring], [Trend], [Minorleaguestyleguide], [Super], [Mlb2003], [Creative], [Alls2007], [UserLevel], [UserCategory], [RequestorID], [FromDate], [ToDate], [AllowedYear], [RegistrationDate]) VALUES (@UserName, @Password, @Company, @Mlb, @Minor, @Coop, @Alls, @World, @Mascot, @Email, @BulkReg, @Contract, @Address1, @Address2, @City, @State, @Zip, @Phone, @Country, @Spring, @Trend, @Minorleaguestyleguide, @Super, @Mlb2003, @Creative, @Alls2007, @UserLevel, @UserCategory, @RequestorID, @FromDate, @ToDate, @AllowedYear, @RegistrationDate);
+SELECT ID, UserName, Password, Company, Mlb, Minor, Coop, Alls, World, Mascot, Email, BulkReg, Contract, Address1, Address2, City, State, Zip, Phone, Country, Spring, Trend, Minorleaguestyleguide, Super, Mlb2003, Creative, Alls2007, UserLevel, UserCategory, RequestorID, FromDate, ToDate, AllowedYear, RegistrationDate FROM dbo.legacyusers WHERE (ID = SCOPE_IDENTITY()) ORDER BY Company</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@UserName" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="UserName" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Password" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Password" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Company" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Company" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Mlb" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Mlb" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Minor" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Minor" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Coop" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Coop" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Alls" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Alls" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@World" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="World" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Mascot" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Mascot" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Email" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Email" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@BulkReg" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="BulkReg" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Contract" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Contract" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Address1" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Address1" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Address2" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Address2" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@City" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="City" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@State" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="State" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Zip" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Zip" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Phone" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Phone" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Country" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Country" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Spring" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Spring" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Trend" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Trend" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Minorleaguestyleguide" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Minorleaguestyleguide" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Super" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Super" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Mlb2003" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Mlb2003" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Creative" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Creative" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Alls2007" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Alls2007" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@UserLevel" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="UserLevel" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@UserCategory" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="UserCategory" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@RequestorID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="RequestorID" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@FromDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="FromDate" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@ToDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="ToDate" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@AllowedYear" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="AllowedYear" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@RegistrationDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="RegistrationDate" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="True">
+                    <CommandText>SELECT     ID, UserName, Password, Company, Mlb, Minor, Coop, Alls, World, Mascot, Email, BulkReg, Contract, Address1, Address2, City, State, Zip, Phone, 
+                      Country, Spring, Trend, Minorleaguestyleguide, Super, Mlb2003, Creative, Alls2007, UserLevel, UserCategory, RequestorID, FromDate, ToDate, 
+                      AllowedYear, RegistrationDate
+FROM         dbo.legacyusers
+ORDER BY Company</CommandText>
+                    <Parameters>
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="False">
+                    <CommandText>UPDATE [dbo].[legacyusers] SET [UserName] = @UserName, [Password] = @Password, [Company] = @Company, [Mlb] = @Mlb, [Minor] = @Minor, [Coop] = @Coop, [Alls] = @Alls, [World] = @World, [Mascot] = @Mascot, [Email] = @Email, [BulkReg] = @BulkReg, [Contract] = @Contract, [Address1] = @Address1, [Address2] = @Address2, [City] = @City, [State] = @State, [Zip] = @Zip, [Phone] = @Phone, [Country] = @Country, [Spring] = @Spring, [Trend] = @Trend, [Minorleaguestyleguide] = @Minorleaguestyleguide, [Super] = @Super, [Mlb2003] = @Mlb2003, [Creative] = @Creative, [Alls2007] = @Alls2007, [UserLevel] = @UserLevel, [UserCategory] = @UserCategory, [RequestorID] = @RequestorID, [FromDate] = @FromDate, [ToDate] = @ToDate, [AllowedYear] = @AllowedYear, [RegistrationDate] = @RegistrationDate WHERE (([ID] = @Original_ID) AND ([UserName] = @Original_UserName) AND ([Password] = @Original_Password) AND ([Company] = @Original_Company) AND ([Mlb] = @Original_Mlb) AND ([Minor] = @Original_Minor) AND ([Coop] = @Original_Coop) AND ([Alls] = @Original_Alls) AND ([World] = @Original_World) AND ([Mascot] = @Original_Mascot) AND ((@IsNull_Email = 1 AND [Email] IS NULL) OR ([Email] = @Original_Email)) AND ([BulkReg] = @Original_BulkReg) AND ((@IsNull_Contract = 1 AND [Contract] IS NULL) OR ([Contract] = @Original_Contract)) AND ((@IsNull_Address1 = 1 AND [Address1] IS NULL) OR ([Address1] = @Original_Address1)) AND ((@IsNull_Address2 = 1 AND [Address2] IS NULL) OR ([Address2] = @Original_Address2)) AND ((@IsNull_City = 1 AND [City] IS NULL) OR ([City] = @Original_City)) AND ((@IsNull_State = 1 AND [State] IS NULL) OR ([State] = @Original_State)) AND ((@IsNull_Zip = 1 AND [Zip] IS NULL) OR ([Zip] = @Original_Zip)) AND ((@IsNull_Phone = 1 AND [Phone] IS NULL) OR ([Phone] = @Original_Phone)) AND ((@IsNull_Country = 1 AND [Country] IS NULL) OR ([Country] = @Original_Country)) AND ([Spring] = @Original_Spring) AND ([Trend] = @Original_Trend) AND ([Minorleaguestyleguide] = @Original_Minorleaguestyleguide) AND ([Super] = @Original_Super) AND ([Mlb2003] = @Original_Mlb2003) AND ((@IsNull_Creative = 1 AND [Creative] IS NULL) OR ([Creative] = @Original_Creative)) AND ((@IsNull_Alls2007 = 1 AND [Alls2007] IS NULL) OR ([Alls2007] = @Original_Alls2007)) AND ((@IsNull_UserLevel = 1 AND [UserLevel] IS NULL) OR ([UserLevel] = @Original_UserLevel)) AND ((@IsNull_UserCategory = 1 AND [UserCategory] IS NULL) OR ([UserCategory] = @Original_UserCategory)) AND ((@IsNull_RequestorID = 1 AND [RequestorID] IS NULL) OR ([RequestorID] = @Original_RequestorID)) AND ((@IsNull_FromDate = 1 AND [FromDate] IS NULL) OR ([FromDate] = @Original_FromDate)) AND ((@IsNull_ToDate = 1 AND [ToDate] IS NULL) OR ([ToDate] = @Original_ToDate)) AND ((@IsNull_AllowedYear = 1 AND [AllowedYear] IS NULL) OR ([AllowedYear] = @Original_AllowedYear)) AND ((@IsNull_RegistrationDate = 1 AND [RegistrationDate] IS NULL) OR ([RegistrationDate] = @Original_RegistrationDate)));
+SELECT ID, UserName, Password, Company, Mlb, Minor, Coop, Alls, World, Mascot, Email, BulkReg, Contract, Address1, Address2, City, State, Zip, Phone, Country, Spring, Trend, Minorleaguestyleguide, Super, Mlb2003, Creative, Alls2007, UserLevel, UserCategory, RequestorID, FromDate, ToDate, AllowedYear, RegistrationDate FROM dbo.legacyusers WHERE (ID = @ID) ORDER BY Company</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@UserName" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="UserName" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Password" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Password" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Company" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Company" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Mlb" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Mlb" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Minor" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Minor" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Coop" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Coop" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Alls" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Alls" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@World" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="World" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Mascot" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Mascot" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Email" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Email" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@BulkReg" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="BulkReg" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Contract" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Contract" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Address1" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Address1" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Address2" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Address2" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@City" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="City" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@State" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="State" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Zip" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Zip" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Phone" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Phone" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Country" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Country" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Spring" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Spring" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Trend" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Trend" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Minorleaguestyleguide" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Minorleaguestyleguide" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Super" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Super" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Mlb2003" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Mlb2003" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Creative" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Creative" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Alls2007" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Alls2007" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@UserLevel" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="UserLevel" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@UserCategory" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="UserCategory" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@RequestorID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="RequestorID" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@FromDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="FromDate" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@ToDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="ToDate" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@AllowedYear" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="AllowedYear" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@RegistrationDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="RegistrationDate" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_ID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ID" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_UserName" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="UserName" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Password" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Password" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Company" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Company" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_Mlb" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Mlb" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_Minor" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Minor" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_Coop" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Coop" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_Alls" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Alls" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_World" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="World" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_Mascot" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Mascot" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Email" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Email" SourceColumnNullMapping="True" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_Email" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Email" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_BulkReg" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="BulkReg" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Contract" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Contract" SourceColumnNullMapping="True" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Contract" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Contract" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Address1" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Address1" SourceColumnNullMapping="True" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_Address1" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Address1" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Address2" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Address2" SourceColumnNullMapping="True" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_Address2" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Address2" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_City" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="City" SourceColumnNullMapping="True" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_City" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="City" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_State" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="State" SourceColumnNullMapping="True" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_State" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="State" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Zip" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Zip" SourceColumnNullMapping="True" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_Zip" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Zip" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Phone" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Phone" SourceColumnNullMapping="True" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_Phone" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Phone" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Country" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Country" SourceColumnNullMapping="True" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Country" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Country" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_Spring" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Spring" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_Trend" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Trend" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_Minorleaguestyleguide" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Minorleaguestyleguide" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_Super" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Super" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_Mlb2003" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Mlb2003" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Creative" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Creative" SourceColumnNullMapping="True" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_Creative" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Creative" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Alls2007" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Alls2007" SourceColumnNullMapping="True" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_Alls2007" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Alls2007" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_UserLevel" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="UserLevel" SourceColumnNullMapping="True" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_UserLevel" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="UserLevel" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_UserCategory" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="UserCategory" SourceColumnNullMapping="True" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_UserCategory" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="UserCategory" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_RequestorID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="RequestorID" SourceColumnNullMapping="True" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_RequestorID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="RequestorID" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_FromDate" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="FromDate" SourceColumnNullMapping="True" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_FromDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="FromDate" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_ToDate" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ToDate" SourceColumnNullMapping="True" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_ToDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="ToDate" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_AllowedYear" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="AllowedYear" SourceColumnNullMapping="True" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_AllowedYear" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="AllowedYear" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_RegistrationDate" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="RegistrationDate" SourceColumnNullMapping="True" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_RegistrationDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="RegistrationDate" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="False" AutogeneratedName="ID" ColumnName="ID" DataSourceName="MLBStyleGuide.dbo.legacyusers" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@ID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="ID" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn="UserName" DataSetColumn="UserName" />
+              <Mapping SourceColumn="Password" DataSetColumn="Password" />
+              <Mapping SourceColumn="Company" DataSetColumn="Company" />
+              <Mapping SourceColumn="Mlb" DataSetColumn="Mlb" />
+              <Mapping SourceColumn="Minor" DataSetColumn="Minor" />
+              <Mapping SourceColumn="Coop" DataSetColumn="Coop" />
+              <Mapping SourceColumn="Alls" DataSetColumn="Alls" />
+              <Mapping SourceColumn="World" DataSetColumn="World" />
+              <Mapping SourceColumn="Mascot" DataSetColumn="Mascot" />
+              <Mapping SourceColumn="Email" DataSetColumn="Email" />
+              <Mapping SourceColumn="BulkReg" DataSetColumn="BulkReg" />
+              <Mapping SourceColumn="Contract" DataSetColumn="Contract" />
+              <Mapping SourceColumn="Address1" DataSetColumn="Address1" />
+              <Mapping SourceColumn="Address2" DataSetColumn="Address2" />
+              <Mapping SourceColumn="City" DataSetColumn="City" />
+              <Mapping SourceColumn="State" DataSetColumn="State" />
+              <Mapping SourceColumn="Zip" DataSetColumn="Zip" />
+              <Mapping SourceColumn="Phone" DataSetColumn="Phone" />
+              <Mapping SourceColumn="Country" DataSetColumn="Country" />
+              <Mapping SourceColumn="Spring" DataSetColumn="Spring" />
+              <Mapping SourceColumn="Trend" DataSetColumn="Trend" />
+              <Mapping SourceColumn="Minorleaguestyleguide" DataSetColumn="Minorleaguestyleguide" />
+              <Mapping SourceColumn="Super" DataSetColumn="Super" />
+              <Mapping SourceColumn="Mlb2003" DataSetColumn="Mlb2003" />
+              <Mapping SourceColumn="Creative" DataSetColumn="Creative" />
+              <Mapping SourceColumn="Alls2007" DataSetColumn="Alls2007" />
+              <Mapping SourceColumn="UserLevel" DataSetColumn="UserLevel" />
+              <Mapping SourceColumn="UserCategory" DataSetColumn="UserCategory" />
+              <Mapping SourceColumn="RequestorID" DataSetColumn="RequestorID" />
+              <Mapping SourceColumn="FromDate" DataSetColumn="FromDate" />
+              <Mapping SourceColumn="ToDate" DataSetColumn="ToDate" />
+              <Mapping SourceColumn="AllowedYear" DataSetColumn="AllowedYear" />
+              <Mapping SourceColumn="RegistrationDate" DataSetColumn="RegistrationDate" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="MLBStyleGuideConnectionString1 (Web.config)" DbObjectName="MLBStyleGuide.dbo.legacyusers" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="True" GeneratorGetMethodName="GetCompaniesByKeyword" GetMethodModifier="Public" GetMethodName="GetCompaniesByKeyword" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="True" UserGetMethodName="GetCompaniesByKeyword" UserSourceName="GetCompaniesByKeyword1">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="True">
+                    <CommandText>SELECT Address1, Address2, AllowedYear, Alls, Alls2007, BulkReg, City, Company, Contract, Coop, Country, Creative, Email, FromDate, ID, Mascot, Minor, Minorleaguestyleguide, Mlb, Mlb2003, Password, Phone, RegistrationDate, RequestorID, Spring, State, Super, ToDate, Trend, UserCategory, UserLevel, UserName, World, Zip FROM dbo.legacyusers WHERE (UserName LIKE '%' + @keyword + '%') OR (Company LIKE '%' + @keyword + '%') ORDER BY Company</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="False" AutogeneratedName="keyword" ColumnName="UserName" DataSourceName="MLBStyleGuide.dbo.legacyusers" DataTypeServer="varchar(100)" DbType="AnsiString" Direction="Input" ParameterName="@keyword" Precision="0" ProviderType="VarChar" Scale="0" Size="100" SourceColumn="UserName" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="MLBStyleGuideConnectionString1 (Web.config)" DbObjectName="MLBStyleGuide.dbo.legacyusers" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="True" GeneratorGetMethodName="GetCompanyByID" GetMethodModifier="Public" GetMethodName="GetCompanyByID" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="True" UserGetMethodName="GetCompanyByID" UserSourceName="GetCompanyByID1">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="True">
+                    <CommandText>SELECT Address1, Address2, AllowedYear, Alls, Alls2007, BulkReg, City, Company, Contract, Coop, Country, Creative, Email, FromDate, ID, Mascot, Minor, Minorleaguestyleguide, Mlb, Mlb2003, Password, Phone, RegistrationDate, RequestorID, Spring, State, Super, ToDate, Trend, UserCategory, UserLevel, UserName, World, Zip FROM dbo.legacyusers WHERE (ID = @ID)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="False" AutogeneratedName="ID" ColumnName="ID" DataSourceName="MLBStyleGuide.dbo.legacyusers" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@ID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="ID" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="MLBStyleGuideConnectionString1 (Web.config)" DbObjectName="MLBStyleGuide.dbo.legacyusers" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="True" GeneratorGetMethodName="GetCompanyByUserName" GetMethodModifier="Public" GetMethodName="GetCompanyByUserName" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="True" UserGetMethodName="GetCompanyByUserName" UserSourceName="GetCompanyByUserName1">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="True">
+                    <CommandText>SELECT Address1, Address2, AllowedYear, Alls, Alls2007, BulkReg, City, Company, Contract, Coop, Country, Creative, Email, FromDate, ID, Mascot, Minor, Minorleaguestyleguide, Mlb, Mlb2003, Password, Phone, RegistrationDate, RequestorID, Spring, State, Super, ToDate, Trend, UserCategory, UserLevel, UserName, World, Zip FROM dbo.legacyusers WHERE (UserName = @UserName)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="False" AutogeneratedName="UserName" ColumnName="UserName" DataSourceName="MLBStyleGuide.dbo.legacyusers" DataTypeServer="varchar(100)" DbType="AnsiString" Direction="Input" ParameterName="@UserName" Precision="0" ProviderType="VarChar" Scale="0" Size="100" SourceColumn="UserName" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+        </Tables>
+        <Sources>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsCompany" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="dsCompany" msprop:Generator_DataSetName="dsCompany">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="sitelets" msprop:Generator_UserTableName="sitelets" msprop:Generator_RowDeletedName="siteletsRowDeleted" msprop:Generator_RowChangedName="siteletsRowChanged" msprop:Generator_RowClassName="siteletsRow" msprop:Generator_RowChangingName="siteletsRowChanging" msprop:Generator_RowEvArgName="siteletsRowChangeEvent" msprop:Generator_RowEvHandlerName="siteletsRowChangeEventHandler" msprop:Generator_TableClassName="siteletsDataTable" msprop:Generator_TableVarName="tablesitelets" msprop:Generator_RowDeletingName="siteletsRowDeleting" msprop:Generator_TablePropName="sitelets">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id" msprop:Generator_UserColumnName="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" type="xs:int" />
+              <xs:element name="description" msprop:Generator_UserColumnName="description" msprop:Generator_ColumnVarNameInTable="columndescription" msprop:Generator_ColumnPropNameInRow="description" msprop:Generator_ColumnPropNameInTable="descriptionColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="image" msprop:Generator_UserColumnName="image" msprop:Generator_ColumnVarNameInTable="columnimage" msprop:Generator_ColumnPropNameInRow="image" msprop:Generator_ColumnPropNameInTable="imageColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="displayorder" msprop:Generator_UserColumnName="displayorder" msprop:Generator_ColumnVarNameInTable="columndisplayorder" msprop:Generator_ColumnPropNameInRow="displayorder" msprop:Generator_ColumnPropNameInTable="displayorderColumn" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="requestors" msprop:Generator_UserTableName="requestors" msprop:Generator_RowDeletedName="requestorsRowDeleted" msprop:Generator_RowChangedName="requestorsRowChanged" msprop:Generator_RowClassName="requestorsRow" msprop:Generator_RowChangingName="requestorsRowChanging" msprop:Generator_RowEvArgName="requestorsRowChangeEvent" msprop:Generator_RowEvHandlerName="requestorsRowChangeEventHandler" msprop:Generator_TableClassName="requestorsDataTable" msprop:Generator_TableVarName="tablerequestors" msprop:Generator_RowDeletingName="requestorsRowDeleting" msprop:Generator_TablePropName="requestors">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id" msprop:Generator_UserColumnName="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" type="xs:int" />
+              <xs:element name="name" msdata:ReadOnly="true" msprop:Generator_UserColumnName="name" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnPropNameInTable="nameColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="201" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="email" msprop:Generator_UserColumnName="email" msprop:Generator_ColumnVarNameInTable="columnemail" msprop:Generator_ColumnPropNameInRow="email" msprop:Generator_ColumnPropNameInTable="emailColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="phone" msprop:Generator_UserColumnName="phone" msprop:Generator_ColumnVarNameInTable="columnphone" msprop:Generator_ColumnPropNameInRow="phone" msprop:Generator_ColumnPropNameInTable="phoneColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="displayorder" msprop:Generator_UserColumnName="displayorder" msprop:Generator_ColumnVarNameInTable="columndisplayorder" msprop:Generator_ColumnPropNameInRow="displayorder" msprop:Generator_ColumnPropNameInTable="displayorderColumn" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="legacyusers2sitelets" msprop:Generator_UserTableName="legacyusers2sitelets" msprop:Generator_RowDeletedName="legacyusers2siteletsRowDeleted" msprop:Generator_RowChangedName="legacyusers2siteletsRowChanged" msprop:Generator_RowClassName="legacyusers2siteletsRow" msprop:Generator_RowChangingName="legacyusers2siteletsRowChanging" msprop:Generator_RowEvArgName="legacyusers2siteletsRowChangeEvent" msprop:Generator_RowEvHandlerName="legacyusers2siteletsRowChangeEventHandler" msprop:Generator_TableClassName="legacyusers2siteletsDataTable" msprop:Generator_TableVarName="tablelegacyusers2sitelets" msprop:Generator_RowDeletingName="legacyusers2siteletsRowDeleting" msprop:Generator_TablePropName="legacyusers2sitelets">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:Generator_UserColumnName="id" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInTable="idColumn" type="xs:int" />
+              <xs:element name="cid" msprop:Generator_UserColumnName="cid" msprop:Generator_ColumnPropNameInRow="cid" msprop:Generator_ColumnVarNameInTable="columncid" msprop:Generator_ColumnPropNameInTable="cidColumn" type="xs:int" />
+              <xs:element name="sid" msprop:Generator_UserColumnName="sid" msprop:Generator_ColumnPropNameInRow="sid" msprop:Generator_ColumnVarNameInTable="columnsid" msprop:Generator_ColumnPropNameInTable="sidColumn" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="dtRequestorLastName" msprop:Generator_UserTableName="dtRequestorLastName" msprop:Generator_RowDeletedName="dtRequestorLastNameRowDeleted" msprop:Generator_RowChangedName="dtRequestorLastNameRowChanged" msprop:Generator_RowClassName="dtRequestorLastNameRow" msprop:Generator_RowChangingName="dtRequestorLastNameRowChanging" msprop:Generator_RowEvArgName="dtRequestorLastNameRowChangeEvent" msprop:Generator_RowEvHandlerName="dtRequestorLastNameRowChangeEventHandler" msprop:Generator_TableClassName="dtRequestorLastNameDataTable" msprop:Generator_TableVarName="tabledtRequestorLastName" msprop:Generator_RowDeletingName="dtRequestorLastNameRowDeleting" msprop:Generator_TablePropName="dtRequestorLastName">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id" msprop:Generator_UserColumnName="id" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInTable="idColumn" type="xs:int" />
+              <xs:element name="lastname" msprop:Generator_UserColumnName="lastname" msprop:Generator_ColumnPropNameInRow="lastname" msprop:Generator_ColumnVarNameInTable="columnlastname" msprop:Generator_ColumnPropNameInTable="lastnameColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="dtSitelets" msprop:Generator_UserTableName="dtSitelets" msprop:Generator_RowDeletedName="dtSiteletsRowDeleted" msprop:Generator_RowChangedName="dtSiteletsRowChanged" msprop:Generator_RowClassName="dtSiteletsRow" msprop:Generator_RowChangingName="dtSiteletsRowChanging" msprop:Generator_RowEvArgName="dtSiteletsRowChangeEvent" msprop:Generator_RowEvHandlerName="dtSiteletsRowChangeEventHandler" msprop:Generator_TableClassName="dtSiteletsDataTable" msprop:Generator_TableVarName="tabledtSitelets" msprop:Generator_RowDeletingName="dtSiteletsRowDeleting" msprop:Generator_TablePropName="dtSitelets">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="cid" msprop:Generator_UserColumnName="cid" msprop:Generator_ColumnPropNameInRow="cid" msprop:Generator_ColumnVarNameInTable="columncid" msprop:Generator_ColumnPropNameInTable="cidColumn" type="xs:int" />
+              <xs:element name="description" msprop:Generator_UserColumnName="description" msprop:Generator_ColumnPropNameInRow="description" msprop:Generator_ColumnVarNameInTable="columndescription" msprop:Generator_ColumnPropNameInTable="descriptionColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="legacyusers4Mgr" msprop:Generator_UserTableName="legacyusers4Mgr" msprop:Generator_RowDeletedName="legacyusers4MgrRowDeleted" msprop:Generator_RowChangedName="legacyusers4MgrRowChanged" msprop:Generator_RowClassName="legacyusers4MgrRow" msprop:Generator_RowChangingName="legacyusers4MgrRowChanging" msprop:Generator_RowEvArgName="legacyusers4MgrRowChangeEvent" msprop:Generator_RowEvHandlerName="legacyusers4MgrRowChangeEventHandler" msprop:Generator_TableClassName="legacyusers4MgrDataTable" msprop:Generator_TableVarName="tablelegacyusers4Mgr" msprop:Generator_RowDeletingName="legacyusers4MgrRowDeleting" msprop:Generator_TablePropName="legacyusers4Mgr">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:Generator_UserColumnName="ID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInTable="IDColumn" type="xs:int" />
+              <xs:element name="UserName" msprop:Generator_UserColumnName="UserName" msprop:Generator_ColumnPropNameInRow="UserName" msprop:Generator_ColumnVarNameInTable="columnUserName" msprop:Generator_ColumnPropNameInTable="UserNameColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Company" msprop:Generator_UserColumnName="Company" msprop:Generator_ColumnPropNameInRow="Company" msprop:Generator_ColumnVarNameInTable="columnCompany" msprop:Generator_ColumnPropNameInTable="CompanyColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="AllowedYear" msprop:Generator_UserColumnName="AllowedYear" msprop:Generator_ColumnPropNameInRow="AllowedYear" msprop:Generator_ColumnVarNameInTable="columnAllowedYear" msprop:Generator_ColumnPropNameInTable="AllowedYearColumn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="ToDate" msprop:Generator_UserColumnName="ToDate" msprop:Generator_ColumnPropNameInRow="ToDate" msprop:Generator_ColumnVarNameInTable="columnToDate" msprop:Generator_ColumnPropNameInTable="ToDateColumn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="FromDate" msprop:Generator_UserColumnName="FromDate" msprop:Generator_ColumnPropNameInRow="FromDate" msprop:Generator_ColumnVarNameInTable="columnFromDate" msprop:Generator_ColumnPropNameInTable="FromDateColumn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="UserCategory" msprop:Generator_UserColumnName="UserCategory" msprop:Generator_ColumnPropNameInRow="UserCategory" msprop:Generator_ColumnVarNameInTable="columnUserCategory" msprop:Generator_ColumnPropNameInTable="UserCategoryColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="UserLevel" msprop:Generator_UserColumnName="UserLevel" msprop:Generator_ColumnPropNameInRow="UserLevel" msprop:Generator_ColumnVarNameInTable="columnUserLevel" msprop:Generator_ColumnPropNameInTable="UserLevelColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="RequestorName" msdata:ReadOnly="true" msprop:Generator_UserColumnName="RequestorName" msprop:Generator_ColumnPropNameInRow="RequestorName" msprop:Generator_ColumnVarNameInTable="columnRequestorName" msprop:Generator_ColumnPropNameInTable="RequestorNameColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="202" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Status" msprop:Generator_UserColumnName="Status" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_ColumnPropNameInTable="StatusColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="legacyusers" msprop:Generator_UserTableName="legacyusers" msprop:Generator_RowDeletedName="legacyusersRowDeleted" msprop:Generator_RowChangedName="legacyusersRowChanged" msprop:Generator_RowClassName="legacyusersRow" msprop:Generator_RowChangingName="legacyusersRowChanging" msprop:Generator_RowEvArgName="legacyusersRowChangeEvent" msprop:Generator_RowEvHandlerName="legacyusersRowChangeEventHandler" msprop:Generator_TableClassName="legacyusersDataTable" msprop:Generator_TableVarName="tablelegacyusers" msprop:Generator_RowDeletingName="legacyusersRowDeleting" msprop:Generator_TablePropName="legacyusers">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:Generator_UserColumnName="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" type="xs:int" />
+              <xs:element name="UserName" msprop:Generator_UserColumnName="UserName" msprop:Generator_ColumnVarNameInTable="columnUserName" msprop:Generator_ColumnPropNameInRow="UserName" msprop:Generator_ColumnPropNameInTable="UserNameColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Password" msprop:Generator_UserColumnName="Password" msprop:Generator_ColumnVarNameInTable="columnPassword" msprop:Generator_ColumnPropNameInRow="Password" msprop:Generator_ColumnPropNameInTable="PasswordColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Company" msprop:Generator_UserColumnName="Company" msprop:Generator_ColumnVarNameInTable="columnCompany" msprop:Generator_ColumnPropNameInRow="Company" msprop:Generator_ColumnPropNameInTable="CompanyColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Mlb" msprop:Generator_UserColumnName="Mlb" msprop:Generator_ColumnVarNameInTable="columnMlb" msprop:Generator_ColumnPropNameInRow="Mlb" msprop:Generator_ColumnPropNameInTable="MlbColumn" type="xs:boolean" />
+              <xs:element name="Minor" msprop:Generator_UserColumnName="Minor" msprop:Generator_ColumnVarNameInTable="columnMinor" msprop:Generator_ColumnPropNameInRow="Minor" msprop:Generator_ColumnPropNameInTable="MinorColumn" type="xs:boolean" />
+              <xs:element name="Coop" msprop:Generator_UserColumnName="Coop" msprop:Generator_ColumnVarNameInTable="columnCoop" msprop:Generator_ColumnPropNameInRow="Coop" msprop:Generator_ColumnPropNameInTable="CoopColumn" type="xs:boolean" />
+              <xs:element name="Alls" msprop:Generator_UserColumnName="Alls" msprop:Generator_ColumnVarNameInTable="columnAlls" msprop:Generator_ColumnPropNameInRow="Alls" msprop:Generator_ColumnPropNameInTable="AllsColumn" type="xs:boolean" />
+              <xs:element name="World" msprop:Generator_UserColumnName="World" msprop:Generator_ColumnVarNameInTable="columnWorld" msprop:Generator_ColumnPropNameInRow="World" msprop:Generator_ColumnPropNameInTable="WorldColumn" type="xs:boolean" />
+              <xs:element name="Mascot" msprop:Generator_UserColumnName="Mascot" msprop:Generator_ColumnVarNameInTable="columnMascot" msprop:Generator_ColumnPropNameInRow="Mascot" msprop:Generator_ColumnPropNameInTable="MascotColumn" type="xs:boolean" />
+              <xs:element name="Email" msprop:Generator_UserColumnName="Email" msprop:Generator_ColumnVarNameInTable="columnEmail" msprop:Generator_ColumnPropNameInRow="Email" msprop:Generator_ColumnPropNameInTable="EmailColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BulkReg" msprop:Generator_UserColumnName="BulkReg" msprop:Generator_ColumnVarNameInTable="columnBulkReg" msprop:Generator_ColumnPropNameInRow="BulkReg" msprop:Generator_ColumnPropNameInTable="BulkRegColumn" type="xs:boolean" />
+              <xs:element name="Contract" msprop:Generator_UserColumnName="Contract" msprop:Generator_ColumnVarNameInTable="columnContract" msprop:Generator_ColumnPropNameInRow="Contract" msprop:Generator_ColumnPropNameInTable="ContractColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Address1" msprop:Generator_UserColumnName="Address1" msprop:Generator_ColumnVarNameInTable="columnAddress1" msprop:Generator_ColumnPropNameInRow="Address1" msprop:Generator_ColumnPropNameInTable="Address1Column" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Address2" msprop:Generator_UserColumnName="Address2" msprop:Generator_ColumnVarNameInTable="columnAddress2" msprop:Generator_ColumnPropNameInRow="Address2" msprop:Generator_ColumnPropNameInTable="Address2Column" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="City" msprop:Generator_UserColumnName="City" msprop:Generator_ColumnVarNameInTable="columnCity" msprop:Generator_ColumnPropNameInRow="City" msprop:Generator_ColumnPropNameInTable="CityColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="State" msprop:Generator_UserColumnName="State" msprop:Generator_ColumnVarNameInTable="columnState" msprop:Generator_ColumnPropNameInRow="State" msprop:Generator_ColumnPropNameInTable="StateColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Zip" msprop:Generator_UserColumnName="Zip" msprop:Generator_ColumnVarNameInTable="columnZip" msprop:Generator_ColumnPropNameInRow="Zip" msprop:Generator_ColumnPropNameInTable="ZipColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="40" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Phone" msprop:Generator_UserColumnName="Phone" msprop:Generator_ColumnVarNameInTable="columnPhone" msprop:Generator_ColumnPropNameInRow="Phone" msprop:Generator_ColumnPropNameInTable="PhoneColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="40" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Country" msprop:Generator_UserColumnName="Country" msprop:Generator_ColumnVarNameInTable="columnCountry" msprop:Generator_ColumnPropNameInRow="Country" msprop:Generator_ColumnPropNameInTable="CountryColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Spring" msprop:Generator_UserColumnName="Spring" msprop:Generator_ColumnVarNameInTable="columnSpring" msprop:Generator_ColumnPropNameInRow="Spring" msprop:Generator_ColumnPropNameInTable="SpringColumn" type="xs:boolean" />
+              <xs:element name="Trend" msprop:Generator_UserColumnName="Trend" msprop:Generator_ColumnVarNameInTable="columnTrend" msprop:Generator_ColumnPropNameInRow="Trend" msprop:Generator_ColumnPropNameInTable="TrendColumn" type="xs:boolean" />
+              <xs:element name="Minorleaguestyleguide" msprop:Generator_UserColumnName="Minorleaguestyleguide" msprop:Generator_ColumnVarNameInTable="columnMinorleaguestyleguide" msprop:Generator_ColumnPropNameInRow="Minorleaguestyleguide" msprop:Generator_ColumnPropNameInTable="MinorleaguestyleguideColumn" type="xs:boolean" />
+              <xs:element name="Super" msprop:Generator_UserColumnName="Super" msprop:Generator_ColumnVarNameInTable="columnSuper" msprop:Generator_ColumnPropNameInRow="Super" msprop:Generator_ColumnPropNameInTable="SuperColumn" type="xs:boolean" />
+              <xs:element name="Mlb2003" msprop:Generator_UserColumnName="Mlb2003" msprop:Generator_ColumnVarNameInTable="columnMlb2003" msprop:Generator_ColumnPropNameInRow="Mlb2003" msprop:Generator_ColumnPropNameInTable="Mlb2003Column" type="xs:boolean" />
+              <xs:element name="Creative" msprop:Generator_UserColumnName="Creative" msprop:Generator_ColumnVarNameInTable="columnCreative" msprop:Generator_ColumnPropNameInRow="Creative" msprop:Generator_ColumnPropNameInTable="CreativeColumn" type="xs:boolean" minOccurs="0" />
+              <xs:element name="Alls2007" msprop:Generator_UserColumnName="Alls2007" msprop:Generator_ColumnVarNameInTable="columnAlls2007" msprop:Generator_ColumnPropNameInRow="Alls2007" msprop:Generator_ColumnPropNameInTable="Alls2007Column" type="xs:boolean" minOccurs="0" />
+              <xs:element name="UserLevel" msprop:Generator_UserColumnName="UserLevel" msprop:Generator_ColumnVarNameInTable="columnUserLevel" msprop:Generator_ColumnPropNameInRow="UserLevel" msprop:Generator_ColumnPropNameInTable="UserLevelColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="UserCategory" msprop:Generator_UserColumnName="UserCategory" msprop:Generator_ColumnVarNameInTable="columnUserCategory" msprop:Generator_ColumnPropNameInRow="UserCategory" msprop:Generator_ColumnPropNameInTable="UserCategoryColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="RequestorID" msprop:Generator_UserColumnName="RequestorID" msprop:Generator_ColumnVarNameInTable="columnRequestorID" msprop:Generator_ColumnPropNameInRow="RequestorID" msprop:Generator_ColumnPropNameInTable="RequestorIDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="FromDate" msprop:Generator_UserColumnName="FromDate" msprop:Generator_ColumnVarNameInTable="columnFromDate" msprop:Generator_ColumnPropNameInRow="FromDate" msprop:Generator_ColumnPropNameInTable="FromDateColumn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="ToDate" msprop:Generator_UserColumnName="ToDate" msprop:Generator_ColumnVarNameInTable="columnToDate" msprop:Generator_ColumnPropNameInRow="ToDate" msprop:Generator_ColumnPropNameInTable="ToDateColumn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="AllowedYear" msprop:Generator_UserColumnName="AllowedYear" msprop:Generator_ColumnVarNameInTable="columnAllowedYear" msprop:Generator_ColumnPropNameInRow="AllowedYear" msprop:Generator_ColumnPropNameInTable="AllowedYearColumn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="RegistrationDate" msprop:Generator_UserColumnName="RegistrationDate" msprop:Generator_ColumnVarNameInTable="columnRegistrationDate" msprop:Generator_ColumnPropNameInRow="RegistrationDate" msprop:Generator_ColumnPropNameInTable="RegistrationDateColumn" type="xs:dateTime" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:requestors" />
+      <xs:field xpath="mstns:id" />
+    </xs:unique>
+    <xs:unique name="legacyusers2sitelets_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:legacyusers2sitelets" />
+      <xs:field xpath="mstns:id" />
+    </xs:unique>
+    <xs:unique name="dtRequestorLastName_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:dtRequestorLastName" />
+      <xs:field xpath="mstns:id" />
+    </xs:unique>
+    <xs:unique name="legacyusers4Mgr_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:legacyusers4Mgr" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="legacyusers_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:legacyusers" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+  </xs:element>
+  <xs:annotation>
+    <xs:appinfo>
+      <msdata:Relationship name="FK_legacyusesr2sitelets_sitelets" msdata:parent="sitelets" msdata:child="legacyusers2sitelets" msdata:parentkey="id" msdata:childkey="sid" msprop:Generator_UserRelationName="FK_legacyusesr2sitelets_sitelets" msprop:Generator_RelationVarName="relationFK_legacyusesr2sitelets_sitelets" msprop:Generator_UserChildTable="legacyusers2sitelets" msprop:Generator_UserParentTable="sitelets" msprop:Generator_ParentPropName="siteletsRow" msprop:Generator_ChildPropName="Getlegacyusers2siteletsRows" />
+      <msdata:Relationship name="FK_legacyusers2sitelets_legacyusers1" msdata:parent="legacyusers4Mgr" msdata:child="legacyusers2sitelets" msdata:parentkey="ID" msdata:childkey="cid" msprop:Generator_UserRelationName="FK_legacyusers2sitelets_legacyusers1" msprop:Generator_RelationVarName="relationFK_legacyusers2sitelets_legacyusers1" msprop:Generator_UserChildTable="legacyusers2sitelets" msprop:Generator_UserParentTable="legacyusers4Mgr" msprop:Generator_ParentPropName="legacyusers4MgrRow" msprop:Generator_ChildPropName="Getlegacyusers2siteletsRows" />
+      <msdata:Relationship name="FK_legacyusers2sitelets_legacyusers" msdata:parent="legacyusers" msdata:child="legacyusers2sitelets" msdata:parentkey="ID" msdata:childkey="cid" msprop:Generator_UserRelationName="FK_legacyusers2sitelets_legacyusers" msprop:Generator_RelationVarName="relationFK_legacyusers2sitelets_legacyusers" msprop:Generator_UserChildTable="legacyusers2sitelets" msprop:Generator_UserParentTable="legacyusers" msprop:Generator_ParentPropName="legacyusersRow" msprop:Generator_ChildPropName="Getlegacyusers2siteletsRows" />
+    </xs:appinfo>
+  </xs:annotation>
+</xs:schema>

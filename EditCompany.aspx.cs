@@ -1,0 +1,993 @@
+using System;
+using System.Data;
+using System.Configuration;
+using System.Collections;
+using System.Web;
+using System.Web.Security;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Web.UI.HtmlControls;
+
+public partial class EditCompany : System.Web.UI.Page
+{
+    dsCompanyTableAdapters.legacyusersTableAdapter legacyusersTA;
+    dsCompany.legacyusersDataTable legacyusersDT;
+    dsCompany.legacyusersRow legacyusersR;
+    int iPkey = 0;
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (Request.QueryString["id"] != null)//Protection required ALL edits!
+        {
+            rblUserLevel.Attributes.Add("onclick", "CheckUserLevel()");
+           
+
+            if (rblUserLevel.SelectedValue == "D")//When Level D enforce the required field validator to the date range
+            {
+                bodyID.Attributes.Add("onload", "document.getElementById(\"dateLayer\").style.visibility=\"visible\";");
+                rfvFrom.Enabled = true;
+                rfvTo.Enabled = true;
+                cvFrom.Enabled = true;
+                cvTo.Enabled = true;
+                cpvDateRange.Enabled = true;
+                Session["DateWasDisplayed"] = "yes";
+            }
+            else if (Session["DateWasDisplayed"] != null)//Choose "D" --> Change it to others --> w/o this code the date range fields are displayed
+            {
+                bodyID.Attributes.Add("onload", "document.getElementById(\"dateLayer\").style.visibility=\"hidden\";");
+                rfvFrom.Enabled = false;
+                rfvTo.Enabled = false;
+                cvFrom.Enabled = false;
+                cvTo.Enabled = false;
+                cpvDateRange.Enabled = false;
+                Session["DateWasDisplayed"] = null;
+            }
+
+            if (!Page.IsPostBack)
+            {
+
+                legacyusersTA = new dsCompanyTableAdapters.legacyusersTableAdapter();
+                legacyusersDT = new dsCompany.legacyusersDataTable();
+                legacyusersDT = legacyusersTA.GetCompanyByID(Convert.ToInt32(Request.QueryString["id"].ToString()));
+                Session["legacyusersDT"] = legacyusersDT;
+
+
+                //Populate the existing data
+                if (!(legacyusersDT.Rows[0]["Company"] is DBNull))
+                {
+                    tbCompany.Text = legacyusersDT[0].Company;
+                }
+                if (!(legacyusersDT.Rows[0]["Address1"] is DBNull))
+                {
+                    tbAddress1.Text = legacyusersDT[0].Address1;
+                }
+                if (!(legacyusersDT.Rows[0]["Address2"] is DBNull))
+                {
+                    tbAddress2.Text = legacyusersDT[0].Address2;
+                }
+                if (!(legacyusersDT.Rows[0]["City"] is DBNull))
+                {
+                    tbCity.Text = legacyusersDT[0].City;
+                }
+                if (!(legacyusersDT.Rows[0]["State"] is DBNull))
+                {
+                    bool bProvince = true;
+                    foreach (ListItem l in ddlState.Items)
+                    {
+                        if (legacyusersDT[0].State == l.Value)
+                        {
+                            l.Selected = true;
+                            bProvince = false;
+                        }
+                    }
+                    if (bProvince)
+                    {
+                        tbProvince.Text = legacyusersDT[0].State;
+                    }
+                }
+                if (!(legacyusersDT.Rows[0]["Zip"] is DBNull))
+                {
+                    tbZip.Text = legacyusersDT[0].Zip;
+                }
+                if (!(legacyusersDT.Rows[0]["Phone"] is DBNull))
+                {
+                    tbPhone.Text = legacyusersDT[0].Phone;
+                }
+                if (!(legacyusersDT.Rows[0]["Contract"] is DBNull))
+                {
+                    tbContract.Text = legacyusersDT[0].Contract;
+                }
+                if (!(legacyusersDT.Rows[0]["UserName"] is DBNull))
+                {
+                    tbUserName.Text = legacyusersDT[0].UserName;
+                }
+                if (!(legacyusersDT.Rows[0]["Password"] is DBNull))
+                {
+                    tbPassword.Text = legacyusersDT[0].Password;
+                }
+
+
+
+                
+
+
+            }
+        }
+        else//Take care of the deviants
+        {
+            Response.Redirect("./");
+        }
+
+    }
+    protected void ddlCountry_DataBound(object sender, EventArgs e)
+    {
+        if (!(legacyusersDT.Rows[0]["Country"] is DBNull))
+        {
+            ddlCountry.Items.FindByValue(legacyusersDT[0].Country).Selected = true;
+        }
+        else
+        {
+            ddlCountry.SelectedIndex = 1;
+        }
+        
+        /*
+         *     
+            protected void ddlCountry_DataBound(object sender, EventArgs e)
+            {
+                if (myShopper.BcountryISO != null)
+                {
+                    ddlCountry.Items.FindByValue(myShopper.BcountryISO.ToString()).Selected = true;
+                }
+                else
+                {
+                    ddlCountry.SelectedIndex = 1;
+                }
+
+            }
+         */
+    }
+    protected void btnContinue1_Click(object sender, EventArgs e)
+    {
+        if (Session["legacyusersDT"] != null)//At first arrival, create the session as needed.
+        {
+            if (Page.IsValid)
+            {
+                legacyusersDT = (dsCompany.legacyusersDataTable)(Session["legacyusersDT"]);
+
+                legacyusersDT[0].Company = tbCompany.Text;
+                legacyusersDT[0].Address1 = tbAddress1.Text;
+                legacyusersDT[0].Address2 = tbAddress2.Text;
+                legacyusersDT[0].City = tbCity.Text;
+
+                if (ddlState.SelectedIndex > 0)
+                {
+                    legacyusersDT[0].State = ddlState.SelectedValue;
+                }
+                else
+                {
+                    legacyusersDT[0].State = tbProvince.Text;
+                }
+
+                legacyusersDT[0].Zip = tbZip.Text;
+                legacyusersDT[0].Country = ddlCountry.SelectedValue;
+                legacyusersDT[0].Phone = tbPhone.Text;
+                legacyusersDT[0].Contract = tbContract.Text;
+
+                legacyusersDT[0].UserName = tbUserName.Text;
+                legacyusersDT[0].Password = tbPassword.Text;
+
+                //Populate the user level using the session
+                if (!(legacyusersDT.Rows[0]["UserLevel"] is DBNull))
+                {
+                    rblUserLevel.Items.FindByValue(legacyusersDT[0].UserLevel).Selected = true;
+                    if (legacyusersDT[0].UserLevel == "D")//When Level D enforce the required field validator to the date range
+                    {
+                        bodyID.Attributes.Add("onload", "document.getElementById(\"dateLayer\").style.visibility=\"visible\";");
+                        if (!(legacyusersDT.Rows[0]["FromDate"] is DBNull) && !(legacyusersDT.Rows[0]["ToDate"] is DBNull))
+                        {
+                            calendarPopupFrom.SelectedDate = legacyusersDT[0].FromDate;
+                            calendarPopupTo.SelectedDate = legacyusersDT[0].ToDate;
+                        }
+
+                        rfvFrom.Enabled = true;
+                        rfvTo.Enabled = true;
+                        cvFrom.Enabled = true;
+                        cvTo.Enabled = true;
+                        cpvDateRange.Enabled = true;
+                        Session["DateWasDisplayed"] = "yes";
+                    }
+
+                    if (legacyusersDT[0].UserLevel == "X")
+                    {
+                        lblStep.Text = "Step 2 of 2:";
+                    }
+                    else
+                    {
+                        lblStep.Text = "Step 2 of 5:";
+                    }
+                }
+
+                
+
+
+                Session["legacyusersDT"] = legacyusersDT;
+                
+                
+                lblDescription.Text = "Choose a user level";
+                tableProfile.Visible = false;
+                cvMessage.Enabled = false;
+                tableUserLevel.Visible = true;
+
+                
+
+            }
+        }
+        else
+        {
+            Response.Redirect("./");
+        }
+        
+
+    }
+
+    protected void cvState_ServerValidate(object source, ServerValidateEventArgs args)
+    {
+        if ((ddlState.SelectedIndex == 0) && (tbProvince.Text.Length == 0))
+        {
+            args.IsValid = false;
+        }
+        else
+        {
+            args.IsValid = true;
+        }
+    }
+    protected void cvCountry_ServerValidate(object source, ServerValidateEventArgs args)
+    {
+        if (ddlCountry.SelectedIndex == 0)
+        {
+            args.IsValid = false;
+        }
+        else
+        {
+            args.IsValid = true;
+        }
+    }
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        if (Session["legacyusersR"] != null)
+        {
+            legacyusersTA = (dsCompanyTableAdapters.legacyusersTableAdapter)(Session["legacyusersTA"]);
+            legacyusersDT = (dsCompany.legacyusersDataTable)(Session["legacyusersDT"]);
+            legacyusersR = (dsCompany.legacyusersRow)(Session["legacyusersR"]);
+
+            //dsCompanyTableAdapters.legacyusersTableAdapter legacyusersTA = new dsCompanyTableAdapters.legacyusersTableAdapter();
+            //int iPkey = Convert.ToInt32(legacyusersTA.InsertQuery(legacyusersR.UserName, legacyusersR.Password, legacyusersR.Company, true, true, true, true, true, true, legacyusersR.Email, false, legacyusersR.Contract, legacyusersR.Address1, legacyusersR.Address2, legacyusersR.City, legacyusersR.State, legacyusersR.Zip, legacyusersR.Phone, legacyusersR.Country, true, true, true, true, true, true, true, legacyusersR.UserLevel, legacyusersR.UserCategory, legacyusersR.RequestorID, legacyusersR.FromDate, legacyusersR.ToDate, legacyusersR.AllowedYear));
+            string strBefore = legacyusersDT.Rows.Count.ToString();
+
+            legacyusersDT.AddlegacyusersRow(legacyusersR);
+            legacyusersDT.RowChanged += new DataRowChangeEventHandler(Row_Changed);
+
+            string strAfter = legacyusersDT.Rows.Count.ToString();
+            legacyusersTA.Update(legacyusersDT);
+
+
+
+
+
+
+
+
+
+
+            //int iID = legacyusersDT[0].ID;
+            //string strTest = myTable.Rows.Count.ToString();
+            lblDescription.Text = "PRIMIRY KEY CREATED ==> " + iPkey;
+
+        }
+        //legacyusersDT.AddlegacyusersRow(legacyusersR);
+
+    }
+
+    private void Row_Changed(object sender, DataRowChangeEventArgs e)
+    {
+
+        //lblDescription.Text = e.Row["id"].ToString() + "!!!!!!!!!!!";
+        //Console.WriteLine("Row_Changed Event: name={0}; action={1}",
+        //  e.Row["name"], e.Action);
+
+        iPkey = Convert.ToInt32(e.Row["id"].ToString());
+    }
+
+
+
+    protected void btnContinue2_Click(object sender, EventArgs e)
+    {
+        if (Session["legacyusersDT"] != null)
+        {
+            if (Page.IsValid)
+            {
+                legacyusersDT = (dsCompany.legacyusersDataTable)(Session["legacyusersDT"]);
+
+                legacyusersDT[0].UserLevel = rblUserLevel.SelectedValue;
+
+                //Once "No access this time" is selected, finish it 041909
+                if (rblUserLevel.SelectedValue == "X")
+                {
+                    //Block all users 041909
+                    dsUserTableAdapters.licenseeTableAdapter licenseeTA = new dsUserTableAdapters.licenseeTableAdapter();
+                    dsUser.licenseeDataTable licenseeDT = new dsUser.licenseeDataTable();
+
+                    licenseeDT = licenseeTA.GetUsersByCID(legacyusersDT[0].ID);
+                    for (int i = 0; i < licenseeDT.Rows.Count; i++)
+                    {
+                        licenseeDT[i].UserLevel = legacyusersDT[0].UserLevel;
+                        licenseeTA.Update(licenseeDT);
+                    }
+
+                    legacyusersTA = new dsCompanyTableAdapters.legacyusersTableAdapter();
+                    legacyusersTA.Update(legacyusersDT);
+
+                    //Terminate update
+                    tableUserLevel.Visible = false;
+                    tableFinished.Visible = true;
+                    lblStep.Visible = false;
+                    lblDescription.Visible = false;
+                }
+                else
+                {
+
+                    if (rblUserLevel.SelectedValue == "D")
+                    {
+                        legacyusersDT[0].FromDate = Convert.ToDateTime(calendarPopupFrom.SelectedDate.ToString());
+                        legacyusersDT[0].ToDate = Convert.ToDateTime(calendarPopupTo.SelectedDate.ToString());
+                    }
+                    else if (rblUserLevel.SelectedValue == "C")
+                    {
+                        legacyusersDT[0].AllowedYear = Convert.ToDateTime("12/31/" + DateTime.Now.Year);
+                        legacyusersDT.Rows[0]["FromDate"] = DBNull.Value;
+                        legacyusersDT.Rows[0]["ToDate"] = DBNull.Value;
+                    }
+                    else
+                    {
+                        legacyusersDT.Rows[0]["FromDate"] = DBNull.Value;
+                        legacyusersDT.Rows[0]["ToDate"] = DBNull.Value;
+                        legacyusersDT.Rows[0]["AllowedYear"] = DBNull.Value;
+                    }
+                    //Populate the user category with the session
+                    if (!(legacyusersDT.Rows[0]["UserCategory"] is DBNull))
+                    {
+                        rblUserCategory.Items.FindByValue(legacyusersDT[0].UserCategory).Selected = true;
+                    }
+
+                    //if (legacyusersDT[0].UserLevel == "A")
+                    //{
+                    //    lblStep.Text = "Step 3 of 4:";
+                    //    rblModifyAll2.Visible = false;
+                    //    rblModifyAll3.Visible = false;
+                    //    bodyID.Attributes.Add("onload", "ShowHideModifyAll2();ChangeStep();");
+                    //    rblUserCategory.Attributes.Add("onclick", "ShowHideModifyAll2();ChangeStep()");
+
+                    //}
+                    //else
+                    //{
+                    //rblModifyAll2.Visible = false;
+                    //rblModifyAll3.Visible = false;
+                    bodyID.Attributes.Add("onload", "");
+                    rblUserCategory.Attributes.Add("onclick", "");
+                    lblStep.Text = "Step 3 of 5:";
+                    //}
+
+                    Session["legacyusersDT"] = legacyusersDT;
+
+
+                    lblDescription.Text = "Choose a user category";
+                    tableUserLevel.Visible = false;
+                    tableUserCategory.Visible = true;
+
+                    //Let's populate the existing data
+
+
+
+                    //Button1.Text = "Ready to SAVE!!!!";
+                    //Response.Redirect("http://google.com");
+                }
+                
+
+
+
+            }
+        }
+        else
+        {
+            Response.Redirect("./");
+        }
+    }
+    protected void cvUserLevel_ServerValidate(object source, ServerValidateEventArgs args)
+    {
+        if (args.Value != "")
+        {
+            args.IsValid = true;
+        }
+        else
+        {
+            args.IsValid = false;
+        }
+    }
+    protected void cvFrom_ServerValidate(object source, ServerValidateEventArgs args)
+    {
+        try
+        {
+            if (Convert.ToDateTime(args.Value) > Convert.ToDateTime("1/1/1753"))
+            {
+                args.IsValid = true;
+            }
+            else
+            {
+                args.IsValid = false;
+            }
+        }
+        catch (System.FormatException fe)
+        {
+            args.IsValid = false;
+        }
+    }
+    protected void cvTo_ServerValidate(object source, ServerValidateEventArgs args)
+    {
+        try
+        {
+            if (Convert.ToDateTime(args.Value) > Convert.ToDateTime("1/1/1753"))
+            {
+                args.IsValid = true;
+            }
+            else
+            {
+                args.IsValid = false;
+            }
+        }
+        catch (System.FormatException fe)
+        {
+            args.IsValid = false;
+        }
+    }
+    protected void cvUserName_ServerValidate(object source, ServerValidateEventArgs args)
+    {
+        if (Session["legacyusersDT"] != null)
+        {
+            legacyusersDT = (dsCompany.legacyusersDataTable)(Session["legacyusersDT"]);
+            if (legacyusersDT[0].UserName != args.Value)
+            {
+                dsCompanyTableAdapters.legacyusersTableAdapter legacyusersTA = new dsCompanyTableAdapters.legacyusersTableAdapter();
+                dsCompany.legacyusersDataTable legacyusersDTCheck = new dsCompany.legacyusersDataTable();
+                legacyusersDTCheck = legacyusersTA.GetCompanyByUserName(args.Value);
+                if (legacyusersDTCheck.Rows.Count > 0)
+                {
+                    args.IsValid = false;
+                }
+                else
+                {
+                    args.IsValid = true;
+                }
+            }
+            else
+            {
+                args.IsValid = true;
+            }
+        }
+    }
+    protected void cvUserCategory_ServerValidate(object source, ServerValidateEventArgs args)
+    {
+        if (args.Value != "")
+        {
+            args.IsValid = true;
+        }
+        else
+        {
+            args.IsValid = false;
+        }
+    }
+    protected void btnContinue3_Click(object sender, EventArgs e)
+    {
+        if (Session["legacyusersDT"] != null)
+        {
+            if (Page.IsValid)
+            {
+                legacyusersDT = (dsCompany.legacyusersDataTable)(Session["legacyusersDT"]);
+                legacyusersDT[0].UserCategory = rblUserCategory.SelectedValue;
+                //if (legacyusersDT[0].UserLevel == "A")
+                //{
+                //    Session["legacyusersDT"] = legacyusersDT;
+                //    lblStep.Text = "Step 4 of 4:";
+                //    lblDescription.Text = "Choose a MLB Contact";
+                //    tableUserCategory.Visible = false;
+                //    tableRequestor.Visible = true;
+                //    rblModifyAll3.Visible = true;
+                //}
+                //else
+                //{
+                    
+                    lblStep.Text = "Step 4 of 5:";
+                    lblDescription.Text = "Choose a MLB Contact";
+                    tableUserCategory.Visible = false;
+                    tableRequestor.Visible = true;
+                    Session["legacyusersDT"] = legacyusersDT;
+                //}
+                
+                
+            }
+        }
+        else
+        {
+            Response.Redirect("./");
+        }
+    }
+    protected void cvRequestor_ServerValidate(object source, ServerValidateEventArgs args)
+    {
+        if (args.Value != "0")
+        {
+            args.IsValid = true;
+        }
+        else
+        {
+            args.IsValid = false;
+        }
+    }
+    protected void btnContinue4_Click(object sender, EventArgs e)
+    {
+        if (Session["legacyusersDT"] != null)
+        {
+            if (Page.IsValid)
+            {
+
+                legacyusersDT = (dsCompany.legacyusersDataTable)(Session["legacyusersDT"]);
+
+                legacyusersDT[0].RequestorID = Convert.ToInt32(ddlRequestor.SelectedValue.ToString());
+
+                //if (legacyusersDT[0].UserLevel == "A")
+                //{
+                //    Session["legacyusersDT"] = legacyusersDT;
+                //    SaveLevelA(true);
+                //}
+                //else
+                //{
+                    lblStep.Text = "Step 5 of 5:";
+                    lblDescription.Text = "Give permissions to '" + legacyusersDT[0].Company + "' to access the following sitelet(s)";
+
+                    tableRequestor.Visible = false;
+                    tablesitlet.Visible = true;
+
+                    Session["legacyusersDT"] = legacyusersDT;
+                //}
+                
+
+                
+                
+            }
+        }
+        else
+        {
+            Response.Redirect("./");
+        }
+    }
+    protected void btnContinue5_Click(object sender, EventArgs e)
+    {
+        if (Session["legacyusersDT"] != null)
+        {
+            if (Page.IsValid)
+            {
+                
+                legacyusersTA = new dsCompanyTableAdapters.legacyusersTableAdapter();
+                legacyusersDT = (dsCompany.legacyusersDataTable)(Session["legacyusersDT"]);
+
+                //legacyusersDT[0].RegistrationDate = DateTime.Now;
+
+                 //Let's update sitelets
+                dsCompanyTableAdapters.legacyusers2siteletsTableAdapter legacyusers2siteletsTA = new dsCompanyTableAdapters.legacyusers2siteletsTableAdapter();
+                //Delete the existing one first!
+                legacyusers2siteletsTA.DeleteQuery(legacyusersDT[0].ID);
+                
+                dsCompany.legacyusers2siteletsDataTable legacyusers2siteletsDT = new dsCompany.legacyusers2siteletsDataTable();
+                legacyusers2siteletsDT = legacyusers2siteletsTA.GetAllc2s();
+
+                foreach (ListItem li in cblSitelet.Items)
+                {
+                    if (li.Selected)
+                    {
+                        dsCompany.legacyusers2siteletsRow legacyusers2siteletsR = legacyusers2siteletsDT.Newlegacyusers2siteletsRow();
+                        legacyusers2siteletsR.cid = legacyusersDT[0].ID;
+                        legacyusers2siteletsR.sid = Convert.ToInt32(li.Value);
+                        legacyusers2siteletsDT.Addlegacyusers2siteletsRow(legacyusers2siteletsR);
+                        legacyusers2siteletsTA.Update(legacyusers2siteletsDT);
+                    }
+                }
+
+
+                legacyusersTA.Update(legacyusersDT);
+                 
+                //Default to always modify all users 041909
+                //if (rblModifyAll.SelectedIndex == 1)//Modify all users belong to this company
+                //{
+                    //Response.Redirect("http://google.com");
+                    dsUserTableAdapters.licenseeTableAdapter licenseeTA = new dsUserTableAdapters.licenseeTableAdapter();
+                    dsUser.licenseeDataTable licenseeDT = new dsUser.licenseeDataTable();
+
+                    dsUserTableAdapters.licensee2siteletsTableAdapter licensee2siteletsTA = new dsUserTableAdapters.licensee2siteletsTableAdapter();
+                    dsUser.licensee2siteletsDataTable licensee2sitletsDT = new dsUser.licensee2siteletsDataTable();
+                    licenseeDT = licenseeTA.GetUsersByCID(legacyusersDT[0].ID);
+                    for (int i = 0; i < licenseeDT.Rows.Count; i++)
+                    {
+                        licenseeDT[i].UserLevel = legacyusersDT[0].UserLevel;
+                        if (legacyusersDT[0].UserLevel == "D")
+                        {
+                            licenseeDT[i].FromDate = legacyusersDT[0].FromDate;
+                            licenseeDT[i].ToDate = legacyusersDT[0].ToDate;
+                        }
+                        else
+                        {
+                            licenseeDT.Rows[i]["FromDate"] = DBNull.Value;
+                            licenseeDT.Rows[i]["ToDate"] = DBNull.Value;
+                        }
+
+                        if (legacyusersDT[0].UserLevel == "C")
+                        {
+                            licenseeDT[i].AllowedYear = legacyusersDT[0].AllowedYear;
+                        }
+                        else
+                        {
+                            licenseeDT.Rows[i]["AllowedYear"] = DBNull.Value;
+                        }
+
+
+
+                        licenseeDT[i].UserCategory = legacyusersDT[0].UserCategory;
+                        licenseeDT[i].RequestorID = legacyusersDT[0].RequestorID;
+
+                        licensee2siteletsTA.DeleteByUID(licenseeDT[i].ID);
+                        licensee2sitletsDT = licensee2siteletsTA.GetAllu2s();
+
+                        foreach (ListItem li in cblSitelet.Items)
+                        {
+                            if (li.Selected)
+                            {
+                                dsUser.licensee2siteletsRow licensee2siteletsR = licensee2sitletsDT.Newlicensee2siteletsRow();
+                                licensee2siteletsR.uid = licenseeDT[i].ID;
+                                licensee2siteletsR.sid = Convert.ToInt32(li.Value);
+                                licensee2sitletsDT.Addlicensee2siteletsRow(licensee2siteletsR);
+                                licensee2siteletsTA.Update(licensee2sitletsDT);
+                            }
+                        }
+
+                        licenseeTA.Update(licenseeDT);
+
+                    }
+                //}
+
+                lblStep.Visible = false;
+                lblDescription.Visible = false;
+
+                tablesitlet.Visible = false;
+                tableFinished.Visible = true;
+
+            }
+
+        }
+        else
+        {
+            Response.Redirect("./");
+        }
+    }
+    protected void cvSitelet_ServerValidate(object source, ServerValidateEventArgs args)
+    {
+        bool bSelected = false;
+        foreach (ListItem li in cblSitelet.Items)
+        {
+            if (li.Selected)
+            {
+                bSelected = true;
+                break;
+            }
+        }
+        args.IsValid = bSelected;
+    }
+
+    protected void btnBack2_Click(object sender, EventArgs e)
+    {
+        lblStep.Text = "Step 1 of 5:";
+        lblDescription.Text = "Enter The Company Information";
+        tableProfile.Visible = true;
+        cvMessage.Enabled = true;
+        tableUserLevel.Visible = false;
+
+        ltrBack.Text = "<input type=\"button\" name=\"btnBack\" value=\"<<< Go Back\" onclick=\"window.location.replace('./CompanyMgr.aspx')\"/>";
+
+
+
+        if (Session["legacyusersDT"] == null)//At first arrival, create the session as needed.
+        {
+            legacyusersTA = new dsCompanyTableAdapters.legacyusersTableAdapter();
+            legacyusersDT = new dsCompany.legacyusersDataTable();
+            legacyusersDT = legacyusersTA.GetCompanyByID(Convert.ToInt32(Request.QueryString["id"].ToString()));
+            Session["legacyusersDT"] = legacyusersDT;
+        }
+        else
+        {
+            legacyusersDT = (dsCompany.legacyusersDataTable)(Session["legacyusersDT"]);
+        }
+
+        //Populate the existing data
+        if (!(legacyusersDT.Rows[0]["Company"] is DBNull))
+        {
+            tbCompany.Text = legacyusersDT[0].Company;
+        }
+        if (!(legacyusersDT.Rows[0]["Address1"] is DBNull))
+        {
+            tbAddress1.Text = legacyusersDT[0].Address1;
+        }
+        if (!(legacyusersDT.Rows[0]["Address2"] is DBNull))
+        {
+            tbAddress2.Text = legacyusersDT[0].Address2;
+        }
+        if (!(legacyusersDT.Rows[0]["City"] is DBNull))
+        {
+            tbCity.Text = legacyusersDT[0].City;
+        }
+        if (!(legacyusersDT.Rows[0]["State"] is DBNull))
+        {
+            bool bProvince = true;
+            foreach (ListItem l in ddlState.Items)
+            {
+                if (legacyusersDT[0].State == l.Value)
+                {
+                    l.Selected = true;
+                    bProvince = false;
+                }
+            }
+            if (bProvince)
+            {
+                tbProvince.Text = legacyusersDT[0].State;
+            }
+        }
+        if (!(legacyusersDT.Rows[0]["Zip"] is DBNull))
+        {
+            tbZip.Text = legacyusersDT[0].Zip;
+        }
+        if (!(legacyusersDT.Rows[0]["Phone"] is DBNull))
+        {
+            tbPhone.Text = legacyusersDT[0].Phone;
+        }
+        if (!(legacyusersDT.Rows[0]["Contract"] is DBNull))
+        {
+            tbContract.Text = legacyusersDT[0].Contract;
+        }
+        if (!(legacyusersDT.Rows[0]["UserName"] is DBNull))
+        {
+            tbUserName.Text = legacyusersDT[0].UserName;
+        }
+        if (!(legacyusersDT.Rows[0]["Password"] is DBNull))
+        {
+            tbPassword.Text = legacyusersDT[0].Password;
+        }
+    }
+    protected void btnBack3_Click(object sender, EventArgs e)
+    {
+        lblStep.Text = "Step 2 of 5:";
+        lblDescription.Text = "Choose a user level";
+        tableUserLevel.Visible = true;
+        tableUserCategory.Visible = false;
+    }
+    protected void btnBack4_Click(object sender, EventArgs e)
+    {
+        if (Session["legacyusersDT"] != null)
+        {
+            legacyusersDT = (dsCompany.legacyusersDataTable)(Session["legacyusersDT"]);
+            //if (legacyusersDT[0].UserLevel == "A")
+            //{
+            //    bodyID.Attributes.Add("onload", "ShowHideModifyAll2();ChangeStep();");
+            //    rblUserCategory.Attributes.Add("onclick", "ShowHideModifyAll2();ChangeStep()");
+            //    lblStep.Text = "Step 3 of 4:";
+                //rblModifyAll2.Visible = false;
+            //}
+            //else
+            //{
+                bodyID.Attributes.Add("onload", "");
+                rblUserCategory.Attributes.Add("onclick", "");
+                lblStep.Text = "Step 3 of 5:";
+            //}
+        }
+        else
+        {
+            Response.Redirect("./");
+        }
+
+
+        lblDescription.Text = "Choose a user category";
+        tableUserCategory.Visible = true;
+        tableRequestor.Visible = false;
+    }
+    protected void btnBack5_Click(object sender, EventArgs e)
+    {
+        if (Session["legacyusersDT"] != null)
+        {
+            legacyusersDT = (dsCompany.legacyusersDataTable)(Session["legacyusersDT"]);
+            //Never reaching code
+            //if (legacyusersDT[0].UserLevel == "A")
+            //{
+            //   lblStep.Text = "Step 3 of 4:";
+            //    lblDescription.Text = "Choose a user category";
+            //    tableUserCategory.Visible = true;
+            //    tablesitlet.Visible = false;
+            //}
+            //else
+            //{
+                lblStep.Text = "Step 4 of 5:";
+                lblDescription.Text = "Choose a MLB Contact";
+                tableRequestor.Visible = true;
+                tablesitlet.Visible = false;
+            //}
+        }
+        else
+        {
+            Response.Redirect("./");
+        }
+
+    }
+    protected void cblSitelet_DataBound(object sender, EventArgs e)
+    {
+
+        if (Session["legacyusersDT"] != null)
+        {
+            legacyusersDT = (dsCompany.legacyusersDataTable)(Session["legacyusersDT"]);
+            
+
+            dsCompanyTableAdapters.legacyusers2siteletsTableAdapter legacyusers2siteletsTA = new dsCompanyTableAdapters.legacyusers2siteletsTableAdapter();
+            dsCompany.legacyusers2siteletsDataTable legacyusers2siteletsDT = new dsCompany.legacyusers2siteletsDataTable();
+            legacyusers2siteletsDT = legacyusers2siteletsTA.Getc2sByCID(legacyusersDT[0].ID);
+
+            for (int i = 0; i < legacyusers2siteletsDT.Rows.Count; i++)
+            {
+                foreach (ListItem li in cblSitelet.Items)
+                {
+                    if (li.Value == legacyusers2siteletsDT[i].sid.ToString())
+                    {
+                        li.Selected = true;
+                    }
+                }
+            }
+            
+        }
+
+    }
+
+    protected void ddlRequestor_DataBound(object sender, EventArgs e)
+    {
+        if (Session["legacyusersDT"] != null)
+        {
+            legacyusersDT = (dsCompany.legacyusersDataTable)(Session["legacyusersDT"]);
+            //Populate the requstor with the session
+            try
+            {
+                if (!(legacyusersDT[0].RequestorID is DBNull))
+                {
+
+                    ddlRequestor.Items.FindByValue(legacyusersDT[0].RequestorID.ToString()).Selected = true;
+                }
+
+            }
+            catch (Exception ex)
+            {
+             
+            }
+        }
+        ddlRequestor.Items.FindByValue("0").Text = "Select One";
+    }
+
+    protected void SaveLevelA(bool bLicensee)
+    {
+        if (Session["legacyusersDT"] != null)
+        {
+            legacyusersDT = (dsCompany.legacyusersDataTable)(Session["legacyusersDT"]);
+            if (!bLicensee)
+            {
+                legacyusersDT.Rows[0]["RequestorID"] = DBNull.Value;
+            }
+            //
+            legacyusersDT.Rows[0]["FromDate"] = DBNull.Value;
+            legacyusersDT.Rows[0]["ToDate"] = DBNull.Value;
+            legacyusersDT.Rows[0]["AllowedYear"] = DBNull.Value;
+            //lblStep.Text = "Step 4 of 4:";
+            //lblDescription.Text = "Give permissions to '" + legacyusersDT[0].Company + "' to access the following sitelet(s)";
+            tableUserCategory.Visible = false;
+            //tablesitlet.Visible = true;
+
+            //START!!!!!!!!!!!
+            legacyusersTA = new dsCompanyTableAdapters.legacyusersTableAdapter();
+            legacyusersTA.Update(legacyusersDT);
+
+
+            dsCompanyTableAdapters.legacyusers2siteletsTableAdapter legacyusers2siteletsTA = new dsCompanyTableAdapters.legacyusers2siteletsTableAdapter();
+            //Delete the existing one first!
+            legacyusers2siteletsTA.DeleteQuery(legacyusersDT[0].ID);
+
+            dsCompany.legacyusers2siteletsDataTable legacyusers2siteletsDT = new dsCompany.legacyusers2siteletsDataTable();
+            legacyusers2siteletsDT = legacyusers2siteletsTA.GetAllc2s();
+
+
+            //Get all availaible sitelets
+            dsCompanyTableAdapters.siteletsTableAdapter siteletsTA = new dsCompanyTableAdapters.siteletsTableAdapter();
+            dsCompany.siteletsDataTable siteletsDT = new dsCompany.siteletsDataTable();
+            siteletsDT = siteletsTA.GetAllSitelets();
+
+
+            for (int i = 0; i < siteletsDT.Rows.Count; i++)
+            {
+                dsCompany.legacyusers2siteletsRow legacyusers2siteletsR = legacyusers2siteletsDT.Newlegacyusers2siteletsRow();
+                legacyusers2siteletsR.cid = legacyusersDT[0].ID;
+                legacyusers2siteletsR.sid = Convert.ToInt32(siteletsDT[i].id);
+                legacyusers2siteletsDT.Addlegacyusers2siteletsRow(legacyusers2siteletsR);
+                legacyusers2siteletsTA.Update(legacyusers2siteletsDT);
+            }
+
+
+
+
+            //Always modify all 041909
+            //if ((rblModifyAll2.SelectedIndex == 1) || (rblModifyAll3.SelectedIndex == 1))//Modify all users belong to this company
+            //{
+                //Response.Redirect("http://google.com");
+                dsUserTableAdapters.licenseeTableAdapter licenseeTA = new dsUserTableAdapters.licenseeTableAdapter();
+                dsUser.licenseeDataTable licenseeDT = new dsUser.licenseeDataTable();
+
+                dsUserTableAdapters.licensee2siteletsTableAdapter licensee2siteletsTA = new dsUserTableAdapters.licensee2siteletsTableAdapter();
+                dsUser.licensee2siteletsDataTable licensee2sitletsDT = new dsUser.licensee2siteletsDataTable();
+                licenseeDT = licenseeTA.GetUsersByCID(legacyusersDT[0].ID);
+                for (int i = 0; i < licenseeDT.Rows.Count; i++)
+                {
+                    if (legacyusersDT.Rows[0]["RequestorID"] is DBNull)
+                    {
+                        licenseeDT.Rows[i]["RequestorID"] = DBNull.Value;
+                    }
+                    else
+                    {
+                        licenseeDT[i].RequestorID = legacyusersDT[0].RequestorID;
+                    }
+                    
+                    licenseeDT.Rows[i]["FromDate"] = DBNull.Value;
+                    licenseeDT.Rows[i]["ToDate"] = DBNull.Value;
+                    licenseeDT.Rows[i]["AllowedYear"] = DBNull.Value;
+
+                    licenseeDT[i].UserLevel = legacyusersDT[0].UserLevel;
+                    licenseeDT[i].UserCategory = legacyusersDT[0].UserCategory;
+
+                    //Delete user's sitelets first
+                    licensee2siteletsTA.DeleteByUID(licenseeDT[i].ID);
+
+                    //Retrive the fresh entire sitlets to add new ones
+                    licensee2sitletsDT = licensee2siteletsTA.GetAllu2s();
+
+                    for (int j = 0; j < siteletsDT.Rows.Count; j++)
+                    {
+
+                        dsUser.licensee2siteletsRow licensee2siteletsR = licensee2sitletsDT.Newlicensee2siteletsRow();
+                        licensee2siteletsR.uid = licenseeDT[i].ID;
+                        licensee2siteletsR.sid = Convert.ToInt32(siteletsDT[j].id);
+                        licensee2sitletsDT.Addlicensee2siteletsRow(licensee2siteletsR);
+                        licensee2siteletsTA.Update(licensee2sitletsDT);
+                    }
+
+                    licenseeTA.Update(licenseeDT);
+
+                }
+            //}
+
+            lblStep.Visible = false;
+            lblDescription.Visible = false;
+            tableRequestor.Visible = false;
+            tableFinished.Visible = true;
+        }
+        else
+        {
+            Response.Redirect("./");
+        }
+
+    }
+}

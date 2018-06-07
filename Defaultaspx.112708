@@ -1,0 +1,191 @@
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
+
+<html>
+<head>
+<title>:: MLB Style Guides ::</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<script language="JavaScript" type="text/JavaScript">
+<!--
+function MakeCompanyBlank(){
+    form1.tbCompany.value = "";
+}
+function MakeUserBlank(){
+    form1.tbUser.value = "";
+}
+//-->
+</script>
+<style type="text/css">
+    table td {
+        font-family: Arial, Helvetica, sans-serif;
+	    font-size: 18px;
+	}
+	.AdminLink{
+	    padding-top: 20px;
+        padding-left: 28px
+	}
+</style>
+</head>
+<body bgcolor="#404040" leftmargin="0" topmargin="0" marginwidth="0" text="#CCCCCC" marginheight="0" link="#FFFFFF" vlink="#FFFFFF" alink="#FF0000" background="images/404040.gif">
+<form id="form1" runat="server">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr> 
+    <td><img src="/portal/images/inv.gif" width="1" height="30"></td>
+    <td width="100">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td><img src="/portal/images/portal_head_admin.gif" width="510" height="89"></td>
+    <td width="100">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td valign="top"> 
+      <table border="0" cellspacing="0" cellpadding="0">
+        <tr> 
+          <td valign="top"><img src="/portal/images/portal_arrow.gif" width="397" height="77"></td>
+          <td valign="top"><img src="/portal/images/portal_majorleaguestyleguid.gif" width="362" height="77"></td>
+        </tr>
+      </table>
+    </td>
+    <td width="100%" valign="top"> 
+      <table border="0" cellspacing="0" cellpadding="0" width="100%">
+  <tr> 
+            <td bgcolor="#333333"><img src="images/inv.gif" width="1" height="1"></td>
+          </tr>
+          <tr> 
+            <td bgcolor="#CCCCCC"><img src="images/inv.gif" width="1" height="1"></td>
+          </tr>
+          <tr> 
+            <td bgcolor="#999999"><img src="images/inv.gif" width="1" height="11"></td>
+          </tr>
+          <tr> 
+            <td bgcolor="#333333"><img src="images/inv.gif" width="1" height="1"></td>
+          </tr>
+          <tr> 
+            <td bgcolor="#336699"><img src="images/inv.gif" width="1" height="1"></td>
+          </tr>
+          <tr> 
+            <td bgcolor="#003366"><img src="images/inv.gif" width="1" height="33"></td>
+          </tr>
+          <tr> 
+            <td bgcolor="#000033"><img src="images/inv.gif" width="1" height="1"></td>
+          </tr>
+          <tr> 
+            
+    <td bgcolor="#666666"><img src="images/inv.gif" width="1" height="1"></td>
+          </tr>
+        </table>
+    </td>
+  </tr>
+</table>
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr valign="top"> 
+    <td width="200"><img src="/portal/images/inv.gif" width="200" height="1"></td>
+    <td><img src="/portal/images/portal_dottedline.gif" width="17" height="233"></td>
+    <td style="width:472px;">
+    <table border="0" cellspacing="0" cellpadding="1">
+         <tr> 
+          <td nowrap bgcolor="#333333" style="width:250px"> 
+            <asp:panel ID="pnlCompany" defaultbutton="btnCompany" runat="server">
+            <table width="100%" border="0" cellspacing="0" cellpadding="3" bgcolor="#464646">
+              <tr> 
+                <td align="center">
+                <img src="./images/CompanyManager.gif" />
+                </td>
+                </tr>
+                <tr>
+                <td>
+                <div class="AdminLink" style="padding-top:9px"><a href="CompanyMgr.aspx">View all companies</a></div>
+                <div class="AdminLink"><a href="CompanyReportByRequestor.aspx">Create a report</a></div>
+                <div class="AdminLink"><a href="AddCompany.aspx">Add a company</a></div>
+                <div class="AdminLink"><asp:TextBox ID="tbCompany" runat="server" Width="210px">Company or Username</asp:TextBox></div>
+                <div style="text-align:center;padding-top: 13px;">
+                <asp:Button ID="btnCompany" runat="server" Text="Search" OnClick="btnCompany_Click" Width="130px" />
+                </div><br />
+                </td>
+              </tr>
+            </table>
+            </asp:panel>
+          </td>
+             <td nowrap="nowrap" style="width:50px">
+             </td>
+          
+          <td nowrap bgcolor="#333333" style="width:250px"> 
+          <asp:panel ID="pnlUser" defaultbutton="btnUser" runat="server">
+            <table width="100%" border="0" cellspacing="0" cellpadding="3" bgcolor="#464646">
+              <tr> 
+                <td align="center">
+                <img src="./images/UserManager.gif" />
+                </td>
+                </tr>
+                <tr>
+                <td>
+                <div class="AdminLink" style="padding-top:9px"><a href="UserMgr.aspx">View all users</a></div>
+                <div class="AdminLink"><a href="ReportByRequestor.aspx">Create a report</a></div>
+                <div class="AdminLink">&nbsp;</div>
+                <div class="AdminLink"><asp:TextBox ID="tbUser" runat="server" Width="210px">Email, Name or Company</asp:TextBox></div>
+                <div style="text-align:center;padding-top: 13px;">
+                <asp:Button ID="btnUser" runat="server" Text="Search" OnClick="btnUser_Click" Width="130px" />
+                </div><br />
+                </td>
+              </tr>
+            </table>
+            </asp:panel>
+          </td>
+          
+        </tr>
+        <tr> 
+        <td nowrap>&nbsp;</td>
+            <td nowrap="nowrap">
+            </td>
+            <td nowrap="nowrap">
+            </td>
+        </tr>
+        <tr> 
+          
+          
+          
+          <td bgcolor="#333333" nowrap="nowrap">
+          <table width="100%" border="0" cellspacing="0" cellpadding="3" bgcolor="#464646">
+              <tr> 
+                <td align="center">
+                <img src="./images/RequesterManager.gif" />
+                </td>
+                </tr>
+                <tr>
+                <td>
+                <div class="AdminLink" style="padding-top:9px"><a href="RequesterMgr.aspx">Add/Edit/Remove</a></div>
+                <br />
+                </td>
+              </tr>
+            </table>
+                  
+            </td>
+          
+          
+            <td nowrap="nowrap">
+            </td>
+            <td bgcolor="#333333" nowrap="nowrap">
+            <table width="100%" border="0" cellspacing="0" cellpadding="3" bgcolor="#464646">
+              <tr> 
+                <td align="center">
+                <img src="./images/EmailBlast.gif" />
+                </td>
+                </tr>
+                <tr>
+                <td>
+                <div class="AdminLink" style="padding-top:9px">Create</div>
+                <br />
+                </td>
+              </tr>
+            </table>    
+            </td>
+        </tr>
+        </table>
+        <br /><br /><br />
+    </td>
+  </tr>
+</table>
+<br>
+<br>
+</form>
+</body>
+ </html>
