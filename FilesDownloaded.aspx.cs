@@ -110,6 +110,12 @@ public partial class FilesDownloaded : System.Web.UI.Page
                          case 15:
                             strSection = "playball";
                             break;
+                         case 16:
+                            strSection = "sponsors";
+                            break;
+                         case 17:
+                            strSection = "london";
+                            break;
                     }
 
                      DataTable dtFilesDownloaded = AdminDAL.GetFileTracking(strSection, Convert.ToDateTime(Session["from"]), Convert.ToDateTime(Session["to"]).AddDays(1));
