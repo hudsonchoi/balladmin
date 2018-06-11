@@ -204,6 +204,13 @@ public partial class UsersLoggedIn : System.Web.UI.Page
                             gvUsers.DataSource = uspPlayballNotLoginReportDT;
                             gvUsers.Columns[23].Visible = true;
                             break;
+                        case 17:
+                            dsReportTableAdapters.uspLondonNotLoginReportTableAdapter uspLondonNotLoginReportTA = new dsReportTableAdapters.uspLondonNotLoginReportTableAdapter();
+                            dsReport.uspLondonNotLoginReportDataTable uspLondonNotLoginReportDT = uspLondonNotLoginReportTA.GetUspLondonNotLoginReport(Convert.ToDateTime(Session["from"]), Convert.ToDateTime(Session["to"]).AddDays(1));
+                            iCount = uspLondonNotLoginReportDT.Count;
+                            gvUsers.DataSource = uspLondonNotLoginReportDT;
+                            gvUsers.Columns[24].Visible = true;
+                            break;
                     }
                     
                 }
@@ -334,6 +341,13 @@ public partial class UsersLoggedIn : System.Web.UI.Page
                             iCount = uspPlayballLoginReportDT.Count;
                             gvUsers.DataSource = uspPlayballLoginReportDT;
                             gvUsers.Columns[23].Visible = true;
+                            break;
+                        case 17:
+                            dsReportTableAdapters.uspLondonLoginReportTableAdapter uspLondonLoginReportTA = new dsReportTableAdapters.uspLondonLoginReportTableAdapter();
+                            dsReport.uspLondonLoginReportDataTable uspLondonLoginReportDT = uspLondonLoginReportTA.GetUspLondonLoginReport(Convert.ToDateTime(Session["from"]), Convert.ToDateTime(Session["to"]).AddDays(1));
+                            iCount = uspLondonLoginReportDT.Count;
+                            gvUsers.DataSource = uspLondonLoginReportDT;
+                            gvUsers.Columns[24].Visible = true;
                             break;
                     }
                     

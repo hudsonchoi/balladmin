@@ -74,6 +74,15 @@ public partial class xls_FilesDownloaded : System.Web.UI.Page
                 case 13:
                     strSection = "mascotbabies";
                     break;
+                case 15:
+                    strSection = "playball";
+                    break;
+                case 16:
+                    strSection = "sponsors";
+                    break;
+                case 17:
+                    strSection = "london";
+                    break;
             }
 
             //dsReportTableAdapters.uspFilesDownloadedTableAdapter uspFilesDownloadedTA = new dsReportTableAdapters.uspFilesDownloadedTableAdapter();

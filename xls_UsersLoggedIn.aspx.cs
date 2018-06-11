@@ -100,6 +100,24 @@ public partial class xls_UsersLoggedIn : System.Web.UI.Page
                     gvUsers.DataSource = uspMascotBabiesNotDT;
                     gvUsers.Columns[21].Visible = true;
                     break;
+                case 14:
+                    dsReportTableAdapters.uspPressBoxNotLoginReportTableAdapter uspPressBoxNotLoginReportTA = new dsReportTableAdapters.uspPressBoxNotLoginReportTableAdapter();
+                    dsReport.uspPressBoxNotLoginReportDataTable uspPressBoxNotLoginReportDT = uspPressBoxNotLoginReportTA.GetUspPressBoxNotLoginReport(Convert.ToDateTime(Request.QueryString["from"].ToString()), Convert.ToDateTime(Request.QueryString["to"].ToString()));
+                    gvUsers.DataSource = uspPressBoxNotLoginReportDT;
+                    gvUsers.Columns[22].Visible = true;
+                    break;
+                case 15:
+                    dsReportTableAdapters.uspPlayballNotLoginReportTableAdapter uspPlayballNotLoginReportTA = new dsReportTableAdapters.uspPlayballNotLoginReportTableAdapter();
+                    dsReport.uspPlayballNotLoginReportDataTable uspPlayballNotLoginReportDT = uspPlayballNotLoginReportTA.GetUspPlayballNotLoginReport(Convert.ToDateTime(Request.QueryString["from"].ToString()), Convert.ToDateTime(Request.QueryString["to"].ToString()));
+                    gvUsers.DataSource = uspPlayballNotLoginReportDT;
+                    gvUsers.Columns[23].Visible = true;
+                    break;
+                case 17:
+                    dsReportTableAdapters.uspLondonNotLoginReportTableAdapter uspLondonNotLoginReportTA = new dsReportTableAdapters.uspLondonNotLoginReportTableAdapter();
+                    dsReport.uspLondonNotLoginReportDataTable uspLondonNotLoginReportDT = uspLondonNotLoginReportTA.GetUspLondonNotLoginReport(Convert.ToDateTime(Request.QueryString["from"].ToString()), Convert.ToDateTime(Request.QueryString["to"].ToString()));
+                    gvUsers.DataSource = uspLondonNotLoginReportDT;
+                    gvUsers.Columns[24].Visible = true;
+                    break;
             }
             //dsReportTableAdapters.uspCMCNotLoginReportByDatesTableAdapter uspCMCNotLoginReportByDatesTA = new dsReportTableAdapters.uspCMCNotLoginReportByDatesTableAdapter();
             //dsReport.uspCMCNotLoginReportByDatesDataTable uspCMCNotLoginReportByDatesDT = uspCMCNotLoginReportByDatesTA.GetUspCMCNotLoginReportByDates(Convert.ToDateTime(Request.QueryString["from"].ToString()), Convert.ToDateTime(Request.QueryString["to"].ToString()));
@@ -194,6 +212,24 @@ public partial class xls_UsersLoggedIn : System.Web.UI.Page
                     dsReport.uspMascotBabiesLoginReportDataTable uspMascotBabiesLoginReportDT = uspMascotBabiesLoginReportTA.GetUspMascotBabiesLoginReport(Convert.ToDateTime(Request.QueryString["from"].ToString()), Convert.ToDateTime(Request.QueryString["to"].ToString()));
                     gvUsers.DataSource = uspMascotBabiesLoginReportDT;
                     gvUsers.Columns[21].Visible = true;
+                    break;
+                case 14:
+                    dsReportTableAdapters.uspPressBoxLoginReportTableAdapter uspPressBoxLoginReportTA = new dsReportTableAdapters.uspPressBoxLoginReportTableAdapter();
+                    dsReport.uspPressBoxLoginReportDataTable uspPressBoxLoginReportDT = uspPressBoxLoginReportTA.GetUspPressBoxLoginReport(Convert.ToDateTime(Request.QueryString["from"].ToString()), Convert.ToDateTime(Request.QueryString["to"].ToString()));
+                    gvUsers.DataSource = uspPressBoxLoginReportDT;
+                    gvUsers.Columns[22].Visible = true;
+                    break;
+                case 15:
+                    dsReportTableAdapters.uspPlayballLoginReportTableAdapter uspPlayballLoginReportTA = new dsReportTableAdapters.uspPlayballLoginReportTableAdapter();
+                    dsReport.uspPlayballLoginReportDataTable uspPlayballLoginReportDT = uspPlayballLoginReportTA.GetUspPlayballLoginReport(Convert.ToDateTime(Request.QueryString["from"].ToString()), Convert.ToDateTime(Request.QueryString["to"].ToString()));
+                    gvUsers.DataSource = uspPlayballLoginReportDT;
+                    gvUsers.Columns[23].Visible = true;
+                    break;
+                case 17:
+                    dsReportTableAdapters.uspLondonLoginReportTableAdapter uspLondonLoginReportTA = new dsReportTableAdapters.uspLondonLoginReportTableAdapter();
+                    dsReport.uspLondonLoginReportDataTable uspLondonLoginReportDT = uspLondonLoginReportTA.GetUspLondonLoginReport(Convert.ToDateTime(Request.QueryString["from"].ToString()), Convert.ToDateTime(Request.QueryString["to"].ToString()));
+                    gvUsers.DataSource = uspLondonLoginReportDT;
+                    gvUsers.Columns[24].Visible = true;
                     break;
 
             }

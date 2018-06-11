@@ -66,6 +66,15 @@
             <asp:BoundField DataField="MascotBabiesLastLogin" HeaderText="MascotBabiesLastLogin" 
                 SortExpression="MascotBabiesLastLogin" Visible="false">
             </asp:BoundField>
+            <asp:BoundField DataField="PressBoxLastLogin" HeaderText="PressBoxLastLogin" 
+                SortExpression="PressBoxLastLogin" Visible="false">
+            </asp:BoundField>
+            <asp:BoundField DataField="PlayballLastLogin" HeaderText="PlayballLastLogin" 
+                SortExpression="PlayballLastLogin" Visible="false">
+            </asp:BoundField>
+            <asp:BoundField DataField="LondonLastLogin" HeaderText="LondonLastLogin" 
+                SortExpression="LondonLastLogin" Visible="false">
+            </asp:BoundField>
         </Columns>
         <EmptyDataTemplate>
             Email

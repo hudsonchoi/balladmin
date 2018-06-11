@@ -363,6 +363,9 @@ p {margin-bottom:5px;}
             <asp:BoundField DataField="PlayballLastLogin" HeaderText="PlayballLastLogin" 
                 SortExpression="PlayballLastLogin" Visible="false">
             </asp:BoundField>
+            <asp:BoundField DataField="LondonLastLogin" HeaderText="LondonLastLogin" 
+                SortExpression="LondonLastLogin" Visible="false">
+            </asp:BoundField>
         </Columns>
         <AlternatingRowStyle BackColor="DimGray" />
     </asp:GridView>
