@@ -204,12 +204,19 @@ public partial class UsersLoggedIn : System.Web.UI.Page
                             gvUsers.DataSource = uspPlayballNotLoginReportDT;
                             gvUsers.Columns[23].Visible = true;
                             break;
+                        case 16:
+                            dsReportTableAdapters.uspSponsorsNotLoginReportTableAdapter uspSponsorsNotLoginReportTA = new dsReportTableAdapters.uspSponsorsNotLoginReportTableAdapter();
+                            dsReport.uspSponsorsNotLoginReportDataTable uspSponsorsNotLoginReportDT = uspSponsorsNotLoginReportTA.GetUspSponsorsNotLoginReport(Convert.ToDateTime(Session["from"]), Convert.ToDateTime(Session["to"]).AddDays(1));
+                            iCount = uspSponsorsNotLoginReportDT.Count;
+                            gvUsers.DataSource = uspSponsorsNotLoginReportDT;
+                            gvUsers.Columns[24].Visible = true;
+                            break;
                         case 17:
                             dsReportTableAdapters.uspLondonNotLoginReportTableAdapter uspLondonNotLoginReportTA = new dsReportTableAdapters.uspLondonNotLoginReportTableAdapter();
                             dsReport.uspLondonNotLoginReportDataTable uspLondonNotLoginReportDT = uspLondonNotLoginReportTA.GetUspLondonNotLoginReport(Convert.ToDateTime(Session["from"]), Convert.ToDateTime(Session["to"]).AddDays(1));
                             iCount = uspLondonNotLoginReportDT.Count;
                             gvUsers.DataSource = uspLondonNotLoginReportDT;
-                            gvUsers.Columns[24].Visible = true;
+                            gvUsers.Columns[25].Visible = true;
                             break;
                     }
                     
@@ -342,12 +349,19 @@ public partial class UsersLoggedIn : System.Web.UI.Page
                             gvUsers.DataSource = uspPlayballLoginReportDT;
                             gvUsers.Columns[23].Visible = true;
                             break;
+                        case 16:
+                            dsReportTableAdapters.uspSponsorsLoginReportTableAdapter uspSponsorsLoginReportTA = new dsReportTableAdapters.uspSponsorsLoginReportTableAdapter();
+                            dsReport.uspSponsorsLoginReportDataTable uspSponsorsLoginReportDT = uspSponsorsLoginReportTA.GetUspSponsorsLoginReport(Convert.ToDateTime(Session["from"]), Convert.ToDateTime(Session["to"]).AddDays(1));
+                            iCount = uspSponsorsLoginReportDT.Count;
+                            gvUsers.DataSource = uspSponsorsLoginReportDT;
+                            gvUsers.Columns[24].Visible = true;
+                            break;
                         case 17:
                             dsReportTableAdapters.uspLondonLoginReportTableAdapter uspLondonLoginReportTA = new dsReportTableAdapters.uspLondonLoginReportTableAdapter();
                             dsReport.uspLondonLoginReportDataTable uspLondonLoginReportDT = uspLondonLoginReportTA.GetUspLondonLoginReport(Convert.ToDateTime(Session["from"]), Convert.ToDateTime(Session["to"]).AddDays(1));
                             iCount = uspLondonLoginReportDT.Count;
                             gvUsers.DataSource = uspLondonLoginReportDT;
-                            gvUsers.Columns[24].Visible = true;
+                            gvUsers.Columns[25].Visible = true;
                             break;
                     }
                     

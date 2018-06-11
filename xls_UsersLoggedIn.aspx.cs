@@ -112,11 +112,17 @@ public partial class xls_UsersLoggedIn : System.Web.UI.Page
                     gvUsers.DataSource = uspPlayballNotLoginReportDT;
                     gvUsers.Columns[23].Visible = true;
                     break;
+                case 16:
+                    dsReportTableAdapters.uspSponsorsNotLoginReportTableAdapter uspSponsorsNotLoginReportTA = new dsReportTableAdapters.uspSponsorsNotLoginReportTableAdapter();
+                    dsReport.uspSponsorsNotLoginReportDataTable uspSponsorsNotLoginReportDT = uspSponsorsNotLoginReportTA.GetUspSponsorsNotLoginReport(Convert.ToDateTime(Request.QueryString["from"].ToString()), Convert.ToDateTime(Request.QueryString["to"].ToString()));
+                    gvUsers.DataSource = uspSponsorsNotLoginReportDT;
+                    gvUsers.Columns[24].Visible = true;
+                    break;
                 case 17:
                     dsReportTableAdapters.uspLondonNotLoginReportTableAdapter uspLondonNotLoginReportTA = new dsReportTableAdapters.uspLondonNotLoginReportTableAdapter();
                     dsReport.uspLondonNotLoginReportDataTable uspLondonNotLoginReportDT = uspLondonNotLoginReportTA.GetUspLondonNotLoginReport(Convert.ToDateTime(Request.QueryString["from"].ToString()), Convert.ToDateTime(Request.QueryString["to"].ToString()));
                     gvUsers.DataSource = uspLondonNotLoginReportDT;
-                    gvUsers.Columns[24].Visible = true;
+                    gvUsers.Columns[25].Visible = true;
                     break;
             }
             //dsReportTableAdapters.uspCMCNotLoginReportByDatesTableAdapter uspCMCNotLoginReportByDatesTA = new dsReportTableAdapters.uspCMCNotLoginReportByDatesTableAdapter();
