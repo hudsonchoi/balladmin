@@ -218,6 +218,13 @@ public partial class UsersLoggedIn : System.Web.UI.Page
                             gvUsers.DataSource = uspLondonNotLoginReportDT;
                             gvUsers.Columns[25].Visible = true;
                             break;
+                        case 18:
+                            dsReportTableAdapters.uspRestricted2NotLoginReportTableAdapter uspRestricted2NotLoginReportTA = new dsReportTableAdapters.uspRestricted2NotLoginReportTableAdapter();
+                            dsReport.uspRestricted2NotLoginReportDataTable uspRestricted2NotLoginReportDT = uspRestricted2NotLoginReportTA.GetUspRestricted2NotLoginReport(Convert.ToDateTime(Session["from"]), Convert.ToDateTime(Session["to"]).AddDays(1));
+                            iCount = uspRestricted2NotLoginReportDT.Count;
+                            gvUsers.DataSource = uspRestricted2NotLoginReportDT;
+                            gvUsers.Columns[26].Visible = true;
+                            break;
                     }
                     
                 }
@@ -362,6 +369,13 @@ public partial class UsersLoggedIn : System.Web.UI.Page
                             iCount = uspLondonLoginReportDT.Count;
                             gvUsers.DataSource = uspLondonLoginReportDT;
                             gvUsers.Columns[25].Visible = true;
+                            break;
+                        case 18:
+                            dsReportTableAdapters.uspRestricted2LoginReportTableAdapter uspRestricted2LoginReportTA = new dsReportTableAdapters.uspRestricted2LoginReportTableAdapter();
+                            dsReport.uspRestricted2LoginReportDataTable uspRestricted2LoginReportDT = uspRestricted2LoginReportTA.GetUspRestricted2LoginReport(Convert.ToDateTime(Session["from"]), Convert.ToDateTime(Session["to"]).AddDays(1));
+                            iCount = uspRestricted2LoginReportDT.Count;
+                            gvUsers.DataSource = uspRestricted2LoginReportDT;
+                            gvUsers.Columns[26].Visible = true;
                             break;
                     }
                     

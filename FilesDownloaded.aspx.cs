@@ -116,7 +116,10 @@ public partial class FilesDownloaded : System.Web.UI.Page
                          case 17:
                             strSection = "london";
                             break;
-                    }
+                         case 18:
+                            strSection = "restricted2";
+                            break;
+                }
 
                      DataTable dtFilesDownloaded = AdminDAL.GetFileTracking(strSection, Convert.ToDateTime(Session["from"]), Convert.ToDateTime(Session["to"]).AddDays(1));
                      iCount = dtFilesDownloaded.Rows.Count;

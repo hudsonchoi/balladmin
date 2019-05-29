@@ -83,7 +83,10 @@ public partial class xls_FilesDownloaded : System.Web.UI.Page
                 case 17:
                     strSection = "london";
                     break;
-            }
+                case 18:
+                    strSection = "restricted2";
+                    break;
+        }
 
             //dsReportTableAdapters.uspFilesDownloadedTableAdapter uspFilesDownloadedTA = new dsReportTableAdapters.uspFilesDownloadedTableAdapter();
             //dsReport.uspFilesDownloadedDataTable uspFilesDownloadedDT = uspFilesDownloadedTA.GetUspFilesDownloaded(strSection, Convert.ToDateTime(Request.QueryString["from"].ToString()), Convert.ToDateTime(Request.QueryString["to"].ToString()).AddDays(1));
