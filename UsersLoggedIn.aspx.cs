@@ -225,6 +225,13 @@ public partial class UsersLoggedIn : System.Web.UI.Page
                             gvUsers.DataSource = uspRestricted2NotLoginReportDT;
                             gvUsers.Columns[26].Visible = true;
                             break;
+                        case 19:
+                            dsReportTableAdapters.uspRestricted3NotLoginReportTableAdapter uspRestricted3NotLoginReportTA = new dsReportTableAdapters.uspRestricted3NotLoginReportTableAdapter();
+                            dsReport.uspRestricted2NotLoginReportDataTable uspRestricted3NotLoginReportDT = uspRestricted3NotLoginReportTA.(Convert.ToDateTime(Session["from"]), Convert.ToDateTime(Session["to"]).AddDays(1));
+                            iCount = uspRestricted3NotLoginReportDT.Count;
+                            gvUsers.DataSource = uspRestricted3NotLoginReportDT;
+                            gvUsers.Columns[27].Visible = true;
+                            break;
                     }
                     
                 }
@@ -376,6 +383,13 @@ public partial class UsersLoggedIn : System.Web.UI.Page
                             iCount = uspRestricted2LoginReportDT.Count;
                             gvUsers.DataSource = uspRestricted2LoginReportDT;
                             gvUsers.Columns[26].Visible = true;
+                            break;
+                        case 19:
+                            dsReportTableAdapters.uspRestricted3LoginReportTableAdapter uspRestricted3LoginReportTA = new dsReportTableAdapters.uspRestricted3LoginReportTableAdapter();
+                            dsReport.uspRestricted3LoginReportDataTable uspRestricted3LoginReportDT = uspRestricted3LoginReportTA.GetUspRestricted3LoginReport(Convert.ToDateTime(Session["from"]), Convert.ToDateTime(Session["to"]).AddDays(1));
+                            iCount = uspRestricted3LoginReportDT.Count;
+                            gvUsers.DataSource = uspRestricted3LoginReportDT;
+                            gvUsers.Columns[27].Visible = true;
                             break;
                     }
                     

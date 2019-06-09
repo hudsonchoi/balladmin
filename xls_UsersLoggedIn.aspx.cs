@@ -130,6 +130,12 @@ public partial class xls_UsersLoggedIn : System.Web.UI.Page
                     gvUsers.DataSource = uspRestricted2NotLoginReportDT;
                     gvUsers.Columns[26].Visible = true;
                     break;
+                case 19:
+                    dsReportTableAdapters.uspRestricted3NotLoginReportTableAdapter uspRestricted3NotLoginReportTA = new dsReportTableAdapters.uspRestricted3NotLoginReportTableAdapter();
+                    dsReport.uspRestricted3NotLoginReportDataTable uspRestricted3NotLoginReportDT = uspRestricted3NotLoginReportTA.GetUspRestricted3NotLoginReport(Convert.ToDateTime(Session["from"]), Convert.ToDateTime(Session["to"]).AddDays(1));
+                    gvUsers.DataSource = uspRestricted3NotLoginReportDT;
+                    gvUsers.Columns[27].Visible = true;
+                    break;
             }
             //dsReportTableAdapters.uspCMCNotLoginReportByDatesTableAdapter uspCMCNotLoginReportByDatesTA = new dsReportTableAdapters.uspCMCNotLoginReportByDatesTableAdapter();
             //dsReport.uspCMCNotLoginReportByDatesDataTable uspCMCNotLoginReportByDatesDT = uspCMCNotLoginReportByDatesTA.GetUspCMCNotLoginReportByDates(Convert.ToDateTime(Request.QueryString["from"].ToString()), Convert.ToDateTime(Request.QueryString["to"].ToString()));
@@ -237,17 +243,29 @@ public partial class xls_UsersLoggedIn : System.Web.UI.Page
                     gvUsers.DataSource = uspPlayballLoginReportDT;
                     gvUsers.Columns[23].Visible = true;
                     break;
+                case 16:
+                    dsReportTableAdapters.uspSponsorsLoginReportTableAdapter uspSponsorsLoginReportTA = new dsReportTableAdapters.uspSponsorsLoginReportTableAdapter();
+                    dsReport.uspSponsorsLoginReportDataTable uspSponsorsLoginReportDT = uspSponsorsLoginReportTA.GetUspSponsorsLoginReport(Convert.ToDateTime(Request.QueryString["from"].ToString()), Convert.ToDateTime(Request.QueryString["to"].ToString()));
+                    gvUsers.DataSource = uspSponsorsLoginReportDT;
+                    gvUsers.Columns[24].Visible = true;
+                    break;
                 case 17:
                     dsReportTableAdapters.uspLondonLoginReportTableAdapter uspLondonLoginReportTA = new dsReportTableAdapters.uspLondonLoginReportTableAdapter();
                     dsReport.uspLondonLoginReportDataTable uspLondonLoginReportDT = uspLondonLoginReportTA.GetUspLondonLoginReport(Convert.ToDateTime(Request.QueryString["from"].ToString()), Convert.ToDateTime(Request.QueryString["to"].ToString()));
                     gvUsers.DataSource = uspLondonLoginReportDT;
-                    gvUsers.Columns[24].Visible = true;
+                    gvUsers.Columns[25].Visible = true;
                     break;
                 case 18:
                     dsReportTableAdapters.uspRestricted2LoginReportTableAdapter uspRestricted2LoginReportTA = new dsReportTableAdapters.uspRestricted2LoginReportTableAdapter();
                     dsReport.uspRestricted2LoginReportDataTable uspRestricted2LoginReportDT = uspRestricted2LoginReportTA.GetUspRestricted2LoginReport(Convert.ToDateTime(Session["from"]), Convert.ToDateTime(Session["to"]).AddDays(1));
                     gvUsers.DataSource = uspRestricted2LoginReportDT;
-                    gvUsers.Columns[25].Visible = true;
+                    gvUsers.Columns[26].Visible = true;
+                    break;
+                case 19:
+                    dsReportTableAdapters.uspRestricted3LoginReportTableAdapter uspRestricted3LoginReportTA = new dsReportTableAdapters.uspRestricted3LoginReportTableAdapter();
+                    dsReport.uspRestricted3LoginReportDataTable uspRestricted3LoginReportDT = uspRestricted3LoginReportTA.GetUspRestricted3LoginReport(Convert.ToDateTime(Session["from"]), Convert.ToDateTime(Session["to"]).AddDays(1));
+                    gvUsers.DataSource = uspRestricted3LoginReportDT;
+                    gvUsers.Columns[27].Visible = true;
                     break;
             }
 

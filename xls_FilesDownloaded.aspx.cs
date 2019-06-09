@@ -86,6 +86,9 @@ public partial class xls_FilesDownloaded : System.Web.UI.Page
                 case 18:
                     strSection = "restricted2";
                     break;
+                case 19:
+                    strSection = "restricted3";
+                    break;
         }
 
             //dsReportTableAdapters.uspFilesDownloadedTableAdapter uspFilesDownloadedTA = new dsReportTableAdapters.uspFilesDownloadedTableAdapter();
