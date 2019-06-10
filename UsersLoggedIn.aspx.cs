@@ -227,7 +227,7 @@ public partial class UsersLoggedIn : System.Web.UI.Page
                             break;
                         case 19:
                             dsReportTableAdapters.uspRestricted3NotLoginReportTableAdapter uspRestricted3NotLoginReportTA = new dsReportTableAdapters.uspRestricted3NotLoginReportTableAdapter();
-                            dsReport.uspRestricted2NotLoginReportDataTable uspRestricted3NotLoginReportDT = uspRestricted3NotLoginReportTA.(Convert.ToDateTime(Session["from"]), Convert.ToDateTime(Session["to"]).AddDays(1));
+                            dsReport.uspRestricted3NotLoginReportDataTable uspRestricted3NotLoginReportDT = uspRestricted3NotLoginReportTA.(Convert.ToDateTime(Session["from"]), Convert.ToDateTime(Session["to"]).AddDays(1));
                             iCount = uspRestricted3NotLoginReportDT.Count;
                             gvUsers.DataSource = uspRestricted3NotLoginReportDT;
                             gvUsers.Columns[27].Visible = true;
