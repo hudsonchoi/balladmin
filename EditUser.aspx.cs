@@ -22,7 +22,6 @@ public partial class EditUser : System.Web.UI.Page
         if (Request.QueryString["id"] != null)//Protection required ALL edits!
         {
             rblUserLevel.Attributes.Add("onclick", "CheckUserLevel()");
-            
 
             if (rblUserLevel.SelectedValue == "D")//When Level D enforce the required field validator to the date range
             {
@@ -210,25 +209,60 @@ public partial class EditUser : System.Web.UI.Page
                 //Populate the user level using the session
                 if (!(licenseeDT.Rows[0]["UserLevel"] is DBNull))
                 {
-		    try{
-                    	rblUserLevel.Items.FindByValue(licenseeDT[0].UserLevel).Selected = true;
-		    }catch(Exception ex){}
-                
+                    var userLevel = "";
+                    dsCompanyTableAdapters.legacyusersTableAdapter legacyusersTA = new dsCompanyTableAdapters.legacyusersTableAdapter();
+                    dsCompany.legacyusersDataTable legacyusersDT = new dsCompany.legacyusersDataTable();
+                    try
+                    {
+                        if (licenseeDT.Rows[0]["cid"].ToString() != ddlCompany.SelectedValue)//A different company was selected. Get requestor from the company data
+                        {
 
-                    if (licenseeDT[0].UserLevel == "D")//When Level D enforce the required field validator to the date range
+                            legacyusersDT = legacyusersTA.GetCompanyByID(int.Parse(ddlCompany.SelectedValue));
+                            if (!(legacyusersDT.Rows[0]["UserLevel"] is DBNull))
+                            {
+                                userLevel = legacyusersDT[0].UserLevel;
+                            }
+                        }
+                        else
+                        {
+                            userLevel = licenseeDT[0].UserLevel;
+                        }
+		            }
+                    catch (Exception ex){}
+                    rblUserLevel.ClearSelection();//Without this can't change it for company dropdown feature coming back from step 2
+                    rblUserLevel.Items.FindByValue(userLevel).Selected = true;
+
+                    if (userLevel == "D")//When Level D enforce the required field validator to the date range
                     {
                         bodyID.Attributes.Add("onload", "document.getElementById(\"dateLayer\").style.visibility=\"visible\";");
-                        if (!(licenseeDT.Rows[0]["FromDate"] is DBNull) && !(licenseeDT.Rows[0]["ToDate"] is DBNull))
+                        if (licenseeDT.Rows[0]["cid"].ToString() != ddlCompany.SelectedValue)//A different company was selected. Get requestor from the company data
                         {
-                            calendarPopupFrom.SelectedDate = licenseeDT[0].FromDate;
-                            calendarPopupTo.SelectedDate = licenseeDT[0].ToDate;
+                            if (!(legacyusersDT.Rows[0]["FromDate"] is DBNull) && !(legacyusersDT.Rows[0]["ToDate"] is DBNull))
+                            {
+                                calendarPopupFrom.SelectedDate = legacyusersDT[0].FromDate;
+                                calendarPopupTo.SelectedDate = legacyusersDT[0].ToDate;
+                            }
                         }
+                        else
+                        {
+                            if (!(licenseeDT.Rows[0]["FromDate"] is DBNull) && !(licenseeDT.Rows[0]["ToDate"] is DBNull))
+                            {
+                                calendarPopupFrom.SelectedDate = licenseeDT[0].FromDate;
+                                calendarPopupTo.SelectedDate = licenseeDT[0].ToDate;
+                            }
+                        }
+
                         rfvFrom.Enabled = true;
                         rfvTo.Enabled = true;
                         cvFrom.Enabled = true;
                         cvTo.Enabled = true;
                         cpvDateRange.Enabled = true;
                         Session["DateWasDisplayed"] = "yes";
+                    }
+                    else
+                    {
+                        bodyID.Attributes.Add("onload", "document.getElementById(\"dateLayer\").style.visibility=\"hidden\";");
+                        Session["DateWasDisplayed"] = null;
                     }
                 }
 
@@ -473,6 +507,8 @@ public partial class EditUser : System.Web.UI.Page
                     tableRequestor.Visible = true;
                 //}
                 Session["licenseeDT"] = licenseeDT;
+
+                ddlRequestor.DataBind();
 
             }
         }
@@ -771,7 +807,7 @@ public partial class EditUser : System.Web.UI.Page
         if (Session["licenseeDT"] != null)
         {
 
-            if (licenseeDT.Rows[0]["cid"].ToString() != ddlCompany.SelectedValue)
+            if (licenseeDT.Rows[0]["cid"].ToString() != ddlCompany.SelectedValue)//A different company was selected. Get requestor from the company data
             {
                 dsCompanyTableAdapters.legacyusers2siteletsTableAdapter legacyusers2siteletsTA = new dsCompanyTableAdapters.legacyusers2siteletsTableAdapter();
                 dsCompany.legacyusers2siteletsDataTable legacyusers2siteletsDT = new dsCompany.legacyusers2siteletsDataTable();
@@ -815,13 +851,26 @@ public partial class EditUser : System.Web.UI.Page
         if (Session["licenseeDT"] != null)
         {
             licenseeDT = (dsUser.licenseeDataTable)(Session["licenseeDT"]);
-            //Populate the requstor with the session
-            if (!(licenseeDT.Rows[0]["RequestorID"] is DBNull))
+
+            if (licenseeDT.Rows[0]["cid"].ToString() != ddlCompany.SelectedValue)//A different company was selected. Get requestor from the company data
             {
-                ddlRequestor.Items.FindByValue(licenseeDT[0].RequestorID.ToString()).Selected = true;
+                dsCompanyTableAdapters.legacyusersTableAdapter legacyusersTA = new dsCompanyTableAdapters.legacyusersTableAdapter();
+                dsCompany.legacyusersDataTable legacyusersDT = new dsCompany.legacyusersDataTable();
+                legacyusersDT = legacyusersTA.GetCompanyByID(int.Parse(ddlCompany.SelectedValue));
+                if (!(legacyusersDT.Rows[0]["RequestorID"] is DBNull))
+                {
+                    ddlRequestor.Items.FindByValue(legacyusersDT[0].RequestorID.ToString()).Selected = true;
+                }
+            }
+            else
+            {
+                //Populate the requstor with the session
+                if (!(licenseeDT.Rows[0]["RequestorID"] is DBNull))
+                {
+                    ddlRequestor.Items.FindByValue(licenseeDT[0].RequestorID.ToString()).Selected = true;
+                }
             }
         }
-
         ddlRequestor.Items.FindByValue("0").Text = "Select One";
     }
 
