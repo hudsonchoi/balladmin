@@ -228,8 +228,8 @@ function ChangeStep()
                 <tr>
                     <td align="right" bgcolor="#464646" nowrap="nowrap">
                          <font size="1" face="Arial, Helvetica, sans-serif">Company:</font></td>
-                    <td bgcolor="#464646" nowrap="nowrap"><font size="2" face="Arial, Helvetica, sans-serif">
-                        <asp:Label ID="lblCompany" runat="server" Text="Label" Font-Bold="True"></asp:Label></font></td>
+                    <td bgcolor="#464646" nowrap="nowrap">
+                        <asp:DropDownList ID="ddlCompany" runat="server"></asp:DropDownList></td>
                 </tr>
                 <tr>
                     <td align="right" bgcolor="#464646" nowrap="nowrap">

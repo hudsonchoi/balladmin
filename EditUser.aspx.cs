@@ -81,10 +81,12 @@ public partial class EditUser : System.Web.UI.Page
                 if (!(licenseeDT.Rows[0]["cid"] is DBNull))
                 {
                     dsCompanyTableAdapters.legacyusersTableAdapter legacyusersTA = new dsCompanyTableAdapters.legacyusersTableAdapter();
-                    dsCompany.legacyusersDataTable legacyusersDT = new dsCompany.legacyusersDataTable();
-                    legacyusersDT = legacyusersTA.GetCompanyByID(licenseeDT[0].cid);
-
-                    lblCompany.Text = legacyusersDT[0].Company;
+                    dsCompany.legacyusersDataTable legacyusersDT = legacyusersTA.GetAllCompanies();
+                    ddlCompany.DataSource = legacyusersDT;
+                    ddlCompany.DataTextField = "Company";
+                    ddlCompany.DataValueField = "ID";
+                    ddlCompany.SelectedValue = licenseeDT.Rows[0]["cid"].ToString();
+                    ddlCompany.DataBind();
                 }
 
                 if (!(licenseeDT.Rows[0]["Contract"] is DBNull))
@@ -520,7 +522,7 @@ public partial class EditUser : System.Web.UI.Page
                 //}
 
 
-                
+                cblSitelet.DataBind();
 
             }
         }
@@ -538,8 +540,7 @@ public partial class EditUser : System.Web.UI.Page
             {
                 licenseeTA = new dsUserTableAdapters.licenseeTableAdapter();
                 licenseeDT = (dsUser.licenseeDataTable)(Session["licenseeDT"]);
-
-                
+                licenseeDT.Rows[0]["cid"] = ddlCompany.SelectedValue;
                 //Let's update sitelets
                 dsUserTableAdapters.licensee2siteletsTableAdapter licensee2siteletsTA = new dsUserTableAdapters.licensee2siteletsTableAdapter();
                 //Delete the existing one first!
@@ -637,15 +638,6 @@ public partial class EditUser : System.Web.UI.Page
         if (!(licenseeDT.Rows[0]["Email"] is DBNull))
         {
             tbEmail.Text = licenseeDT[0].Email;
-        }
-
-        if (!(licenseeDT.Rows[0]["cid"] is DBNull))
-        {
-            dsCompanyTableAdapters.legacyusersTableAdapter legacyusersTA = new dsCompanyTableAdapters.legacyusersTableAdapter();
-            dsCompany.legacyusersDataTable legacyusersDT = new dsCompany.legacyusersDataTable();
-            legacyusersDT = legacyusersTA.GetCompanyByID(licenseeDT[0].cid);
-
-            lblCompany.Text = legacyusersDT[0].Company;
         }
 
         if (!(licenseeDT.Rows[0]["Contract"] is DBNull))
@@ -775,20 +767,42 @@ public partial class EditUser : System.Web.UI.Page
 
     protected void cblSitelet_DataBound(object sender, EventArgs e)
     {
+
         if (Session["licenseeDT"] != null)
         {
-            licenseeDT = (dsUser.licenseeDataTable)(Session["licenseeDT"]);
-            dsUserTableAdapters.licensee2siteletsTableAdapter licensee2siteletsTA = new dsUserTableAdapters.licensee2siteletsTableAdapter();
-            dsUser.licensee2siteletsDataTable licensee2siteletsDT = new dsUser.licensee2siteletsDataTable(); 
-            licensee2siteletsDT = licensee2siteletsTA.Getu2sByUID(licenseeDT[0].ID);
 
-            for (int i = 0; i < licensee2siteletsDT.Rows.Count; i++)
+            if (licenseeDT.Rows[0]["cid"].ToString() != ddlCompany.SelectedValue)
             {
-                foreach (ListItem li in cblSitelet.Items)
+                dsCompanyTableAdapters.legacyusers2siteletsTableAdapter legacyusers2siteletsTA = new dsCompanyTableAdapters.legacyusers2siteletsTableAdapter();
+                dsCompany.legacyusers2siteletsDataTable legacyusers2siteletsDT = new dsCompany.legacyusers2siteletsDataTable();
+                legacyusers2siteletsDT = legacyusers2siteletsTA.Getc2sByCID(int.Parse(ddlCompany.SelectedValue));
+
+                for (int i = 0; i < legacyusers2siteletsDT.Rows.Count; i++)
                 {
-                    if (li.Value == licensee2siteletsDT[i].sid.ToString())
+                    foreach (ListItem li in cblSitelet.Items)
                     {
-                        li.Selected = true;
+                        if (li.Value == legacyusers2siteletsDT[i].sid.ToString())
+                        {
+                            li.Selected = true;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                licenseeDT = (dsUser.licenseeDataTable)(Session["licenseeDT"]);
+                dsUserTableAdapters.licensee2siteletsTableAdapter licensee2siteletsTA = new dsUserTableAdapters.licensee2siteletsTableAdapter();
+                dsUser.licensee2siteletsDataTable licensee2siteletsDT = new dsUser.licensee2siteletsDataTable();
+                licensee2siteletsDT = licensee2siteletsTA.Getu2sByUID(licenseeDT[0].ID);
+
+                for (int i = 0; i < licensee2siteletsDT.Rows.Count; i++)
+                {
+                    foreach (ListItem li in cblSitelet.Items)
+                    {
+                        if (li.Value == licensee2siteletsDT[i].sid.ToString())
+                        {
+                            li.Selected = true;
+                        }
                     }
                 }
             }
