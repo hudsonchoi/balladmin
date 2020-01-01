@@ -351,29 +351,53 @@ public partial class EditUser : System.Web.UI.Page
                     licenseeDT.Rows[0]["AllowedYear"] = DBNull.Value;
 
                 }
-                //Populate the user category with the session
-                if (!(licenseeDT.Rows[0]["UserCategory"] is DBNull))
+
+                if (licenseeDT.Rows[0]["cid"].ToString() != ddlCompany.SelectedValue)//A different company was selected. Get requestor from the company data
                 {
-                    rblUserCategory.Items.FindByValue(licenseeDT[0].UserCategory).Selected = true;
-                    //Allow sitelet selection to level "A" 091408
-                    //Remove UserLevel Requestor logic 050508
-                    //if (licenseeDT[0].UserLevel == "A")
-                    //{
-                    //    lblStep.Text = "Step 3 of 4:";
-                    //    bodyID.Attributes.Add("onload", "ChangeStep()");
-                    //    rblUserCategory.Attributes.Add("onclick", "ChangeStep()");
-                    //}
-                    //else
-                    //{
+                    dsCompanyTableAdapters.legacyusersTableAdapter legacyusersTA = new dsCompanyTableAdapters.legacyusersTableAdapter();
+                    dsCompany.legacyusersDataTable legacyusersDT = new dsCompany.legacyusersDataTable();
+                    legacyusersDT = legacyusersTA.GetCompanyByID(int.Parse(ddlCompany.SelectedValue));
+                    if (!(legacyusersDT.Rows[0]["UserCategory"] is DBNull))
+                    {
+                        rblUserCategory.ClearSelection();
+                        rblUserCategory.Items.FindByValue(legacyusersDT[0].UserCategory).Selected = true;
                         bodyID.Attributes.Add("onload", "");
                         rblUserCategory.Attributes.Add("onclick", "");
                         lblStep.Text = "Step 3 of 5:";
-                    //}
+                    }
+                    else
+                    {
+                        lblStep.Text = "Step 3 of 5:";
+                    }
                 }
                 else
                 {
-                    lblStep.Text = "Step 3 of 5:";
+                    //Populate the user category with the session
+                    if (!(licenseeDT.Rows[0]["UserCategory"] is DBNull))
+                    {
+                        rblUserCategory.ClearSelection();
+                        rblUserCategory.Items.FindByValue(licenseeDT[0].UserCategory).Selected = true;
+                        //Allow sitelet selection to level "A" 091408
+                        //Remove UserLevel Requestor logic 050508
+                        //if (licenseeDT[0].UserLevel == "A")
+                        //{
+                        //    lblStep.Text = "Step 3 of 4:";
+                        //    bodyID.Attributes.Add("onload", "ChangeStep()");
+                        //    rblUserCategory.Attributes.Add("onclick", "ChangeStep()");
+                        //}
+                        //else
+                        //{
+                        bodyID.Attributes.Add("onload", "");
+                        rblUserCategory.Attributes.Add("onclick", "");
+                        lblStep.Text = "Step 3 of 5:";
+                        //}
+                    }
+                    else
+                    {
+                        lblStep.Text = "Step 3 of 5:";
+                    }
                 }
+
 
                 Session["licenseeDT"] = licenseeDT;
 
