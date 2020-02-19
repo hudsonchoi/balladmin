@@ -297,7 +297,7 @@ public class UserService : System.Web.Services.WebService {
         sbMsg.Append("User name: " + legacyusersDT.Rows[0]["UserName"].ToString() + "<br>");
         sbMsg.Append("Password: " + legacyusersDT.Rows[0]["Password"].ToString() + "<br><br>");
 
-        sbMsg.Append("You can login with this information by clicking <a href=\"" + "https://www.mlbstyleguide.com?ce=" + EncodeTo64(email) + "\" style=\"color:#FF0000\"><b>here</b></a>. Once you log in you will be asked to complete a short form and create your own unique password. Future access to the site will then be done by simply entering your e-mail address and desired password.<br><br>");
+        sbMsg.Append("You can login with this information by clicking <a href=\"" + "https://www.mlbstyleguide.com/go.asp?ce=" + EncodeTo64(email) + "\" style=\"color:#FF0000\"><b>here</b></a>. Once you log in you will be asked to complete a short form and create your own unique password. Future access to the site will then be done by simply entering your e-mail address and desired password.<br><br>");
         sbMsg.Append("If you have any questions or need any other assistance, please contact us at info@mlbstyleguide.com.<br><br>");
         sbMsg.Append("<br>Thank you,<br><br>Major League Baseball Properties");
 
