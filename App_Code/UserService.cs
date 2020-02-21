@@ -288,7 +288,8 @@ public class UserService : System.Web.Services.WebService {
         legacyusersDT = legacyusersTA.GetCompanyByID(Convert.ToInt32(cID));
 
         StringBuilder sbMsg = new StringBuilder();
-        StringBuilder sbMsgPop = new StringBuilder();
+        //StringBuilder sbMsgPop = new StringBuilder();
+        string msgPop = string.Empty;
         sbMsg.Append("<img src=\"cid:Pic1\"><br>");
         sbMsg.Append("Welcome " + legacyusersDT.Rows[0]["Company"].ToString() + ",<br><br>");
         sbMsg.Append("Thank you for registering at www.mlbstyleguide.com.<br><br>");
@@ -296,6 +297,10 @@ public class UserService : System.Web.Services.WebService {
 
         sbMsg.Append("User name: " + legacyusersDT.Rows[0]["UserName"].ToString() + "<br>");
         sbMsg.Append("Password: " + legacyusersDT.Rows[0]["Password"].ToString() + "<br><br>");
+
+        msgPop = "User name: " + legacyusersDT.Rows[0]["UserName"].ToString() + "<br>"+
+        "Password: " + legacyusersDT.Rows[0]["Password"].ToString() + "<br><br>" +
+        "https://www.mlbstyleguide.com/go.asp?ce=" + EncodeTo64(email);
 
         sbMsg.Append("You can login with this information by clicking <a href=\"" + "https://www.mlbstyleguide.com/go.asp?ce=" + EncodeTo64(email) + "\" style=\"color:#FF0000\"><b>here</b></a>. Once you log in you will be asked to complete a short form and create your own unique password. Future access to the site will then be done by simply entering your e-mail address and desired password.<br><br>");
         sbMsg.Append("If you have any questions or need any other assistance, please contact us at info@mlbstyleguide.com.<br><br>");
@@ -339,7 +344,7 @@ public class UserService : System.Web.Services.WebService {
             //sbBadEmailList.Append("<a href=\"EditUser.aspx?id=" + strID + "\" target=\"_blank\">" + strRecepient + "</a><br/>");
         }
 
-        return "Success!!";
+        return msgPop;
     }
 
     public string EncodeTo64(string toEncode)

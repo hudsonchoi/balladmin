@@ -21,7 +21,7 @@ background-color: red;
 #simplemodal-overlay {background-color:#FFF; cursor:wait;}
 
 /* Container */
-#simplemodal-container {height:150px; width:300px; padding: 10px; color:#bbb; background-color:#333; border:4px solid #444; padding:12px; font-family:Arial; font-size:12px; text-align:center}
+#simplemodal-container {height:200px; width:450px; padding: 10px; color:#bbb; background-color:#333; border:4px solid #444; padding:12px; font-family:Arial; font-size:12px; text-align:center}
 #simplemodal-container .simplemodal-data {padding:8px;}
 #simplemodal-container code {background:#141414; border-left:3px solid #65B43D; color:#bbb; display:block; font-size:12px; margin-bottom:12px; padding:4px 6px 6px;}
 #simplemodal-container a {color:#ddd;}
@@ -34,6 +34,7 @@ background-color: red;
  A.alphabet:visited {text-decoration: none; color:#CCCCCC}
  A.alphabet:active {text-decoration: none; color:#CCCCCC}
  A.alphabet:hover {color: #0099CC;}
+#regInfo {text-align:left; color:yellow; margin-top:10px}
 </style>
 <script src="js/jquery-1.7.1.min.js" type="text/javascript"></script>
 <script type='text/javascript' src='js/jquery.simplemodal.js'></script>
@@ -104,6 +105,12 @@ background-color: red;
         //$("#tbUserEmail").val($(this).attr("id"));
             $("#hvID").val($(this).attr("id"));
             $('#basic-modal-content').modal();
+            
+            $('#tbUserEmail').keypress(function(event){
+              if(event.keyCode == 13){
+                $('#send-button').click();
+              }
+            });
         });
 
 
@@ -289,7 +296,10 @@ background-color: red;
                 dataType: "json",
                 success: function(msg) {
                     $("#modal-msg2").css("display", "none");
-                    $("#modal-msg1").html("<h2>The email was sent successfully!</h2>");
+                    $("#modal-msg1").html("<h2>The registration email was sent successfully!</h2>"
+                        + "<div style='text-align:left'>Please keep the following information in case a registration email is not received by the user.</div>"
+                        + "<div id='regInfo'>" +  JSON.stringify(msg.d).replace(/"/g,'') + "</div>" 
+                    );
                     $("#send-button").css("display", "none");
                     $("#close-link").css("display", "block");
                     //alert(msg.d);
