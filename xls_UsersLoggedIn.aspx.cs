@@ -136,6 +136,13 @@ public partial class xls_UsersLoggedIn : System.Web.UI.Page
                     gvUsers.DataSource = uspRestricted3NotLoginReportDT;
                     gvUsers.Columns[27].Visible = true;
                     break;
+                case 20:
+                    dsReportTableAdapters.uspMLBLogoVaultNotLoginReportTableAdapter uspMLBLogoVaultNotLoginReportTA = new dsReportTableAdapters.uspMLBLogoVaultNotLoginReportTableAdapter();
+                    dsReport.uspMLBLogoVaultNotLoginReportDataTable uspMLBLogoVaultNotLoginReportDT = uspMLBLogoVaultNotLoginReportTA.GetUspMLBLogoVaultNotLoginReport(Convert.ToDateTime(Session["from"]), Convert.ToDateTime(Session["to"]).AddDays(1));
+                    gvUsers.DataSource = uspMLBLogoVaultNotLoginReportDT;
+                    gvUsers.Columns[28].Visible = true;
+                    break;
+
             }
             //dsReportTableAdapters.uspCMCNotLoginReportByDatesTableAdapter uspCMCNotLoginReportByDatesTA = new dsReportTableAdapters.uspCMCNotLoginReportByDatesTableAdapter();
             //dsReport.uspCMCNotLoginReportByDatesDataTable uspCMCNotLoginReportByDatesDT = uspCMCNotLoginReportByDatesTA.GetUspCMCNotLoginReportByDates(Convert.ToDateTime(Request.QueryString["from"].ToString()), Convert.ToDateTime(Request.QueryString["to"].ToString()));
@@ -266,6 +273,12 @@ public partial class xls_UsersLoggedIn : System.Web.UI.Page
                     dsReport.uspRestricted3LoginReportDataTable uspRestricted3LoginReportDT = uspRestricted3LoginReportTA.GetUspRestricted3LoginReport(Convert.ToDateTime(Session["from"]), Convert.ToDateTime(Session["to"]).AddDays(1));
                     gvUsers.DataSource = uspRestricted3LoginReportDT;
                     gvUsers.Columns[27].Visible = true;
+                    break;
+                case 20:
+                    dsReportTableAdapters.uspMLBLogoVaultLoginReportTableAdapter uspMLBLogoVaultLoginReportTA = new dsReportTableAdapters.uspMLBLogoVaultLoginReportTableAdapter();
+                    dsReport.uspMLBLogoVaultLoginReportDataTable uspMLBLogoVaultLoginReportDT = uspMLBLogoVaultLoginReportTA.GetUspMLBLogoVaultLoginReport(Convert.ToDateTime(Session["from"]), Convert.ToDateTime(Session["to"]).AddDays(1));
+                    gvUsers.DataSource = uspMLBLogoVaultLoginReportDT;
+                    gvUsers.Columns[28].Visible = true;
                     break;
             }
 

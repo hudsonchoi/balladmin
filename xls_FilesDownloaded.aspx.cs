@@ -89,6 +89,9 @@ public partial class xls_FilesDownloaded : System.Web.UI.Page
                 case 19:
                     strSection = "restricted3";
                     break;
+                case 20:
+                    strSection = "mlblogovault";
+                    break;
         }
 
             //dsReportTableAdapters.uspFilesDownloadedTableAdapter uspFilesDownloadedTA = new dsReportTableAdapters.uspFilesDownloadedTableAdapter();

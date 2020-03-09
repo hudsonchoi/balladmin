@@ -232,6 +232,13 @@ public partial class UsersLoggedIn : System.Web.UI.Page
                             gvUsers.DataSource = uspRestricted3NotLoginReportDT;
                             gvUsers.Columns[27].Visible = true;
                             break;
+                        case 20:
+                            dsReportTableAdapters.uspMLBLogoVaultNotLoginReportTableAdapter uspMLBLogoVaultNotLoginReportTA = new dsReportTableAdapters.uspMLBLogoVaultNotLoginReportTableAdapter();
+                            dsReport.uspMLBLogoVaultNotLoginReportDataTable uspMLBLogoVaultNotLoginReportDT = uspMLBLogoVaultNotLoginReportTA.GetUspMLBLogoVaultNotLoginReport(Convert.ToDateTime(Session["from"]), Convert.ToDateTime(Session["to"]).AddDays(1));
+                            iCount = uspMLBLogoVaultNotLoginReportDT.Count;
+                            gvUsers.DataSource = uspMLBLogoVaultNotLoginReportDT;
+                            gvUsers.Columns[28].Visible = true;
+                            break;
                     }
                     
                 }
@@ -390,6 +397,13 @@ public partial class UsersLoggedIn : System.Web.UI.Page
                             iCount = uspRestricted3LoginReportDT.Count;
                             gvUsers.DataSource = uspRestricted3LoginReportDT;
                             gvUsers.Columns[27].Visible = true;
+                            break;
+                        case 20:
+                            dsReportTableAdapters.uspMLBLogoVaultLoginReportTableAdapter uspMLBLogoVaultLoginReportTA = new dsReportTableAdapters.uspMLBLogoVaultLoginReportTableAdapter();
+                            dsReport.uspMLBLogoVaultLoginReportDataTable uspMLBLogoVaultLoginReportDT = uspMLBLogoVaultLoginReportTA.GetUspMLBLogoVaultLoginReport(Convert.ToDateTime(Session["from"]), Convert.ToDateTime(Session["to"]).AddDays(1));
+                            iCount = uspMLBLogoVaultLoginReportDT.Count;
+                            gvUsers.DataSource = uspMLBLogoVaultLoginReportDT;
+                            gvUsers.Columns[28].Visible = true;
                             break;
                     }
                     
