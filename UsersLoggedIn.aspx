@@ -375,6 +375,9 @@ p {margin-bottom:5px;}
             <asp:BoundField DataField="Restricted3LastLogin" HeaderText="Restricted3LastLogin" 
                 SortExpression="Restricted3LastLogin" Visible="false">
             </asp:BoundField>
+            <asp:BoundField DataField="MLBLogoVaultLastLogin" HeaderText="MLBLogoVaultLastLogin" 
+                SortExpression="MLBLogoVaultLastLogin" Visible="false">
+            </asp:BoundField>
         </Columns>
         <AlternatingRowStyle BackColor="DimGray" />
     </asp:GridView>
