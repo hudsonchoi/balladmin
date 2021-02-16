@@ -24,8 +24,19 @@ public partial class DeleteRequester : System.Web.UI.Page
                 dsRequestors.requestorsDataTable requestorsDT = new dsRequestors.requestorsDataTable();
                 requestorsDT = requestorsTA.GetAllRequestors();
                 dsRequestors.requestorsRow requestorsR = requestorsDT.FindByfirstnamelastname(strFN, strLN);
+
+                dsRequestorsTableAdapters.legacyusersTableAdapter legacyusersTA = new dsRequestorsTableAdapters.legacyusersTableAdapter();
+                dsRequestors.legacyusersDataTable legacyusersDT = new dsRequestors.legacyusersDataTable();
+                legacyusersDT = legacyusersTA.GetDataByRequestorID(requestorsR.id);
+                foreach(DataRow row in legacyusersDT.Rows)
+                {
+                    row["RequestorID"] = DBNull.Value;
+                }
+                legacyusersTA.Update(legacyusersDT);
+
                 requestorsR.Delete();
                 requestorsTA.Update(requestorsDT);
+
                 Session["name"] = strFN + " " + strLN;
                 Response.Redirect("RequesterMgr.aspx", true);
             }
