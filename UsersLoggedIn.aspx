@@ -378,6 +378,15 @@ p {margin-bottom:5px;}
             <asp:BoundField DataField="MLBLogoVaultLastLogin" HeaderText="MLBLogoVaultLastLogin" 
                 SortExpression="MLBLogoVaultLastLogin" Visible="false">
             </asp:BoundField>
+            <asp:BoundField DataField="AllsCPLastLogin" HeaderText="AllStartsConsumerProductsLastLogin" 
+                SortExpression="AllsCPLastLogin" Visible="false">
+            </asp:BoundField>
+            <asp:BoundField DataField="OpeningCPLastLogin" HeaderText="OpeningConsumerProductsLastLogin" 
+                SortExpression="OpeningCPLastLogin" Visible="false">
+            </asp:BoundField>
+            <asp:BoundField DataField="SpringCPLastLogin" HeaderText="SpringConsumerProductsLastLogin" 
+                SortExpression="SpringCPLastLogin" Visible="false">
+            </asp:BoundField>
         </Columns>
         <AlternatingRowStyle BackColor="DimGray" />
     </asp:GridView>

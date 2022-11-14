@@ -125,6 +125,15 @@ public partial class FilesDownloaded : System.Web.UI.Page
                          case 20:
                             strSection = "mlblogovault";
                             break;
+                         case 21:
+                            strSection = "allscp";
+                            break;
+                         case 22:
+                            strSection = "openingcp";
+                            break;
+                         case 23:
+                            strSection = "springcp";
+                            break;
                 }
 
                      DataTable dtFilesDownloaded = AdminDAL.GetFileTracking(strSection, Convert.ToDateTime(Session["from"]), Convert.ToDateTime(Session["to"]).AddDays(1));

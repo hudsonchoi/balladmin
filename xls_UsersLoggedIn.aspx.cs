@@ -142,6 +142,24 @@ public partial class xls_UsersLoggedIn : System.Web.UI.Page
                     gvUsers.DataSource = uspMLBLogoVaultNotLoginReportDT;
                     gvUsers.Columns[28].Visible = true;
                     break;
+                case 21:
+                    dsReportTableAdapters.uspAllsCPNotLoginReportTableAdapter uspAllsCPNotLoginReportTA = new dsReportTableAdapters.uspAllsCPNotLoginReportTableAdapter();
+                    dsReport.uspAllsCPNotLoginReportDataTable uspAllsCPNotLoginReportDT = uspAllsCPNotLoginReportTA.GetUspAllsCPNotLoginReport(Convert.ToDateTime(Session["from"]), Convert.ToDateTime(Session["to"]).AddDays(1));
+                    gvUsers.DataSource = uspAllsCPNotLoginReportDT;
+                    gvUsers.Columns[29].Visible = true;
+                    break;
+                case 22:
+                    dsReportTableAdapters.uspOpeningCPNotLoginReportTableAdapter uspOpeningCPNotLoginReportTA = new dsReportTableAdapters.uspOpeningCPNotLoginReportTableAdapter();
+                    dsReport.uspOpeningCPNotLoginReportDataTable uspOpeningCPNotLoginReportDT = uspOpeningCPNotLoginReportTA.GetUspOpeningCPNotLoginReport(Convert.ToDateTime(Session["from"]), Convert.ToDateTime(Session["to"]).AddDays(1));
+                    gvUsers.DataSource = uspOpeningCPNotLoginReportDT;
+                    gvUsers.Columns[30].Visible = true;
+                    break;
+                case 23:
+                    dsReportTableAdapters.uspSpringCPNotLoginReportTableAdapter uspSpringCPNotLoginReportTA = new dsReportTableAdapters.uspSpringCPNotLoginReportTableAdapter();
+                    dsReport.uspSpringCPNotLoginReportDataTable uspSpringCPNotLoginReportDT = uspSpringCPNotLoginReportTA.GetUspSpringCPNotLoginReport(Convert.ToDateTime(Session["from"]), Convert.ToDateTime(Session["to"]).AddDays(1));
+                    gvUsers.DataSource = uspSpringCPNotLoginReportDT;
+                    gvUsers.Columns[31].Visible = true;
+                    break;
 
             }
             //dsReportTableAdapters.uspCMCNotLoginReportByDatesTableAdapter uspCMCNotLoginReportByDatesTA = new dsReportTableAdapters.uspCMCNotLoginReportByDatesTableAdapter();
@@ -279,6 +297,24 @@ public partial class xls_UsersLoggedIn : System.Web.UI.Page
                     dsReport.uspMLBLogoVaultLoginReportDataTable uspMLBLogoVaultLoginReportDT = uspMLBLogoVaultLoginReportTA.GetUspMLBLogoVaultLoginReport(Convert.ToDateTime(Session["from"]), Convert.ToDateTime(Session["to"]).AddDays(1));
                     gvUsers.DataSource = uspMLBLogoVaultLoginReportDT;
                     gvUsers.Columns[28].Visible = true;
+                    break;
+                case 21:
+                    dsReportTableAdapters.uspAllsCPLoginReportTableAdapter uspAllsCPLoginReportTA = new dsReportTableAdapters.uspAllsCPLoginReportTableAdapter();
+                    dsReport.uspAllsCPLoginReportDataTable uspAllsCPLoginReportDT = uspAllsCPLoginReportTA.GetUspAllsCPLoginReport(Convert.ToDateTime(Session["from"]), Convert.ToDateTime(Session["to"]).AddDays(1));
+                    gvUsers.DataSource = uspAllsCPLoginReportDT;
+                    gvUsers.Columns[29].Visible = true;
+                    break;
+                case 22:
+                    dsReportTableAdapters.uspOpeningCPLoginReportTableAdapter uspOpeningCPLoginReportTA = new dsReportTableAdapters.uspOpeningCPLoginReportTableAdapter();
+                    dsReport.uspOpeningCPLoginReportDataTable uspOpeningCPLoginReportDT = uspOpeningCPLoginReportTA.GetUspOpeningCPLoginReport(Convert.ToDateTime(Session["from"]), Convert.ToDateTime(Session["to"]).AddDays(1));
+                    gvUsers.DataSource = uspOpeningCPLoginReportDT;
+                    gvUsers.Columns[30].Visible = true;
+                    break;
+                case 23:
+                    dsReportTableAdapters.uspSpringCPLoginReportTableAdapter uspSpringCPLoginReportTA = new dsReportTableAdapters.uspSpringCPLoginReportTableAdapter();
+                    dsReport.uspSpringCPLoginReportDataTable uspSpringCPLoginReportDT = uspSpringCPLoginReportTA.GetUspSpringCPLoginReport(Convert.ToDateTime(Session["from"]), Convert.ToDateTime(Session["to"]).AddDays(1));
+                    gvUsers.DataSource = uspSpringCPLoginReportDT;
+                    gvUsers.Columns[31].Visible = true;
                     break;
             }
 

@@ -92,13 +92,23 @@ public partial class xls_FilesDownloaded : System.Web.UI.Page
                 case 20:
                     strSection = "mlblogovault";
                     break;
+                case 21:
+                    strSection = "allscp";
+                    break;
+                case 22:
+                    strSection = "openingcp";
+                    break;
+                case 23:
+                    strSection = "springcp";
+                    break;
+
         }
 
-            //dsReportTableAdapters.uspFilesDownloadedTableAdapter uspFilesDownloadedTA = new dsReportTableAdapters.uspFilesDownloadedTableAdapter();
-            //dsReport.uspFilesDownloadedDataTable uspFilesDownloadedDT = uspFilesDownloadedTA.GetUspFilesDownloaded(strSection, Convert.ToDateTime(Request.QueryString["from"].ToString()), Convert.ToDateTime(Request.QueryString["to"].ToString()).AddDays(1));
-            //iCount = uspFilesDownloadedDT.Count;
-            //gvUsers.DataSource = uspFilesDownloadedDT;
-            DataTable dtFilesDownloaded = AdminDAL.GetFileTracking(strSection, Convert.ToDateTime(Session["from"]), Convert.ToDateTime(Session["to"]).AddDays(1));
+        //dsReportTableAdapters.uspFilesDownloadedTableAdapter uspFilesDownloadedTA = new dsReportTableAdapters.uspFilesDownloadedTableAdapter();
+        //dsReport.uspFilesDownloadedDataTable uspFilesDownloadedDT = uspFilesDownloadedTA.GetUspFilesDownloaded(strSection, Convert.ToDateTime(Request.QueryString["from"].ToString()), Convert.ToDateTime(Request.QueryString["to"].ToString()).AddDays(1));
+        //iCount = uspFilesDownloadedDT.Count;
+        //gvUsers.DataSource = uspFilesDownloadedDT;
+        DataTable dtFilesDownloaded = AdminDAL.GetFileTracking(strSection, Convert.ToDateTime(Session["from"]), Convert.ToDateTime(Session["to"]).AddDays(1));
             iCount = dtFilesDownloaded.Rows.Count;
             gvUsers.DataSource = dtFilesDownloaded;
 
