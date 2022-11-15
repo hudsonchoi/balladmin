@@ -240,25 +240,32 @@ public partial class UsersLoggedIn : System.Web.UI.Page
                             gvUsers.Columns[28].Visible = true;
                             break;
                         case 21:
+                            dsReportTableAdapters.uspRestricted4NotLoginReportTableAdapter uspRestricted4NotLoginReportTA = new dsReportTableAdapters.uspRestricted4NotLoginReportTableAdapter();
+                            dsReport.uspRestricted4NotLoginReportDataTable uspRestricted4NotLoginReportDT = uspRestricted4NotLoginReportTA.GetUspRestricted4NotLoginReport(Convert.ToDateTime(Session["from"]), Convert.ToDateTime(Session["to"]).AddDays(1));
+                            iCount = uspRestricted4NotLoginReportDT.Count;
+                            gvUsers.DataSource = uspRestricted4NotLoginReportDT;
+                            gvUsers.Columns[29].Visible = true;
+                            break;
+                        case 22:
                             dsReportTableAdapters.uspAllsCPNotLoginReportTableAdapter uspAllsCPNotLoginReportTA = new dsReportTableAdapters.uspAllsCPNotLoginReportTableAdapter();
                             dsReport.uspAllsCPNotLoginReportDataTable uspAllsCPNotLoginReportDT = uspAllsCPNotLoginReportTA.GetUspAllsCPNotLoginReport(Convert.ToDateTime(Session["from"]), Convert.ToDateTime(Session["to"]).AddDays(1));
                             iCount = uspAllsCPNotLoginReportDT.Count;
                             gvUsers.DataSource = uspAllsCPNotLoginReportDT;
-                            gvUsers.Columns[29].Visible = true;
+                            gvUsers.Columns[30].Visible = true;
                             break;
-                        case 22:
+                        case 23:
                             dsReportTableAdapters.uspOpeningCPNotLoginReportTableAdapter uspOpeningCPNotLoginReportTA = new dsReportTableAdapters.uspOpeningCPNotLoginReportTableAdapter();
                             dsReport.uspOpeningCPNotLoginReportDataTable uspOpeningCPNotLoginReportDT = uspOpeningCPNotLoginReportTA.GetUspOpeningCPNotLoginReport(Convert.ToDateTime(Session["from"]), Convert.ToDateTime(Session["to"]).AddDays(1));
                             iCount = uspOpeningCPNotLoginReportDT.Count;
                             gvUsers.DataSource = uspOpeningCPNotLoginReportDT;
-                            gvUsers.Columns[30].Visible = true;
+                            gvUsers.Columns[31].Visible = true;
                             break;
-                        case 23:
+                        case 24:
                             dsReportTableAdapters.uspSpringCPNotLoginReportTableAdapter uspSpringCPNotLoginReportTA = new dsReportTableAdapters.uspSpringCPNotLoginReportTableAdapter();
                             dsReport.uspSpringCPNotLoginReportDataTable uspSpringCPNotLoginReportDT = uspSpringCPNotLoginReportTA.GetUspSpringCPNotLoginReport(Convert.ToDateTime(Session["from"]), Convert.ToDateTime(Session["to"]).AddDays(1));
                             iCount = uspSpringCPNotLoginReportDT.Count;
                             gvUsers.DataSource = uspSpringCPNotLoginReportDT;
-                            gvUsers.Columns[31].Visible = true;
+                            gvUsers.Columns[32].Visible = true;
                             break;
                     }
                     
@@ -427,25 +434,32 @@ public partial class UsersLoggedIn : System.Web.UI.Page
                             gvUsers.Columns[28].Visible = true;
                             break;
                         case 21:
+                            dsReportTableAdapters.uspRestricted4LoginReportTableAdapter uspRestricted4LoginReportTA = new dsReportTableAdapters.uspRestricted4LoginReportTableAdapter();
+                            dsReport.uspRestricted4LoginReportDataTable uspRestricted4LoginReportDT = uspRestricted4LoginReportTA.GetUspRestricted4LoginReport(Convert.ToDateTime(Session["from"]), Convert.ToDateTime(Session["to"]).AddDays(1));
+                            iCount = uspRestricted4LoginReportDT.Count;
+                            gvUsers.DataSource = uspRestricted4LoginReportDT;
+                            gvUsers.Columns[29].Visible = true;
+                            break;
+                        case 22:
                             dsReportTableAdapters.uspAllsCPLoginReportTableAdapter uspAllsCPLoginReportTA = new dsReportTableAdapters.uspAllsCPLoginReportTableAdapter();
                             dsReport.uspAllsCPLoginReportDataTable uspAllsCPLoginReportDT = uspAllsCPLoginReportTA.GetUspAllsCPLoginReport(Convert.ToDateTime(Session["from"]), Convert.ToDateTime(Session["to"]).AddDays(1));
                             iCount = uspAllsCPLoginReportDT.Count;
                             gvUsers.DataSource = uspAllsCPLoginReportDT;
-                            gvUsers.Columns[29].Visible = true;
+                            gvUsers.Columns[30].Visible = true;
                             break;
-                        case 22:
+                        case 23:
                             dsReportTableAdapters.uspOpeningCPLoginReportTableAdapter uspOpeningCPLoginReportTA = new dsReportTableAdapters.uspOpeningCPLoginReportTableAdapter();
                             dsReport.uspOpeningCPLoginReportDataTable uspOpeningCPLoginReportDT = uspOpeningCPLoginReportTA.GetUspOpeningCPLoginReport(Convert.ToDateTime(Session["from"]), Convert.ToDateTime(Session["to"]).AddDays(1));
                             iCount = uspOpeningCPLoginReportDT.Count;
                             gvUsers.DataSource = uspOpeningCPLoginReportDT;
-                            gvUsers.Columns[30].Visible = true;
+                            gvUsers.Columns[31].Visible = true;
                             break;
-                        case 23:
+                        case 24:
                             dsReportTableAdapters.uspSpringCPLoginReportTableAdapter uspSpringCPLoginReportTA = new dsReportTableAdapters.uspSpringCPLoginReportTableAdapter();
                             dsReport.uspSpringCPLoginReportDataTable uspSpringCPLoginReportDT = uspSpringCPLoginReportTA.GetUspSpringCPLoginReport(Convert.ToDateTime(Session["from"]), Convert.ToDateTime(Session["to"]).AddDays(1));
                             iCount = uspSpringCPLoginReportDT.Count;
                             gvUsers.DataSource = uspSpringCPLoginReportDT;
-                            gvUsers.Columns[31].Visible = true;
+                            gvUsers.Columns[32].Visible = true;
                             break;
                     }
                     

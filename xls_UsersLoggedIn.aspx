@@ -87,6 +87,9 @@
             <asp:BoundField DataField="MLBLogoVaultLastLogin" HeaderText="MLBLogoVaultLastLogin" 
                 SortExpression="MLBLogoVaultLastLogin" Visible="false">
             </asp:BoundField>
+            <asp:BoundField DataField="Restricted4LastLogin" HeaderText="Restricted4LastLogin" 
+                SortExpression="Restricted4LastLogin" Visible="false">
+            </asp:BoundField>
             <asp:BoundField DataField="AllsCPLastLogin" HeaderText="AllStartsConsumerProductsLastLogin" 
                 SortExpression="AllsCPLastLogin" Visible="false">
             </asp:BoundField>

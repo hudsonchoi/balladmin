@@ -93,12 +93,15 @@ public partial class xls_FilesDownloaded : System.Web.UI.Page
                     strSection = "mlblogovault";
                     break;
                 case 21:
-                    strSection = "allscp";
+                    strSection = "restricted4";
                     break;
                 case 22:
-                    strSection = "openingcp";
+                    strSection = "allscp";
                     break;
                 case 23:
+                    strSection = "openingcp";
+                    break;
+                case 24:
                     strSection = "springcp";
                     break;
 
