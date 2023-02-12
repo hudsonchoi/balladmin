@@ -166,6 +166,12 @@ public partial class xls_UsersLoggedIn : System.Web.UI.Page
                     gvUsers.DataSource = uspSpringCPNotLoginReportDT;
                     gvUsers.Columns[32].Visible = true;
                     break;
+                case 25:
+                    dsReportTableAdapters.uspWorldCPNotLoginReportTableAdapter uspWorldCPNotLoginReportTA = new dsReportTableAdapters.uspWorldCPNotLoginReportTableAdapter();
+                    dsReport.uspWorldCPNotLoginReportDataTable uspWorldCPNotLoginReportDT = uspWorldCPNotLoginReportTA.GetUspWorldCPNotLoginReport(Convert.ToDateTime(Session["from"]), Convert.ToDateTime(Session["to"]).AddDays(1));
+                    gvUsers.DataSource = uspWorldCPNotLoginReportDT;
+                    gvUsers.Columns[33].Visible = true;
+                    break;
 
             }
             //dsReportTableAdapters.uspCMCNotLoginReportByDatesTableAdapter uspCMCNotLoginReportByDatesTA = new dsReportTableAdapters.uspCMCNotLoginReportByDatesTableAdapter();
@@ -327,6 +333,12 @@ public partial class xls_UsersLoggedIn : System.Web.UI.Page
                     dsReport.uspSpringCPLoginReportDataTable uspSpringCPLoginReportDT = uspSpringCPLoginReportTA.GetUspSpringCPLoginReport(Convert.ToDateTime(Session["from"]), Convert.ToDateTime(Session["to"]).AddDays(1));
                     gvUsers.DataSource = uspSpringCPLoginReportDT;
                     gvUsers.Columns[32].Visible = true;
+                    break;
+                case 25:
+                    dsReportTableAdapters.uspWorldCPLoginReportTableAdapter uspWorldCPLoginReportTA = new dsReportTableAdapters.uspWorldCPLoginReportTableAdapter();
+                    dsReport.uspWorldCPLoginReportDataTable uspWorldCPLoginReportDT = uspWorldCPLoginReportTA.GetUspWorldCPLoginReport(Convert.ToDateTime(Session["from"]), Convert.ToDateTime(Session["to"]).AddDays(1));
+                    gvUsers.DataSource = uspWorldCPLoginReportDT;
+                    gvUsers.Columns[33].Visible = true;
                     break;
             }
 

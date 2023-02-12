@@ -390,6 +390,9 @@ p {margin-bottom:5px;}
             <asp:BoundField DataField="SpringCPLastLogin" HeaderText="SpringConsumerProductsLastLogin" 
                 SortExpression="SpringCPLastLogin" Visible="false">
             </asp:BoundField>
+            <asp:BoundField DataField="WorldCPLastLogin" HeaderText="WorldConsumerProductsLastLogin" 
+                SortExpression="WorldCPLastLogin" Visible="false">
+            </asp:BoundField>
         </Columns>
         <AlternatingRowStyle BackColor="DimGray" />
     </asp:GridView>

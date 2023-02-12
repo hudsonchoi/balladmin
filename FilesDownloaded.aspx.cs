@@ -137,6 +137,9 @@ public partial class FilesDownloaded : System.Web.UI.Page
                          case 24:
                             strSection = "springcp";
                             break;
+                        case 25:
+                            strSection = "worldcp";
+                        break;
                 }
 
                      DataTable dtFilesDownloaded = AdminDAL.GetFileTracking(strSection, Convert.ToDateTime(Session["from"]), Convert.ToDateTime(Session["to"]).AddDays(1));
