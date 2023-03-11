@@ -162,8 +162,10 @@ function MakeUserBlank(){
     <p class="mlbLink"><a href="UsersLoggedIn.aspx?not" class="noUnderline">Users Not Logged In</a></p>
     <p class="mlbLink"><a href="Filesdownloaded.aspx" class="noUnderline">Files Downloaded</a></p>
     <p class="mlbLink"><a href="visits.aspx" class="noUnderline">CMC Visits</a></p>
-    <p class="mlbLink"><a href="CompanyReportByRequestor.aspx" class="noUnderline">Company Report</a></p>
-    <p class="mlbLink"><a href="ReportByRequestor.aspx" class="noUnderline">Individual Report</a></p>
+    <p class="mlbLink"><a href="CompanyReportByRequestor.aspx" class="noUnderline">Companies by MLB Contact</a></p>
+    <p class="mlbLink"><a href="ReportByRequestor.aspx" class="noUnderline">Users by MLB Contact</a></p>
+               <p class="mlbLink"><a href="CompanyReportByCategory.aspx" class="noUnderline">Companies by Categroy</a></p>
+    <p class="mlbLink"><a href="UserReportByCategory.aspx" class="noUnderline">Users by Category</a></p>
     </div>
     </div>
         <br /><br /><br />
