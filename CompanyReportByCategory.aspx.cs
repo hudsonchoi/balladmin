@@ -8,7 +8,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
-
+using System.Diagnostics;
 
 public partial class CompanyReportByCategory : System.Web.UI.Page
 {
@@ -20,64 +20,190 @@ public partial class CompanyReportByCategory : System.Web.UI.Page
     {
         if (Page.IsPostBack)
         {
-            dsReportTableAdapters.dtCompaniesByRequestorTableAdapter dtCompaniesByRequestorTA = new dsReportTableAdapters.dtCompaniesByRequestorTableAdapter();
-            dsReport.dtCompaniesByRequestorDataTable dtCompaniesByRequestorDT = new dsReport.dtCompaniesByRequestorDataTable();
-            //////dtCompaniesByRequestorDT = dtCompaniesByRequestorTA.GetCompaniesByRequestor(Convert.ToInt32(ddlRequestor.SelectedValue));
+            Session["Category"] = ddlCategory.SelectedValue;
+            Session["Active"] = cbActive.Checked;
 
-            for (int i = 0; i < dtCompaniesByRequestorDT.Rows.Count; i++)
+            Debug.WriteLine(ddlCategory.SelectedValue + ":" + cbActive.Checked);
+            dsReportTableAdapters.dtCompaniesByCategoryTableAdapter dtCompaniesByCategoryTA = new dsReportTableAdapters.dtCompaniesByCategoryTableAdapter();
+            dsReport.dtCompaniesByCategoryDataTable dtCompaniesByCategoryDT = new dsReport.dtCompaniesByCategoryDataTable();
+            dtCompaniesByCategoryDT = dtCompaniesByCategoryTA.GetCompaniesByCategory(ddlCategory.SelectedValue);
+            Debug.WriteLine(dtCompaniesByCategoryDT.Rows.Count);
+            for (int i = 0; i < dtCompaniesByCategoryDT.Rows.Count; i++)
             {
-                if (!(dtCompaniesByRequestorDT.Rows[i]["UserLevel"] is DBNull))
+                if (!(dtCompaniesByCategoryDT.Rows[i]["UserLevel"] is DBNull))
                 {
 
-                    switch (dtCompaniesByRequestorDT[i].UserLevel)
+                    switch (dtCompaniesByCategoryDT[i].UserLevel)
                     {
-                        case "A": dtCompaniesByRequestorDT[i].Status = "<b><font color=\"cyan\">Current</font></b>"; break;
-                        case "B": dtCompaniesByRequestorDT[i].Status = "<b><font color=\"cyan\">Current</font></b>"; break;
-                        case "C":
-                            if (!(dtCompaniesByRequestorDT.Rows[i]["AllowedYear"] is DBNull))
+                        case "A":
+                            if (cbActive.Checked)
                             {
-                                if (Convert.ToDateTime(DateTime.Now.ToShortDateString()) <= dtCompaniesByRequestorDT[i].AllowedYear)
-                                {
-                                    dtCompaniesByRequestorDT[i].Status = "<b><font color=\"cyan\">Current</font></b>";
-                                }
-                                else
-                                {
-                                    dtCompaniesByRequestorDT[i].Status = "<b><font color=\"red\">Expired</font></b>";
-                                }
+                                dtCompaniesByCategoryDT[i].Status = "<b><font color=\"cyan\">Current</font></b>";
                             }
                             else
                             {
-                                dtCompaniesByRequestorDT[i].Status = "<b>Unknown</b>";
+                                dtCompaniesByCategoryDT[i].Delete();
+                            }
+                            break;
+                        case "B":
+                            if (cbActive.Checked)
+                            {
+                                dtCompaniesByCategoryDT[i].Status = "<b><font color=\"cyan\">Current</font></b>";
+                            }
+                            else
+                            {
+                                dtCompaniesByCategoryDT[i].Delete();
+                            }
+                            break;
+                        case "C":
+                            if (!(dtCompaniesByCategoryDT.Rows[i]["AllowedYear"] is DBNull))
+                            {
+                                if (cbActive.Checked)
+                                {
+                                    if (Convert.ToDateTime(DateTime.Now.ToShortDateString()) <= dtCompaniesByCategoryDT[i].AllowedYear)
+                                    {
+                                        dtCompaniesByCategoryDT[i].Status = "<b><font color=\"cyan\">Current</font></b>";
+                                    }
+                                    else
+                                    {
+                                        dtCompaniesByCategoryDT[i].Delete();
+                                    }
+                                }
+                                else
+                                {
+                                    if (Convert.ToDateTime(DateTime.Now.ToShortDateString()) <= dtCompaniesByCategoryDT[i].AllowedYear)
+                                    {
+                                        dtCompaniesByCategoryDT[i].Delete();
+                                    }
+                                    else
+                                    {
+                                        dtCompaniesByCategoryDT[i].Status = "<b><font color=\"red\">Expired</font></b>";
+                                    }
+                                }
+
+                            }
+                            else
+                            {
+                                dtCompaniesByCategoryDT[i].Status = "<b>Unknown</b>";
                             }
 
                             break;
                         case "D":
-                            if (!(dtCompaniesByRequestorDT.Rows[i]["FromDate"] is DBNull) && !(dtCompaniesByRequestorDT.Rows[i]["ToDate"] is DBNull))
+                            if (!(dtCompaniesByCategoryDT.Rows[i]["FromDate"] is DBNull) && !(dtCompaniesByCategoryDT.Rows[i]["ToDate"] is DBNull))
                             {
-                                if ((Convert.ToDateTime(DateTime.Now.ToShortDateString()) >= dtCompaniesByRequestorDT[i].FromDate) && (Convert.ToDateTime(DateTime.Now.ToShortDateString()) <= dtCompaniesByRequestorDT[i].ToDate))
+                                if (cbActive.Checked)
                                 {
-                                    dtCompaniesByRequestorDT[i].Status = "<b><font color=\"cyan\">Current</font></b>";
+                                    if ((Convert.ToDateTime(DateTime.Now.ToShortDateString()) >= dtCompaniesByCategoryDT[i].FromDate) && (Convert.ToDateTime(DateTime.Now.ToShortDateString()) <= dtCompaniesByCategoryDT[i].ToDate))
+                                    {
+                                        dtCompaniesByCategoryDT[i].Status = "<b><font color=\"cyan\">Current</font></b>";
+                                    }
+                                    else
+                                    {
+                                        dtCompaniesByCategoryDT[i].Delete();
+                                    }
                                 }
                                 else
                                 {
-                                    dtCompaniesByRequestorDT[i].Status = "<b><font color=\"red\">Expired</font></b>";
-                                }
+                                    if ((Convert.ToDateTime(DateTime.Now.ToShortDateString()) >= dtCompaniesByCategoryDT[i].FromDate) && (Convert.ToDateTime(DateTime.Now.ToShortDateString()) <= dtCompaniesByCategoryDT[i].ToDate))
+                                    {
+                                        dtCompaniesByCategoryDT[i].Delete();
+                                    }
+                                    else
+                                    {
+                                        dtCompaniesByCategoryDT[i].Status = "<b><font color=\"red\">Expired</font></b>";
+                                    }
+                                }                             
                             }
                             else
                             {
-                                dtCompaniesByRequestorDT[i].Status = "<b>Unknown</b>";
+                                dtCompaniesByCategoryDT[i].Status = "<b>Unknown</b>";
                             }
                             break;
-                        default: break;
+                        default: //Including 'Blocked'
+                            if (cbActive.Checked)
+                            {
+                                dtCompaniesByCategoryDT[i].Delete();
+                            }
+                            else
+                            {
+                                dtCompaniesByCategoryDT[i].Status = "<b><font color=\"red\">Blocked</font></b>";
+                            }
+                            break;
                     }
                 }
             }
 
 
+            //////dsReportTableAdapters.dtCompaniesByRequestorTableAdapter dtCompaniesByRequestorTA = new dsReportTableAdapters.dtCompaniesByRequestorTableAdapter();
+            //////dsReport.dtCompaniesByRequestorDataTable dtCompaniesByRequestorDT = new dsReport.dtCompaniesByRequestorDataTable()
 
-            gvCompany.DataSource = dtCompaniesByRequestorDT;
+            //////dtCompaniesByRequestorDT = dtCompaniesByRequestorTA.GetCompaniesByRequestor(Convert.ToInt32(ddlRequestor.SelectedValue));
+
+            //////for (int i = 0; i < dtCompaniesByRequestorDT.Rows.Count; i++)
+            //////{
+            //////    if (!(dtCompaniesByRequestorDT.Rows[i]["UserLevel"] is DBNull))
+            //////    {
+
+            //////        switch (dtCompaniesByRequestorDT[i].UserLevel)
+            //////        {
+            //////            case "A": dtCompaniesByRequestorDT[i].Status = "<b><font color=\"cyan\">Current</font></b>"; break;
+            //////            case "B": dtCompaniesByRequestorDT[i].Status = "<b><font color=\"cyan\">Current</font></b>"; break;
+            //////            case "C":
+            //////                if (!(dtCompaniesByRequestorDT.Rows[i]["AllowedYear"] is DBNull))
+            //////                {
+            //////                    if (Convert.ToDateTime(DateTime.Now.ToShortDateString()) <= dtCompaniesByRequestorDT[i].AllowedYear)
+            //////                    {
+            //////                        dtCompaniesByRequestorDT[i].Status = "<b><font color=\"cyan\">Current</font></b>";
+            //////                    }
+            //////                    else
+            //////                    {
+            //////                        dtCompaniesByRequestorDT[i].Status = "<b><font color=\"red\">Expired</font></b>";
+            //////                    }
+            //////                }
+            //////                else
+            //////                {
+            //////                    dtCompaniesByRequestorDT[i].Status = "<b>Unknown</b>";
+            //////                }
+
+            //////                break;
+            //////            case "D":
+            //////                if (!(dtCompaniesByRequestorDT.Rows[i]["FromDate"] is DBNull) && !(dtCompaniesByRequestorDT.Rows[i]["ToDate"] is DBNull))
+            //////                {
+            //////                    if ((Convert.ToDateTime(DateTime.Now.ToShortDateString()) >= dtCompaniesByRequestorDT[i].FromDate) && (Convert.ToDateTime(DateTime.Now.ToShortDateString()) <= dtCompaniesByRequestorDT[i].ToDate))
+            //////                    {
+            //////                        dtCompaniesByRequestorDT[i].Status = "<b><font color=\"cyan\">Current</font></b>";
+            //////                    }
+            //////                    else
+            //////                    {
+            //////                        dtCompaniesByRequestorDT[i].Status = "<b><font color=\"red\">Expired</font></b>";
+            //////                    }
+            //////                }
+            //////                else
+            //////                {
+            //////                    dtCompaniesByRequestorDT[i].Status = "<b>Unknown</b>";
+            //////                }
+            //////                break;
+            //////            default: break;
+            //////        }
+            //////    }
+            //////}
+
+
+            dtCompaniesByCategoryDT.AcceptChanges();
+            gvCompany.DataSource = dtCompaniesByCategoryDT;
             gvCompany.DataBind();
-            lblResult.Text = "Number of companies: <b>" + dtCompaniesByRequestorDT.Rows.Count + "</b>";
+            lblResult.Text = "Number of companies: <b>" + dtCompaniesByCategoryDT.Rows.Count + "</b>";
+            lblBreadCrumb.Text = "<a href=\"./\">Home</a> :: <a href=\"CompanyReportByCategory.aspx\">Companies by Category</a> :: " + ddlCategory.SelectedItem;
+
+            if (cbActive.Checked)
+            {
+                lblBreadCrumb.Text += " (Active)";
+            }
+            else
+            {
+                lblBreadCrumb.Text += " (Inactive)";
+            }
+            //////lblResult.Text = "Number of companies: <b>" + dtCompaniesByRequestorDT.Rows.Count + "</b>";
             //////lblBreadCrumb.Text = "<a href=\"./\">Home</a> :: <a href=\"CompanyReportByRequestor.aspx\">Company Report</a> :: " + ddlRequestor.SelectedItem;
             requestorTable.Visible = false;
             resultDiv.Visible = true;
@@ -97,9 +223,21 @@ public partial class CompanyReportByCategory : System.Web.UI.Page
             requestorTable.Visible = false;
             resultDiv.Visible = true;
              * */
-
-
         }
+        else
+        {
+            if (Session["Category"] != null)
+            {
+                ddlCategory.SelectedValue = Session["Category"].ToString();
+                cbActive.Checked = Convert.ToBoolean(Session["Active"]);
+
+            }
+        }
+    }
+
+    private dsReport.dtCompaniesByCategoryDataTable Transform (dsReport.dtCompaniesByCategoryDataTable dt)
+    {
+        return dt;
     }
     protected void ddlRequestor_DataBound(object sender, EventArgs e)
     {

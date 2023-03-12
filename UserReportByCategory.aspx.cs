@@ -8,6 +8,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
+using System.Diagnostics;
 
 public partial class UserReportByCategory : System.Web.UI.Page
 {
@@ -19,59 +20,60 @@ public partial class UserReportByCategory : System.Web.UI.Page
     {
         if (Page.IsPostBack)
         {
+            Debug.WriteLine(ddlCategory.SelectedValue + ":" + cbActive.Checked);
             dsReportTableAdapters.dtUsersByRequestorTableAdapter dtUsersByRequestorTA = new dsReportTableAdapters.dtUsersByRequestorTableAdapter();
             dsReport.dtUsersByRequestorDataTable dtUsersByRequestorDT = new dsReport.dtUsersByRequestorDataTable();
             //////dtUsersByRequestorDT = dtUsersByRequestorTA.GetUsersByRequestor(Convert.ToInt32(ddlRequestor.SelectedValue));
 
             //Status code
-            for (int i = 0; i < dtUsersByRequestorDT.Rows.Count; i++)
-            {
-                if (!(dtUsersByRequestorDT.Rows[i]["UserLevel"] is DBNull))
-                {
+            //////for (int i = 0; i < dtUsersByRequestorDT.Rows.Count; i++)
+            //////{
+            //////    if (!(dtUsersByRequestorDT.Rows[i]["UserLevel"] is DBNull))
+            //////    {
 
-                    switch (dtUsersByRequestorDT[i].UserLevel)
-                    {
-                        case "A": dtUsersByRequestorDT[i].Status = "<b><font color=\"cyan\">Current</font></b>"; break;
-                        case "B": dtUsersByRequestorDT[i].Status = "<b><font color=\"cyan\">Current</font></b>"; break;
-                        case "C":
-                            if (!(dtUsersByRequestorDT.Rows[i]["AllowedYear"] is DBNull))
-                            {
-                                if (Convert.ToDateTime(DateTime.Now.ToShortDateString()) <= dtUsersByRequestorDT[i].AllowedYear)
-                                {
-                                    dtUsersByRequestorDT[i].Status = "<b><font color=\"cyan\">Current</font></b>";
-                                }
-                                else
-                                {
-                                    dtUsersByRequestorDT[i].Status = "<b><font color=\"red\">Expired</font></b>";
-                                }
-                            }
-                            else
-                            {
-                                dtUsersByRequestorDT[i].Status = "<b>Unknown</b>";
-                            }
+            //////        switch (dtUsersByRequestorDT[i].UserLevel)
+            //////        {
+            //////            case "A": dtUsersByRequestorDT[i].Status = "<b><font color=\"cyan\">Current</font></b>"; break;
+            //////            case "B": dtUsersByRequestorDT[i].Status = "<b><font color=\"cyan\">Current</font></b>"; break;
+            //////            case "C":
+            //////                if (!(dtUsersByRequestorDT.Rows[i]["AllowedYear"] is DBNull))
+            //////                {
+            //////                    if (Convert.ToDateTime(DateTime.Now.ToShortDateString()) <= dtUsersByRequestorDT[i].AllowedYear)
+            //////                    {
+            //////                        dtUsersByRequestorDT[i].Status = "<b><font color=\"cyan\">Current</font></b>";
+            //////                    }
+            //////                    else
+            //////                    {
+            //////                        dtUsersByRequestorDT[i].Status = "<b><font color=\"red\">Expired</font></b>";
+            //////                    }
+            //////                }
+            //////                else
+            //////                {
+            //////                    dtUsersByRequestorDT[i].Status = "<b>Unknown</b>";
+            //////                }
 
-                            break;
-                        case "D":
-                            if (!(dtUsersByRequestorDT.Rows[i]["FromDate"] is DBNull) && !(dtUsersByRequestorDT.Rows[i]["ToDate"] is DBNull))
-                            {
-                                if ((Convert.ToDateTime(DateTime.Now.ToShortDateString()) >= dtUsersByRequestorDT[i].FromDate) && (Convert.ToDateTime(DateTime.Now.ToShortDateString()) <= dtUsersByRequestorDT[i].ToDate))
-                                {
-                                    dtUsersByRequestorDT[i].Status = "<b><font color=\"cyan\">Current</font></b>";
-                                }
-                                else
-                                {
-                                    dtUsersByRequestorDT[i].Status = "<b><font color=\"red\">Expired</font></b>";
-                                }
-                            }
-                            else
-                            {
-                                dtUsersByRequestorDT[i].Status = "<b>Unknown</b>";
-                            }
-                            break;
-                        default: break;
-                    }
-                }
-            }
+            //////                break;
+            //////            case "D":
+            //////                if (!(dtUsersByRequestorDT.Rows[i]["FromDate"] is DBNull) && !(dtUsersByRequestorDT.Rows[i]["ToDate"] is DBNull))
+            //////                {
+            //////                    if ((Convert.ToDateTime(DateTime.Now.ToShortDateString()) >= dtUsersByRequestorDT[i].FromDate) && (Convert.ToDateTime(DateTime.Now.ToShortDateString()) <= dtUsersByRequestorDT[i].ToDate))
+            //////                    {
+            //////                        dtUsersByRequestorDT[i].Status = "<b><font color=\"cyan\">Current</font></b>";
+            //////                    }
+            //////                    else
+            //////                    {
+            //////                        dtUsersByRequestorDT[i].Status = "<b><font color=\"red\">Expired</font></b>";
+            //////                    }
+            //////                }
+            //////                else
+            //////                {
+            //////                    dtUsersByRequestorDT[i].Status = "<b>Unknown</b>";
+            //////                }
+            //////                break;
+            //////            default: break;
+            //////        }
+            //////    }
+            //////}
 
 
 

@@ -79,7 +79,7 @@ public partial class CompanyReportByRequestor : System.Web.UI.Page
             gvCompany.DataSource = dtCompaniesByRequestorDT;
             gvCompany.DataBind();
             lblResult.Text = "Number of companies: <b>" + dtCompaniesByRequestorDT.Rows.Count + "</b>";
-            lblBreadCrumb.Text = "<a href=\"./\">Home</a> :: <a href=\"CompanyReportByRequestor.aspx\">Company Report</a> :: " + ddlRequestor.SelectedItem;
+            lblBreadCrumb.Text = "<a href=\"./\">Home</a> :: <a href=\"CompanyReportByRequestor.aspx\">Companies by MLB Contact</a> :: " + ddlRequestor.SelectedItem;
             requestorTable.Visible = false;
             resultDiv.Visible = true;
 

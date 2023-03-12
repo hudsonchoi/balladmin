@@ -166,13 +166,23 @@ function ValidateRequestor(source, arguments)
       <td><img src="/portal/images/inv.gif" width="330" height="1"></td>
     <td><img src="/portal/images/portal_dottedline.gif" width="17" height="233"></td>
       <td style="width: 113px;"><font size="3" face="Arial, Helvetica, sans-serif"><i>
-          <asp:Label ID="lblDescription" runat="server" Text="Choose a MLB Contact" Width="238px"></asp:Label></i></font><br />
+          <asp:Label ID="lblDescription" runat="server" Text="Choose a user category" Width="238px"></asp:Label></i></font><br />
           <br />
+            <asp:DropDownList ID="ddlCategory" runat="server">
+                <asp:ListItem>MLB</asp:ListItem>
+                <asp:ListItem>Club</asp:ListItem>
+                <asp:ListItem>Minor League</asp:ListItem>
+                <asp:ListItem>Sponsor</asp:ListItem>
+                <asp:ListItem>Licensee</asp:ListItem>
+                <asp:ListItem>Agency</asp:ListItem>
+                <asp:ListItem>Media</asp:ListItem>
+                <asp:ListItem>Other</asp:ListItem>
+            </asp:DropDownList> <asp:CheckBox ID="cbActive" runat="server" Text="Active" Checked="True" Font-Names="Arial" Font-Size="10pt" />
 <%--          <asp:DropDownList ID="ddlRequestor" runat="server" DataSourceID="ObjectDataSource1"
               DataTextField="name" DataValueField="id" OnDataBound="ddlRequestor_DataBound" AutoPostBack="True">
           </asp:DropDownList><asp:ObjectDataSource ID="ObjectDataSource1" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetAllRequestors" TypeName="dsCompanyTableAdapters.requestorsTableAdapter">
           </asp:ObjectDataSource>--%>
-          <br />
+          <br /><br />
           <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click" /><br />
           &nbsp;</td>
   </tr>

@@ -63,7 +63,7 @@
       <td></td>
     <td><img src="/portal/images/portal_dottedline.gif" width="17" height="17"></td>
       <td> 
-      <asp:Label ID="lblBreadCrumb" runat="server" Text='<a href="./">Home</a> :: Company Report' Font-Bold="True" Font-Names="Arial" Font-Size="14pt"></asp:Label>&nbsp;
+      <asp:Label ID="lblBreadCrumb" runat="server" Text='<a href="./">Home</a> :: Companies by MLB Contact' Font-Bold="True" Font-Names="Arial" Font-Size="14pt"></asp:Label>&nbsp;
 </td>
 </tr>
 </table>
@@ -79,7 +79,7 @@
               DataTextField="name" DataValueField="id" OnDataBound="ddlRequestor_DataBound" AutoPostBack="True">
           </asp:DropDownList><asp:ObjectDataSource ID="ObjectDataSource1" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetAllRequestors" TypeName="dsCompanyTableAdapters.requestorsTableAdapter">
           </asp:ObjectDataSource>
-          <br />
+          <br /><br />
           <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click" /><br />
           &nbsp;</td>
   </tr>
