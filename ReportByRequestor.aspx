@@ -171,7 +171,7 @@ function ValidateRequestor(source, arguments)
               DataTextField="name" DataValueField="id" OnDataBound="ddlRequestor_DataBound" AutoPostBack="True">
           </asp:DropDownList><asp:ObjectDataSource ID="ObjectDataSource1" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetAllRequestors" TypeName="dsCompanyTableAdapters.requestorsTableAdapter">
           </asp:ObjectDataSource>
-          <br />
+          <br /><br />
           <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click" /><br />
           &nbsp;</td>
   </tr>
