@@ -20,9 +20,125 @@ public partial class UserReportByCategory : System.Web.UI.Page
     {
         if (Page.IsPostBack)
         {
+            Session["Category"] = ddlCategory.SelectedValue;
+            Session["Active"] = cbActive.Checked;
+
             Debug.WriteLine(ddlCategory.SelectedValue + ":" + cbActive.Checked);
-            dsReportTableAdapters.dtUsersByRequestorTableAdapter dtUsersByRequestorTA = new dsReportTableAdapters.dtUsersByRequestorTableAdapter();
-            dsReport.dtUsersByRequestorDataTable dtUsersByRequestorDT = new dsReport.dtUsersByRequestorDataTable();
+
+            dsReportTableAdapters.dtUsersByCategoryTableAdapter dtUsersByCategoryTA = new dsReportTableAdapters.dtUsersByCategoryTableAdapter();
+            dsReport.dtUsersByCategoryDataTable dtUsersByCategoryDT = new dsReport.dtUsersByCategoryDataTable();
+            dtUsersByCategoryDT = dtUsersByCategoryTA.GetUsersByCategory(ddlCategory.SelectedValue);
+
+            Debug.WriteLine(dtUsersByCategoryDT.Rows.Count);
+
+            for (int i = 0; i < dtUsersByCategoryDT.Rows.Count; i++)
+            {
+                if (!(dtUsersByCategoryDT.Rows[i]["UserLevel"] is DBNull))
+                {
+
+                    switch (dtUsersByCategoryDT[i].UserLevel)
+                    {
+                        case "A":
+                            if (cbActive.Checked)
+                            {
+                                dtUsersByCategoryDT[i].Status = "<b><font color=\"cyan\">Current</font></b>";
+                            }
+                            else
+                            {
+                                dtUsersByCategoryDT[i].Delete();
+                            }
+                            break;
+                        case "B":
+                            if (cbActive.Checked)
+                            {
+                                dtUsersByCategoryDT[i].Status = "<b><font color=\"cyan\">Current</font></b>";
+                            }
+                            else
+                            {
+                                dtUsersByCategoryDT[i].Delete();
+                            }
+                            break;
+                        case "C":
+                            if (!(dtUsersByCategoryDT.Rows[i]["AllowedYear"] is DBNull))
+                            {
+                                if (cbActive.Checked)
+                                {
+                                    if (Convert.ToDateTime(DateTime.Now.ToShortDateString()) <= dtUsersByCategoryDT[i].AllowedYear)
+                                    {
+                                        dtUsersByCategoryDT[i].Status = "<b><font color=\"cyan\">Current</font></b>";
+                                    }
+                                    else
+                                    {
+                                        dtUsersByCategoryDT[i].Delete();
+                                    }
+                                }
+                                else
+                                {
+                                    if (Convert.ToDateTime(DateTime.Now.ToShortDateString()) <= dtUsersByCategoryDT[i].AllowedYear)
+                                    {
+                                        dtUsersByCategoryDT[i].Delete();
+                                    }
+                                    else
+                                    {
+                                        dtUsersByCategoryDT[i].Status = "<b><font color=\"red\">Expired</font></b>";
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                dtUsersByCategoryDT[i].Status = "<b>Unknown</b>";
+                            }
+
+                            break;
+                        case "D":
+                            if (!(dtUsersByCategoryDT.Rows[i]["FromDate"] is DBNull) && !(dtUsersByCategoryDT.Rows[i]["ToDate"] is DBNull))
+                            {
+                                if (cbActive.Checked)
+                                {
+                                    if ((Convert.ToDateTime(DateTime.Now.ToShortDateString()) >= dtUsersByCategoryDT[i].FromDate) && (Convert.ToDateTime(DateTime.Now.ToShortDateString()) <= dtUsersByCategoryDT[i].ToDate))
+                                    {
+                                        dtUsersByCategoryDT[i].Status = "<b><font color=\"cyan\">Current</font></b>";
+                                    }
+                                    else
+                                    {
+                                        dtUsersByCategoryDT[i].Delete();
+                                    }
+                                }
+                                else
+                                {
+                                    if ((Convert.ToDateTime(DateTime.Now.ToShortDateString()) >= dtUsersByCategoryDT[i].FromDate) && (Convert.ToDateTime(DateTime.Now.ToShortDateString()) <= dtUsersByCategoryDT[i].ToDate))
+                                    {
+                                        dtUsersByCategoryDT[i].Delete();
+                                    }
+                                    else
+                                    {
+                                        dtUsersByCategoryDT[i].Status = "<b><font color=\"red\">Expired</font></b>";
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                dtUsersByCategoryDT[i].Status = "<b>Unknown</b>";
+                            }
+                            break;
+                        default:
+                            if (cbActive.Checked)
+                            {
+                                dtUsersByCategoryDT[i].Delete();
+                            }
+                            else
+                            {
+                                dtUsersByCategoryDT[i].Status = "<b><font color=\"red\">Blocked</font></b>";
+                            }
+                            break;
+                    }
+                }
+            }
+
+
+
+            //////dsReportTableAdapters.dtUsersByRequestorTableAdapter dtUsersByRequestorTA = new dsReportTableAdapters.dtUsersByRequestorTableAdapter();
+            //////dsReport.dtUsersByRequestorDataTable dtUsersByRequestorDT = new dsReport.dtUsersByRequestorDataTable();
             //////dtUsersByRequestorDT = dtUsersByRequestorTA.GetUsersByRequestor(Convert.ToInt32(ddlRequestor.SelectedValue));
 
             //Status code
@@ -76,16 +192,33 @@ public partial class UserReportByCategory : System.Web.UI.Page
             //////}
 
 
-
-            gvUsers.DataSource = dtUsersByRequestorDT;
+            dtUsersByCategoryDT.AcceptChanges();
+            gvUsers.DataSource = dtUsersByCategoryDT;
             gvUsers.DataBind();
 
-            lblResult.Text = "Number of users: <b>" + dtUsersByRequestorDT.Rows.Count + "</b>";
+            lblResult.Text = "Number of users: <b>" + dtUsersByCategoryDT.Rows.Count + "</b>";
 
             //////lblBreadCrumb.Text = "<a href=\"./\">Home</a> :: <a href=\"ReportByRequestor.aspx\">User Report</a> :: " + ddlRequestor.SelectedItem;
+            lblBreadCrumb.Text = "<a href=\"./\">Home</a> :: <a href=\"UserReportByCategory.aspx\">Users by Category</a> :: " + ddlCategory.SelectedItem;
+            if (cbActive.Checked)
+            {
+                lblBreadCrumb.Text += " (Active)";
+            }
+            else
+            {
+                lblBreadCrumb.Text += " (Inactive)";
+            }
             requestorTable.Visible = false;
             resultDiv.Visible = true;
 
+        }
+        else
+        {
+            if (Session["Category"] != null)
+            {
+                ddlCategory.SelectedValue = Session["Category"].ToString();
+                cbActive.Checked = Convert.ToBoolean(Session["Active"]);
+            }
         }
     }
     protected void ddlRequestor_DataBound(object sender, EventArgs e)
