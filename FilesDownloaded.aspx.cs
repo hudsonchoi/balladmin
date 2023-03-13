@@ -129,16 +129,16 @@ public partial class FilesDownloaded : System.Web.UI.Page
                             strSection = "restricted4";
                             break;
                          case 22:
-                            strSection = "allscp";
+                            strSection = "allssp";
                             break;
                          case 23:
-                            strSection = "openingcp";
+                            strSection = "openingsp";
                             break;
                          case 24:
-                            strSection = "springcp";
+                            strSection = "springsp";
                             break;
                         case 25:
-                            strSection = "worldcp";
+                            strSection = "worldsp";
                         break;
                 }
 
