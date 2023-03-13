@@ -328,6 +328,13 @@ e.Row.Cells[1].Text = "<a href=\"CompanyDetail.aspx?id=" + gvCompany.DataKeys[e.
     }
     protected void lbXLS_Click(object sender, EventArgs e)
     {
-        //////Response.Redirect("./xls_requestor.aspx?id=" + ddlRequestor.SelectedValue);
+        if (cbActive.Checked)
+        {
+            Response.Redirect("./xls_category.aspx?category=" + ddlCategory.SelectedValue + "&active=true");
+        }
+        else
+        {
+            Response.Redirect("./xls_category.aspx?category=" + ddlCategory.SelectedValue + "&active=false");
+        }
     }
 }
