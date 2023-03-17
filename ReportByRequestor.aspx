@@ -155,7 +155,7 @@ function ValidateRequestor(source, arguments)
       <td></td>
     <td><img src="/portal/images/portal_dottedline.gif" width="17" height="17"></td>
       <td> 
-      <asp:Label ID="lblBreadCrumb" runat="server" Text='<a href="./">Home</a> :: User Report' Font-Bold="True" Font-Names="Arial" Font-Size="14pt"></asp:Label>&nbsp;
+      <asp:Label ID="lblBreadCrumb" runat="server" Text='<a href="./">Home</a> :: Users By MLB Contact' Font-Bold="True" Font-Names="Arial" Font-Size="14pt"></asp:Label>&nbsp;
 </td>
 </tr>
 </table>

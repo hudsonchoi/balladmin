@@ -80,7 +80,7 @@ public partial class ReportByRequestor : System.Web.UI.Page
 
             lblResult.Text = "Number of users: <b>" + dtUsersByRequestorDT.Rows.Count + "</b>";
 
-            lblBreadCrumb.Text = "<a href=\"./\">Home</a> :: <a href=\"ReportByRequestor.aspx\">User Report</a> :: " + ddlRequestor.SelectedItem;
+            lblBreadCrumb.Text = "<a href=\"./\">Home</a> :: <a href=\"ReportByRequestor.aspx\">Users by MLB Contact</a> :: " + ddlRequestor.SelectedItem;
             requestorTable.Visible = false;
             resultDiv.Visible = true;
 
