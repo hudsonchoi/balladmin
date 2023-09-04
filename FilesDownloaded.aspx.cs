@@ -139,7 +139,10 @@ public partial class FilesDownloaded : System.Web.UI.Page
                             break;
                         case 25:
                             strSection = "worldem";
-                        break;
+                            break;
+                        case 26:
+                            strSection = "restricted5";
+                            break;
                 }
 
                      DataTable dtFilesDownloaded = AdminDAL.GetFileTracking(strSection, Convert.ToDateTime(Session["from"]), Convert.ToDateTime(Session["to"]).AddDays(1));

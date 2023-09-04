@@ -172,7 +172,12 @@ public partial class xls_UsersLoggedIn : System.Web.UI.Page
                     gvUsers.DataSource = uspWorldCPNotLoginReportDT;
                     gvUsers.Columns[33].Visible = true;
                     break;
-
+                case 26:
+                    dsReportTableAdapters.uspRestricted5NotLoginReportTableAdapter uspRestricted5NotLoginReportTA = new dsReportTableAdapters.uspRestricted5NotLoginReportTableAdapter();
+                    dsReport.uspRestricted5NotLoginReportDataTable uspRestricted5NotLoginReportDT = uspRestricted5NotLoginReportTA.GetUspRestricted5NotLoginReport(Convert.ToDateTime(Session["from"]), Convert.ToDateTime(Session["to"]).AddDays(1));
+                    gvUsers.DataSource = uspRestricted5NotLoginReportDT;
+                    gvUsers.Columns[34].Visible = true;
+                    break;
             }
             //dsReportTableAdapters.uspCMCNotLoginReportByDatesTableAdapter uspCMCNotLoginReportByDatesTA = new dsReportTableAdapters.uspCMCNotLoginReportByDatesTableAdapter();
             //dsReport.uspCMCNotLoginReportByDatesDataTable uspCMCNotLoginReportByDatesDT = uspCMCNotLoginReportByDatesTA.GetUspCMCNotLoginReportByDates(Convert.ToDateTime(Request.QueryString["from"].ToString()), Convert.ToDateTime(Request.QueryString["to"].ToString()));
@@ -339,6 +344,12 @@ public partial class xls_UsersLoggedIn : System.Web.UI.Page
                     dsReport.uspWorldCPLoginReportDataTable uspWorldCPLoginReportDT = uspWorldCPLoginReportTA.GetUspWorldCPLoginReport(Convert.ToDateTime(Session["from"]), Convert.ToDateTime(Session["to"]).AddDays(1));
                     gvUsers.DataSource = uspWorldCPLoginReportDT;
                     gvUsers.Columns[33].Visible = true;
+                    break;
+                case 26:
+                    dsReportTableAdapters.uspRestricted5LoginReportTableAdapter uspRestricted5LoginReportTA = new dsReportTableAdapters.uspRestricted5LoginReportTableAdapter();
+                    dsReport.uspRestricted5LoginReportDataTable uspRestricted5LoginReportDT = uspRestricted5LoginReportTA.GetUspRestricted5LoginReport(Convert.ToDateTime(Session["from"]), Convert.ToDateTime(Session["to"]).AddDays(1));
+                    gvUsers.DataSource = uspRestricted5LoginReportDT;
+                    gvUsers.Columns[34].Visible = true;
                     break;
             }
 

@@ -274,6 +274,13 @@ public partial class UsersLoggedIn : System.Web.UI.Page
                             gvUsers.DataSource = uspWorldCPNotLoginReportDT;
                             gvUsers.Columns[33].Visible = true;
                             break;
+                        case 26:
+                            dsReportTableAdapters.uspRestricted5NotLoginReportTableAdapter uspRestricted5NotLoginReportTA = new dsReportTableAdapters.uspRestricted5NotLoginReportTableAdapter();
+                            dsReport.uspRestricted5NotLoginReportDataTable uspRestricted5NotLoginReportDT = uspRestricted5NotLoginReportTA.GetUspRestricted5NotLoginReport(Convert.ToDateTime(Session["from"]), Convert.ToDateTime(Session["to"]).AddDays(1));
+                            iCount = uspRestricted5NotLoginReportDT.Count;
+                            gvUsers.DataSource = uspRestricted5NotLoginReportDT;
+                            gvUsers.Columns[34].Visible = true;
+                            break;
                     }
                     
                 }
@@ -474,6 +481,13 @@ public partial class UsersLoggedIn : System.Web.UI.Page
                             iCount = uspWorldCPLoginReportDT.Count;
                             gvUsers.DataSource = uspWorldCPLoginReportDT;
                             gvUsers.Columns[33].Visible = true;
+                            break;
+                        case 26:
+                            dsReportTableAdapters.uspRestricted5LoginReportTableAdapter uspRestricted5LoginReportTA = new dsReportTableAdapters.uspRestricted5LoginReportTableAdapter();
+                            dsReport.uspRestricted5LoginReportDataTable uspRestricted5LoginReportDT = uspRestricted5LoginReportTA.GetUspRestricted5LoginReport(Convert.ToDateTime(Session["from"]), Convert.ToDateTime(Session["to"]).AddDays(1));
+                            iCount = uspRestricted5LoginReportDT.Count;
+                            gvUsers.DataSource = uspRestricted5LoginReportDT;
+                            gvUsers.Columns[34].Visible = true;
                             break;
                     }
                     
