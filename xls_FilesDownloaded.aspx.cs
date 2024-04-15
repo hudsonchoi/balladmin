@@ -110,6 +110,9 @@ public partial class xls_FilesDownloaded : System.Web.UI.Page
                 case 26:
                     strSection = "restricted5";
                     break;
+                case 27:
+                    strSection = "restricted6";
+                    break;
         }
 
         //dsReportTableAdapters.uspFilesDownloadedTableAdapter uspFilesDownloadedTA = new dsReportTableAdapters.uspFilesDownloadedTableAdapter();

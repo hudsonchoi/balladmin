@@ -281,6 +281,13 @@ public partial class UsersLoggedIn : System.Web.UI.Page
                             gvUsers.DataSource = uspRestricted5NotLoginReportDT;
                             gvUsers.Columns[34].Visible = true;
                             break;
+                        case 27:
+                            dsReportTableAdapters.uspRestricted6NotLoginReportTableAdapter uspRestricted6NotLoginReportTA = new dsReportTableAdapters.uspRestricted6NotLoginReportTableAdapter();
+                            dsReport.uspRestricted6NotLoginReportDataTable uspRestricted6NotLoginReportDT = uspRestricted6NotLoginReportTA.GetUspRestricted6NotLoginReport(Convert.ToDateTime(Session["from"]), Convert.ToDateTime(Session["to"]).AddDays(1));
+                            iCount = uspRestricted6NotLoginReportDT.Count;
+                            gvUsers.DataSource = uspRestricted6NotLoginReportDT;
+                            gvUsers.Columns[35].Visible = true;
+                            break;
                     }
                     
                 }
@@ -488,6 +495,13 @@ public partial class UsersLoggedIn : System.Web.UI.Page
                             iCount = uspRestricted5LoginReportDT.Count;
                             gvUsers.DataSource = uspRestricted5LoginReportDT;
                             gvUsers.Columns[34].Visible = true;
+                            break;
+                        case 27:
+                            dsReportTableAdapters.uspRestricted6LoginReportTableAdapter uspRestricted6LoginReportTA = new dsReportTableAdapters.uspRestricted6LoginReportTableAdapter();
+                            dsReport.uspRestricted6LoginReportDataTable uspRestricted6LoginReportDT = uspRestricted6LoginReportTA.GetUspRestricted6LoginReport(Convert.ToDateTime(Session["from"]), Convert.ToDateTime(Session["to"]).AddDays(1));
+                            iCount = uspRestricted6LoginReportDT.Count;
+                            gvUsers.DataSource = uspRestricted6LoginReportDT;
+                            gvUsers.Columns[35].Visible = true;
                             break;
                     }
                     

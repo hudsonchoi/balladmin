@@ -178,6 +178,12 @@ public partial class xls_UsersLoggedIn : System.Web.UI.Page
                     gvUsers.DataSource = uspRestricted5NotLoginReportDT;
                     gvUsers.Columns[34].Visible = true;
                     break;
+                case 27:
+                    dsReportTableAdapters.uspRestricted6NotLoginReportTableAdapter uspRestricted6NotLoginReportTA = new dsReportTableAdapters.uspRestricted6NotLoginReportTableAdapter();
+                    dsReport.uspRestricted6NotLoginReportDataTable uspRestricted6NotLoginReportDT = uspRestricted6NotLoginReportTA.GetUspRestricted6NotLoginReport(Convert.ToDateTime(Session["from"]), Convert.ToDateTime(Session["to"]).AddDays(1));
+                    gvUsers.DataSource = uspRestricted6NotLoginReportDT;
+                    gvUsers.Columns[35].Visible = true;
+                    break;
             }
             //dsReportTableAdapters.uspCMCNotLoginReportByDatesTableAdapter uspCMCNotLoginReportByDatesTA = new dsReportTableAdapters.uspCMCNotLoginReportByDatesTableAdapter();
             //dsReport.uspCMCNotLoginReportByDatesDataTable uspCMCNotLoginReportByDatesDT = uspCMCNotLoginReportByDatesTA.GetUspCMCNotLoginReportByDates(Convert.ToDateTime(Request.QueryString["from"].ToString()), Convert.ToDateTime(Request.QueryString["to"].ToString()));
@@ -350,6 +356,12 @@ public partial class xls_UsersLoggedIn : System.Web.UI.Page
                     dsReport.uspRestricted5LoginReportDataTable uspRestricted5LoginReportDT = uspRestricted5LoginReportTA.GetUspRestricted5LoginReport(Convert.ToDateTime(Session["from"]), Convert.ToDateTime(Session["to"]).AddDays(1));
                     gvUsers.DataSource = uspRestricted5LoginReportDT;
                     gvUsers.Columns[34].Visible = true;
+                    break;
+                case 27:
+                    dsReportTableAdapters.uspRestricted6LoginReportTableAdapter uspRestricted6LoginReportTA = new dsReportTableAdapters.uspRestricted6LoginReportTableAdapter();
+                    dsReport.uspRestricted6LoginReportDataTable uspRestricted6LoginReportDT = uspRestricted6LoginReportTA.GetUspRestricted6LoginReport(Convert.ToDateTime(Session["from"]), Convert.ToDateTime(Session["to"]).AddDays(1));
+                    gvUsers.DataSource = uspRestricted6LoginReportDT;
+                    gvUsers.Columns[35].Visible = true;
                     break;
             }
 

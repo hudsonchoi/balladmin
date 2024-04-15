@@ -105,6 +105,9 @@
             <asp:BoundField DataField="Restricted5LastLogin" HeaderText="Restricted5LastLogin" 
                 SortExpression="Restricted5LastLogin" Visible="false">
             </asp:BoundField>
+            <asp:BoundField DataField="Restricted6LastLogin" HeaderText="Restricted6LastLogin" 
+                SortExpression="Restricted6LastLogin" Visible="false">
+            </asp:BoundField>
         </Columns>
         <EmptyDataTemplate>
             Email
